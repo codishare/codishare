@@ -1,8 +1,15 @@
-import { createCaller } from "./_trpc/serverClient";
+"use client";
+import { useTheme } from "next-themes";
 
-export default async function Page() {
-    const caller = createCaller({});
-    const result = await caller.greeting();
+export default function Page() {
+    const { theme, setTheme } = useTheme();
 
-    return <main>{result}</main>;
+    return (
+        <div className="flex flex-col items-start">
+            <div>The current theme is: {theme}</div>
+            <button onClick={() => setTheme("light")}>Light Mode</button>
+            <button onClick={() => setTheme("dark")}>Dark Mode</button>
+            <button onClick={() => setTheme("system")}>System Mode</button>
+        </div>
+    );
 }
