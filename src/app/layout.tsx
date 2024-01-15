@@ -12,14 +12,15 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-    children,
+    children, params: { locale }
 }: {
     children: React.ReactNode;
+    params: { locale: string };
 }) {
     return (
-        <html lang="en">
-            <body className={inter.className}>
-                <Providers>{children}</Providers>
+        <html lang={ locale }>
+            <body className={ inter.className }>
+                <Providers>{ children }</Providers>
             </body>
         </html>
     );
