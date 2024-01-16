@@ -4,5 +4,19 @@
     },
     "Dashboard": {
         "welcome": "Welcome"
+    },
+    "Auth": {
+        "SignUp": {
+            "header": {
+                "white": "Sign up on",
+                "colored": "Codishare",
+                "description": "Choose the type of registration you want to complete"
+            },
+            "form": {
+                "terms": "I accept the terms and conditions.",
+                "terms_error": "You must accept Codishare's terms and conditions."
+            }
+        }
     }
+    
 }
