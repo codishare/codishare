@@ -1,4 +1,7 @@
 {
+    "Errors": {
+        "not-found": "Page not found"
+    },
     "Dashboard": {
         "welcome": "Welcome"
     }

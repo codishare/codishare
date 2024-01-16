@@ -1,11 +1,10 @@
-import createMiddleware from 'next-intl/middleware';
-import { allowedLanguages, defaultLanguage } from './settings';
+import createMiddleware from 'next-intl/middleware'; 
  
 export default createMiddleware({ 
-    locales: allowedLanguages,
-    defaultLocale: defaultLanguage
+    locales: ['en', 'es'],
+    defaultLocale: 'en'
 });
  
 export const config = { 
-    matcher: ['/', `/(${ allowedLanguages.join('|') })/:path*`]
+    matcher: ['/', `/(en|es)/:path*`]
 };
