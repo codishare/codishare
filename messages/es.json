@@ -4,5 +4,14 @@
     },
     "Dashboard": {
         "welcome": "Bienvenido"
+    },
+    "Auth": {
+        "SignUp": {
+            "header": {
+                "white": "Bienvenido a ",
+                "colored": "Codishare", 
+                "description": "Una plataforma donde podrás gestionar y unirte a proyectos open source de la comunidad"
+            }
+        }
     }
 }
