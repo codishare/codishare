@@ -14,7 +14,7 @@ export default function Layout({
                 <ToggleTheme />
             </section>
 
-            <section className="hidden lg:flex lg:w-1/2 xl:w-1/3 bg-gray-50/60 dark:bg-black/30 relative items-center justify-center transition-all">
+            <section className="hidden lg:flex lg:w-1/2 xl:w-1/3 bg-gray-100/80 dark:bg-black/30 relative items-center justify-center transition-all">
                 <div className="absolute h-screen w-1/2 bg-indigo-500 left-0"></div>
                 
                 <img
