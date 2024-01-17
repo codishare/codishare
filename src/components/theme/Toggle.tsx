@@ -1,5 +1,7 @@
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
+import NightlightOutlinedIcon from '@mui/icons-material/NightlightOutlined';
 
 export const ToggleTheme = () => {
     const { theme, setTheme } = useTheme();
@@ -10,9 +12,8 @@ export const ToggleTheme = () => {
     if (!mounted) return null;
 
     return <button className="flex items-center p-2 rounded-lg border transition-all" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
-        <img 
-            src={ `/assets/icons/${ theme }_mode.svg` }
-            className="h-5 w-5"
-        />
+        {
+            theme === 'dark' ? <LightModeOutlinedIcon /> : <NightlightOutlinedIcon />
+        }
     </button>
 }
