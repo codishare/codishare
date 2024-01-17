@@ -29,7 +29,7 @@ export default function TextInput({
         }
 
         <section
-            className="px-4 text-sm py-2.5 flex items-center gap-3 rounded-lg focus:outline-none focus:ring-0 bg-gray-50 dark:bg-gray-700 border dark:border-gray-600 transition-all"
+            className="px-4 text-sm py-2.5 flex items-center gap-3 rounded-lg focus:outline-none focus:ring-0 bg-gray-50 dark:bg-black/30 border dark:border-gray-600 transition-all"
         >
             {
                 icon && <span className="text-gray-400">
