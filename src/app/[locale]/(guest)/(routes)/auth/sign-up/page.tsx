@@ -1,7 +1,13 @@
 import { useTranslations } from "next-intl"
 import TextInput from "@/components/ui/text-input"
+import Form from "@/components/auth/sign-up/form";
+import Selector from "@/components/ui/selector";
+
 import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
-import Steps from "@/components/auth/sign-up/steps";
+import CodeOutlinedIcon from '@mui/icons-material/CodeOutlined';
+import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlined';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import AutoGraphOutlinedIcon from '@mui/icons-material/AutoGraphOutlined';
 
 export default function Page() { 
     const t = useTranslations('Auth.SignUp')
@@ -12,6 +18,7 @@ export default function Page() {
                 label={ t("form.name") }
                 placeholder={ t("form.name_placeholder") }
                 icon={ <BadgeOutlinedIcon /> }
+                name="name"
                 required={ true }
             />
         ],
@@ -19,24 +26,52 @@ export default function Page() {
             <TextInput 
                 label={ t("form.email") }
                 placeholder={ t("form.email_placeholder") }
-                icon={ <BadgeOutlinedIcon /> }
+                icon={ <AlternateEmailOutlinedIcon /> }
                 type="email"
+                name="email"
                 required={ true }
             />, 
             <TextInput 
                 label={ t("form.password") }
                 placeholder={ t("form.password_placeholder") }
-                icon={ <BadgeOutlinedIcon /> }
+                icon={ <LockOutlinedIcon /> }
                 type="password"
+                name="password"
                 required={ true }
             />,
             <TextInput 
                 label={ t("form.confirm_password") }
                 placeholder={ t("form.confirm_password_placeholder") }
-                icon={ <BadgeOutlinedIcon /> }
+                icon={ <LockOutlinedIcon /> }
                 type="password"
+                name="confirm_password"
                 required={ true }
             /> 
+        ],
+        [
+            <Selector 
+                label="Stack"
+                icon={ <CodeOutlinedIcon /> }
+                required={ true }
+                name="stack"
+                options={[
+                    { label: "Frontend", value: "FRONTEND" },
+                    { label: "Backend", value: "BACKEND" },
+                    { label: "Fullstack", value: "FULLSTACK" },
+                ]}
+            />,
+            <Selector 
+                label="Role"
+                icon={ <AutoGraphOutlinedIcon /> }
+                required={ true }
+                name={ t("form.role") }
+                options={[
+                    { label: "Trainee", value: "TRAINEE" },
+                    { label: "Junior", value: "JUNIOR" },
+                    { label: "Mid", value: "MID" },
+                    { label: "Senior", value: "SENIOR" },
+                ]}
+            />,
         ]
     ]
 
@@ -47,13 +82,14 @@ export default function Page() {
 
         <p className="text-lg font-normal text-gray-500 dark:text-gray-400">{ t("header.description") }</p>
 
-        <Steps 
+        <Form 
             steps={ steps }
             buttonTranslations={{
                 next: t("actions.next"),
                 previous: t("actions.previous"),
                 start: t("actions.start"),
                 alreadyHaveAccount: t("actions.already-have-account"),
+                finish: t("actions.finish")
             }}
         /> 
     </div>

@@ -17,7 +17,8 @@
                 "next": "Next",
                 "previous": "Previous",
                 "already-have-account": "Sign in",
-                "start": "Start now"
+                "start": "Start now",
+                "finish": "Finish"
             },
             "form": {
                 "name": "Name",
@@ -27,7 +28,8 @@
                 "password": "Password",
                 "password_placeholder": "Enter your password",
                 "confirm_password": "Confirm password",
-                "confirm_password_placeholder": "Confirm your password"
+                "confirm_password_placeholder": "Confirm your password",
+                "role": "Role"
             }
         }
     }

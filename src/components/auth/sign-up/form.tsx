@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Link } from "@/navigation";
 
-export default function Steps({
+export default function Form({
     steps,
     buttonTranslations
 } : {
@@ -13,6 +13,7 @@ export default function Steps({
         previous: string,
         start: string,
         alreadyHaveAccount: string,
+        finish: string
     }
 }) {
     const [step, setStep] = useState(0)
@@ -48,7 +49,13 @@ export default function Steps({
             }
 
             <button onClick={ handleNext } className="border border-inset border-indigo-500 hover:bg-indigo-500 dark:hover:bg-indigo-600/40 text-indigo-500 hover:text-white text-sm flex-1 rounded-full py-3 hover:scale-95 transition-all">
-                { step == 0 ? buttonTranslations.start : buttonTranslations.next }
+                { 
+                    step == 0 ? 
+                        buttonTranslations.start 
+                    : step == (steps.length - 1) ?
+                        buttonTranslations.finish
+                    : buttonTranslations.next 
+                }
             </button>
         </section>
     </form> 

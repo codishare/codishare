@@ -17,7 +17,8 @@
                 "next": "Siguiente",
                 "previous": "Anterior",
                 "already-have-account": "Ya tengo cuenta",
-                "start": "Comenzar"
+                "start": "Comenzar",
+                "finish": "Finalizar"
             },
             "form": {
                 "name": "Nombre",
@@ -26,8 +27,9 @@
                 "email_placeholder": "Ingresa tu correo electrónico",
                 "password": "Contraseña",
                 "password_placeholder": "Ingresa tu contraseña",
-                "password_confirmation": "Confirmar contraseña",
-                "password_confirmation_placeholder": "Confirma tu contraseña"
+                "confirm_password": "Confirmar contraseña",
+                "confirm_password_placeholder": "Confirma tu contraseña",
+                "role": "Rol"
             }
         }
     }
