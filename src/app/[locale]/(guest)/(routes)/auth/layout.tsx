@@ -8,14 +8,23 @@ export default function Layout({
     children: React.ReactNode 
 }) {
     return (
-        <main className="h-screen w-screen flex flex-col items-center">
+        <main className="w-screen h-screen flex justify-center">
             {/* @ Toggle theme */}
             <section className="fixed right-0 top-0 m-5">
                 <ToggleTheme />
             </section>
 
+            <section className="hidden lg:flex lg:w-1/2 xl:w-1/3 bg-gray-50/60 dark:bg-black/30 relative items-center justify-center transition-all">
+                <div className="absolute h-screen w-1/2 bg-indigo-500 left-0"></div>
+                
+                <img
+                    className="z-30"
+                    src="/assets/sharing-auth.png"
+                />
+            </section>
+
             {/* @ Content */}
-            <section className="flex-1 flex items-center">
+            <section className="flex-none md:flex-1 w-[90%] flex justify-center items-center">
                 { children }
             </section>
         </main>

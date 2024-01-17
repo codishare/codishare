@@ -1,33 +1,60 @@
 import { useTranslations } from "next-intl"
-import { ToogleTheme } from '@/components/theme/toogleTheme';
+import TextInput from "@/components/ui/text-input"
+import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
+import Steps from "@/components/auth/sign-up/steps";
 
-export default function Page() {
+export default function Page() { 
     const t = useTranslations('Auth.SignUp')
 
-    return <div className="w-full max-sm:px-10 sm:w-[450px]">
-        {/* <ToogleTheme /> */}
+    const steps: React.ReactNode[][] = [
+        [
+            <TextInput 
+                label={ t("form.name") }
+                placeholder={ t("form.name_placeholder") }
+                icon={ <BadgeOutlinedIcon /> }
+                required={ true }
+            />
+        ],
+        [
+            <TextInput 
+                label={ t("form.email") }
+                placeholder={ t("form.email_placeholder") }
+                icon={ <BadgeOutlinedIcon /> }
+                type="email"
+                required={ true }
+            />, 
+            <TextInput 
+                label={ t("form.password") }
+                placeholder={ t("form.password_placeholder") }
+                icon={ <BadgeOutlinedIcon /> }
+                type="password"
+                required={ true }
+            />,
+            <TextInput 
+                label={ t("form.confirm_password") }
+                placeholder={ t("form.confirm_password_placeholder") }
+                icon={ <BadgeOutlinedIcon /> }
+                type="password"
+                required={ true }
+            /> 
+        ]
+    ]
 
-        <img 
-            src="/assets/auth-avatar.gif"
-            alt="Avatar"
-            draggable={ false }
-            width={ 100 }
-        />
-
-        <h1 className="mt-5 font-extrabold text-gray-700 dark:text-white text-5xl text-balance">
+    return <div className="w-[400px] flex flex-col gap-2">
+        <h1 className="mt-5 font-extrabold text-gray-700 dark:text-white text-4xl">
             { t("header.white") } <span className="text-transparent bg-clip-text bg-gradient-to-r to-violet-400 from-indigo-500">{ t("header.colored") }</span>
         </h1>
 
-        <p className="mt-2 text-lg font-normal text-gray-500 dark:text-gray-400 text-balance">{ t("header.description") }</p>
+        <p className="text-lg font-normal text-gray-500 dark:text-gray-400">{ t("header.description") }</p>
 
-        <section className="flex w-full gap-4 mt-5">
-            <button className="bg-sky-600 dark:bg-sky-600/40 dark:border-[1px] dark:border-sky-500 text-sm text-semibold flex-1 text-white rounded-full py-3 hover:bg-sky-500 hover:scale-95 transition">
-                Tengo cuenta
-            </button>
-
-            <button className="border border-[1px] border-inset border-sky-500 hover:bg-sky-500 dark:hover:bg-sky-600/40 text-sky-500 hover:text-white text-sm flex-1 rounded-full py-3 hover:scale-95 transition-all">
-                Comenzar
-            </button>
-        </section>
+        <Steps 
+            steps={ steps }
+            buttonTranslations={{
+                next: t("actions.next"),
+                previous: t("actions.previous"),
+                start: t("actions.start"),
+                alreadyHaveAccount: t("actions.already-have-account"),
+            }}
+        /> 
     </div>
 }

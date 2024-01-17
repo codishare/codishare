@@ -3,18 +3,31 @@
         "not-found": "Página no encontrada"
     },
     "Dashboard": {
-        "welcome": "Bienvenido"
+        "welcome": "Bienvenido",
+        "sign-up": "Registrate"
     },
     "Auth": {
         "SignUp": {
             "header": {
                 "white": "Registrate en",
                 "colored": "Codishare", 
-                "description": "Selecciona el tipo de registro que deseas realizar"
-            }, 
-            "form": { 
-                "terms": "Acepto los términos y condiciones.",
-                "terms_error": "Debes aceptar los términos y condiciones de Codishare"
+                "description": "Únete a nosotros y comparte tu código con el mundo"
+            },
+            "actions": {
+                "next": "Siguiente",
+                "previous": "Anterior",
+                "already-have-account": "Ya tengo cuenta",
+                "start": "Comenzar"
+            },
+            "form": {
+                "name": "Nombre",
+                "name_placeholder": "Ingresa tu nombre",
+                "email": "Correo electrónico",
+                "email_placeholder": "Ingresa tu correo electrónico",
+                "password": "Contraseña",
+                "password_placeholder": "Ingresa tu contraseña",
+                "password_confirmation": "Confirmar contraseña",
+                "password_confirmation_placeholder": "Confirma tu contraseña"
             }
         }
     }
