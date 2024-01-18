@@ -1,5 +1,53 @@
 {
+    "Errors": {
+        "not-found": "Page not found"
+    },
     "Dashboard": {
-        "welcome": "Welcome"
+        "welcome": "Welcome",
+        "sign-up": "Sign up"
+    },
+    "Auth": {
+        "SignUp": {
+            "header": {
+                "white": "Sign up on",
+                "colored": "Codishare",
+                "description": "Join the community of developers and share your code with the world"
+            }, 
+            "actions": {
+                "next": "Next",
+                "previous": "Previous",
+                "already-have-account": "Sign in",
+                "start": "Start now",
+                "finish": "Finish"
+            },
+            "form": {
+                "name": "Name",
+                "name_placeholder": "Enter your name",
+                "email": "Email",
+                "email_placeholder": "Enter your email",
+                "password": "Password",
+                "password_placeholder": "Enter your password",
+                "confirm_password": "Confirm password",
+                "confirm_password_placeholder": "Confirm your password",
+                "role": "Role",
+                "errors": {
+                    "name": "Name is required",
+                    "email": "Email is required",
+                    "email_format": "Email is not valid",
+                    "terms": "You must accept the terms and conditions",
+                    "password": "Password is required",
+                    "password_min_length": "Password must be at least 8 characters long",
+                    "password_uppercase": "Password must contain at least one uppercase letter",
+                    "password_lowercase": "Password must contain at least one lowercase letter",
+                    "password_number": "Password must contain at least one number",
+                    "confirm_password": "Confirm password is required",
+                    "confirm_password_match": "Passwords must match",
+                    "stack": "Stack is required",
+                    "stack_invalid": "Stack is not valid",
+                    "role": "Role is required",
+                    "role_invalid": "Role is not valid"
+                }
+            }
+        }
     }
 }

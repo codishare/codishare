@@ -1,5 +1,53 @@
 {
+    "Errors": {
+        "not-found": "Página no encontrada"
+    },
     "Dashboard": {
-        "welcome": "Bienvenido"
+        "welcome": "Bienvenido",
+        "sign-up": "Registrate"
+    },
+    "Auth": {
+        "SignUp": {
+            "header": {
+                "white": "Registrate en",
+                "colored": "Codishare", 
+                "description": "Únete a nosotros y comparte tu código con el mundo"
+            },
+            "actions": {
+                "next": "Siguiente",
+                "previous": "Anterior",
+                "already-have-account": "Ya tengo cuenta",
+                "start": "Comenzar",
+                "finish": "Finalizar"
+            },
+            "form": {
+                "name": "Nombre",
+                "name_placeholder": "Ingresa tu nombre",
+                "email": "Correo electrónico",
+                "email_placeholder": "Ingresa tu correo electrónico",
+                "password": "Contraseña",
+                "password_placeholder": "Ingresa tu contraseña",
+                "confirm_password": "Confirmar contraseña",
+                "confirm_password_placeholder": "Confirma tu contraseña",
+                "role": "Rol",
+                "errors": {
+                    "name": "El nombre es obligatorio",
+                    "email": "El correo electrónico es obligatorio",
+                    "email_format": "El correo electrónico no es válido",
+                    "terms": "Debes aceptar los términos y condiciones",
+                    "password": "La contraseña es obligatoria",
+                    "password_min_length": "La contraseña debe tener al menos 8 caracteres de longitud",
+                    "password_uppercase": "La contraseña debe contener al menos una letra mayúscula",
+                    "password_lowercase": "La contraseña debe contener al menos una letra minúscula",
+                    "password_number": "La contraseña debe contener al menos un número",
+                    "confirm_password": "Es obligatorio confirmar la contraseña",
+                    "confirm_password_match": "Las contraseñas deben coincidir",
+                    "stack": "Es obligatorio especificar la pila tecnológica",
+                    "stack_invalid": "La pila tecnológica no es válida",
+                    "role": "Es obligatorio especificar el rol",
+                    "role_invalid": "El rol no es válido"
+                }               
+            }
+        }
     }
 }

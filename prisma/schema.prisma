@@ -21,6 +21,8 @@ model User {
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt 
+
+    @@map("users")
 }
 
 enum Role {
@@ -31,7 +33,7 @@ enum Role {
 enum Seniority {
     TRAINNE
     JUNIOR
-    MIDDLE
+    MID
     SENIOR
 }
 
