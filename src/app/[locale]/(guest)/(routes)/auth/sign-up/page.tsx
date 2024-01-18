@@ -23,7 +23,7 @@ export default function Page() {
                 required={ true }
             />, 
             <Checkbox
-                label="I agree to the terms and conditions"
+                label={ t('form.terms') }
                 name="terms"
                 required={ true }
             />

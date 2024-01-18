@@ -22,6 +22,7 @@
             },
             "form": {
                 "name": "Nombre",
+                "terms": "Acepto los términos y condiciones",
                 "name_placeholder": "Ingresa tu nombre",
                 "email": "Correo electrónico",
                 "email_placeholder": "Ingresa tu correo electrónico",
