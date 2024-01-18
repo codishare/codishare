@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { Link } from "@/navigation"; 
 import { validate } from "@/services/validation/forms/sign-up";
+import { useNotifications } from "@/components/hooks/useNotifications";
+import PriorityHighOutlinedIcon from '@mui/icons-material/PriorityHighOutlined';
 
 export default function Form({
     steps,
@@ -17,6 +19,7 @@ export default function Form({
         finish: string
     }
 }) {
+    const addNotification = useNotifications(); 
     const [step, setStep] = useState(0)
 
     const handleNext = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -36,7 +39,11 @@ export default function Form({
 
         const isValid = validate(data); 
 
-        if(isValid !== true) console.log(isValid)
+        if(isValid !== true) addNotification({
+            type: "ERROR", 
+            icon: <PriorityHighOutlinedIcon />,
+            message: isValid
+        })
     }
 
     return <form onSubmit={ handleSubmit } className="flex flex-col gap-3 mt-7">
