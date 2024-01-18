@@ -8,6 +8,7 @@ import CodeOutlinedIcon from '@mui/icons-material/CodeOutlined';
 import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlined';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import AutoGraphOutlinedIcon from '@mui/icons-material/AutoGraphOutlined';
+import Checkbox from "@/components/ui/checkbox";
 
 export default function Page() { 
     const t = useTranslations('Auth.SignUp')
@@ -19,6 +20,11 @@ export default function Page() {
                 placeholder={ t("form.name_placeholder") }
                 icon={ <BadgeOutlinedIcon /> }
                 name="name"
+                required={ true }
+            />, 
+            <Checkbox
+                label="I agree to the terms and conditions"
+                name="terms"
                 required={ true }
             />
         ],
@@ -71,7 +77,7 @@ export default function Page() {
                     { label: "Mid", value: "MID" },
                     { label: "Senior", value: "SENIOR" },
                 ]}
-            />,
+            />
         ]
     ]
 

@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from "react";
-import { Link } from "@/navigation";
+import { Link } from "@/navigation"; 
+import { validate } from "@/services/validation/forms/sign-up";
 
 export default function Form({
     steps,
@@ -28,7 +29,17 @@ export default function Form({
         setStep((step - 1) < 0 ? step : step - 1)
     }
 
-    return <form className="flex flex-col gap-3 mt-7">
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+
+        const data = new FormData(e.currentTarget);
+
+        const isValid = validate(data); 
+
+        if(isValid !== true) console.log(isValid)
+    }
+
+    return <form onSubmit={ handleSubmit } className="flex flex-col gap-3 mt-7">
         {
             steps[step].map((step) => {
                 return step
@@ -48,15 +59,17 @@ export default function Form({
                 </button>
             }
 
-            <button onClick={ handleNext } className="border border-inset border-indigo-500 hover:bg-indigo-500 dark:hover:bg-indigo-600/40 text-indigo-500 hover:text-white text-sm flex-1 rounded-full py-3 hover:scale-95 transition-all">
-                { 
-                    step == 0 ? 
-                        buttonTranslations.start 
-                    : step == (steps.length - 1) ?
-                        buttonTranslations.finish
-                    : buttonTranslations.next 
-                }
-            </button>
+            {
+                step == (steps.length - 1) ? <button type="submit" className="border border-inset border-indigo-500 hover:bg-indigo-500 dark:hover:bg-indigo-600/40 text-indigo-500 hover:text-white text-sm flex-1 rounded-full py-3 hover:scale-95 transition-all">
+                    { buttonTranslations.finish }
+                </button> : <button onClick={ handleNext } className="border border-inset border-indigo-500 hover:bg-indigo-500 dark:hover:bg-indigo-600/40 text-indigo-500 hover:text-white text-sm flex-1 rounded-full py-3 hover:scale-95 transition-all">
+                    { 
+                        step == 0 ? 
+                            buttonTranslations.start 
+                        : buttonTranslations.next 
+                    }
+                </button> 
+            }
         </section>
     </form> 
 }
