@@ -2,8 +2,6 @@ import { isEmail } from "../email";
 import { isSecure } from "../password";
 import type { SignUp } from "@/components/auth/sign-up/form";
 
-// const STACK = "FRONTEND" || "BACKEND" || "FULLSTACK";
-
 enum STACK {
     "FRONTEND",
     "BACKEND",
