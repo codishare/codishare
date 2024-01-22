@@ -35,6 +35,7 @@
                     "invalid_format": "Invalid data type on received param",
                     "name": "Name is required",
                     "email": "Email is required",
+                    "email_in_use": "Email is already in use",
                     "email_format": "Email is not valid",
                     "terms": "You must accept the terms and conditions",
                     "password": "Password is required",

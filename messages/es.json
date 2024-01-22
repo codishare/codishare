@@ -35,6 +35,7 @@
                     "invalid_format": "El formato de uno de los parámetros no es el esperado",
                     "name": "El nombre es obligatorio",
                     "email": "El correo electrónico es obligatorio",
+                    "email_in_use": "El correo electrónico ya está en uso",
                     "email_format": "El correo electrónico no es válido",
                     "terms": "Debes aceptar los términos y condiciones",
                     "password": "La contraseña es obligatoria",
