@@ -90,13 +90,6 @@ export default function Page() {
 
         <Form 
             steps={ steps }
-            buttonTranslations={{
-                next: t("actions.next"),
-                previous: t("actions.previous"),
-                start: t("actions.start"),
-                alreadyHaveAccount: t("actions.already-have-account"),
-                finish: t("actions.finish")
-            }}
         /> 
     </div>
 }
