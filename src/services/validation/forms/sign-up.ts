@@ -33,9 +33,17 @@ export function validate(
         return 'name';
     }
 
+    if(typeof name !== 'string') {
+        return 'invalid_format';
+    }
+
     // @ Validate terms
     if(!terms) {
         return 'terms';
+    }
+
+    if(typeof terms !== 'boolean') {
+        return 'invalid_format';
     }
 
     // @ Validate email
@@ -45,6 +53,10 @@ export function validate(
 
     if(!isEmail(email)) {
         return 'email_format';
+    }
+
+    if(typeof email !== 'string') {
+        return 'invalid_format';
     }
 
     // @ Validate password
@@ -58,9 +70,17 @@ export function validate(
         return validPassword;
     }
 
+    if(typeof password !== 'string') {
+        return 'invalid_format';
+    }
+
     // @ Validate password confirmation
     if(!confirm_password) {
         return 'confirm_password';
+    }
+
+    if(typeof confirm_password !== 'string') {
+        return 'invalid_format';
     }
 
     if(password !== confirm_password) {
@@ -72,6 +92,10 @@ export function validate(
         return 'stack';
     }
 
+    if(typeof stack !== 'string') {
+        return 'invalid_format';
+    }
+
     if(!Object.keys(STACK).includes(stack)) {
         return 'stack_invalid';
     }
@@ -79,6 +103,10 @@ export function validate(
     // @ Validate role
     if(!role) {
         return 'role';
+    }
+
+    if(typeof role !== 'string') {
+        return 'invalid_format';
     }
 
     if(!Object.keys(ROLE).includes(role)) {

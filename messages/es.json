@@ -32,6 +32,7 @@
                 "confirm_password_placeholder": "Confirma tu contraseña",
                 "role": "Rol",
                 "errors": {
+                    "invalid_format": "El formato de uno de los parámetros no es el esperado",
                     "name": "El nombre es obligatorio",
                     "email": "El correo electrónico es obligatorio",
                     "email_format": "El correo electrónico no es válido",
