@@ -1,6 +1,6 @@
 import { isEmail } from "../email";
 import { isSecure } from "../password";
-import type { SignUp } from "@/components/auth/sign-up/form";
+import type { SignUp } from "@/_types";
 
 enum STACK {
     "FRONTEND",

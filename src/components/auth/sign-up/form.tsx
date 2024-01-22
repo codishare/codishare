@@ -16,16 +16,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import AutoGraphOutlinedIcon from '@mui/icons-material/AutoGraphOutlined';
 import Checkbox from "@/components/ui/checkbox";
 import TextInput from "@/components/ui/text-input"
-
-export interface SignUp {
-    name: string, 
-    email: string, 
-    password: string, 
-    confirm_password: string, 
-    terms: boolean, 
-    stack: string, 
-    role: string
-}
+import type { SignUp } from "@/_types";
 
 export default function Form() {
     const t = useTranslations();
