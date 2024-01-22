@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Link } from "@/navigation"; 
 import { validate } from "@/services/validation/forms/sign-up";
-import { useNotifications } from "@/components/hooks/useNotifications";
+import { useNotifications } from "@/lib/hooks/useNotifications";
 import PriorityHighOutlinedIcon from '@mui/icons-material/PriorityHighOutlined';
 import { useTranslations } from "next-intl";
 

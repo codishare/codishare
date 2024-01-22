@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Onest } from "next/font/google";
-import { Providers } from "@/components/providers";
+import { Providers } from "@/lib/providers";
 import { notFound } from 'next/navigation'
 import { NextIntlClientProvider } from "next-intl";
 
