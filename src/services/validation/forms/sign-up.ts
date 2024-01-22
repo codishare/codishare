@@ -1,19 +1,34 @@
 import { isEmail } from "../email";
 import { isSecure } from "../password";
+import type { SignUp } from "@/components/auth/sign-up/form";
 
-const STACK = "FRONTEND" || "BACKEND" || "FULLSTACK";
-const ROLE = "TRAINEE" || "JUNIOR" || "MID" || "SENIOR";
+// const STACK = "FRONTEND" || "BACKEND" || "FULLSTACK";
+
+enum STACK {
+    "FRONTEND",
+    "BACKEND",
+    "FULLSTACK"
+}
+
+enum ROLE {
+    "TRAINEE", 
+    "JUNIOR",
+    "MID",
+    "SENIOR"
+}
 
 export function validate(
-    data: FormData
-) { 
-    const name = data.get('name') as string;
-    const terms = data.get('terms') as string;
-    const email = data.get('email') as string;
-    const password = data.get('password') as string;
-    const passwordConfirmation = data.get('confirm_password') as string;
-    const stack = data.get('stack') as string;
-    const role = data.get('role') as string;
+    data: SignUp
+) {
+    const {
+        name,
+        terms,
+        email,
+        password,
+        confirm_password,
+        stack,
+        role
+    } = data;
 
     // @ Validate name
     if(!name) {
@@ -46,11 +61,11 @@ export function validate(
     }
 
     // @ Validate password confirmation
-    if(!passwordConfirmation) {
+    if(!confirm_password) {
         return 'confirm_password';
     }
 
-    if(password !== passwordConfirmation) {
+    if(password !== confirm_password) {
         return 'confirm_password_match';
     }
 
@@ -59,7 +74,7 @@ export function validate(
         return 'stack';
     }
 
-    if(!STACK.includes(stack)) {
+    if(!Object.keys(STACK).includes(stack)) {
         return 'stack_invalid';
     }
 
@@ -68,7 +83,7 @@ export function validate(
         return 'role';
     }
 
-    if(!ROLE.includes(role)) {
+    if(!Object.keys(ROLE).includes(role)) {
         return 'role_invalid';
     }
 

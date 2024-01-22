@@ -7,12 +7,120 @@ import { useNotifications } from "@/components/hooks/useNotifications";
 import PriorityHighOutlinedIcon from '@mui/icons-material/PriorityHighOutlined';
 import { useTranslations } from "next-intl";
 
-export default function Form({
-    steps
-} : {
-    steps: React.ReactNode[][]
-}) {
-    const t = useTranslations(); 
+import Selector from "@/components/ui/selector";
+
+import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
+import CodeOutlinedIcon from '@mui/icons-material/CodeOutlined';
+import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlined';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import AutoGraphOutlinedIcon from '@mui/icons-material/AutoGraphOutlined';
+import Checkbox from "@/components/ui/checkbox";
+import TextInput from "@/components/ui/text-input"
+
+export interface SignUp {
+    name: string, 
+    email: string, 
+    password: string, 
+    confirm_password: string, 
+    terms: boolean, 
+    stack: string, 
+    role: string
+}
+
+export default function Form() {
+    const t = useTranslations();
+
+    const [data, setData] = useState<SignUp>({
+        name: "", 
+        email: "", 
+        password: "", 
+        confirm_password: "", 
+        terms: false, 
+        stack: "", 
+        role: ""
+    });
+
+    const steps: React.ReactNode[][] = [
+        [
+            <TextInput 
+                label={ t("Auth.SignUp.form.name") }
+                placeholder={ t("Auth.SignUp.form.name_placeholder") }
+                icon={ <BadgeOutlinedIcon /> }
+                name="name"
+                required={ true }
+                value={ data.name }
+                change={ (value) => setData({ ...data, name: value }) }
+            />, 
+            <Checkbox
+                label={ t('Auth.SignUp.form.terms') }
+                name="terms"
+                required={ true }
+                value={ data.terms }
+                change={ (value) => setData({ ...data, terms: value }) }
+            />
+        ],
+        [
+            <TextInput 
+                label={ t("Auth.SignUp.form.email") }
+                placeholder={ t("Auth.SignUp.form.email_placeholder") }
+                icon={ <AlternateEmailOutlinedIcon /> }
+                type="email"
+                name="email"
+                required={ true }
+                value={ data.email }
+                change={ (value) => setData({ ...data, email: value }) }
+            />, 
+            <TextInput 
+                label={ t("Auth.SignUp.form.password") }
+                placeholder={ t("Auth.SignUp.form.password_placeholder") }
+                icon={ <LockOutlinedIcon /> }
+                type="password"
+                name="password"
+                required={ true }
+                value={ data.password }
+                change={ (value) => setData({ ...data, password: value }) }
+            />,
+            <TextInput 
+                label={ t("Auth.SignUp.form.confirm_password") }
+                placeholder={ t("Auth.SignUp.form.confirm_password_placeholder") }
+                icon={ <LockOutlinedIcon /> }
+                type="password"
+                name="confirm_password"
+                required={ true }
+                value={ data.confirm_password }
+                change={ (value) => setData({ ...data, confirm_password: value }) }
+            /> 
+        ],
+        [
+            <Selector 
+                label="Stack"
+                icon={ <CodeOutlinedIcon /> }
+                required={ true }
+                name="stack"
+                options={[
+                    { label: "Frontend", value: "FRONTEND" },
+                    { label: "Backend", value: "BACKEND" },
+                    { label: "Fullstack", value: "FULLSTACK" },
+                ]}
+                value={ data.stack }
+                change={ (value) => setData({ ...data, stack: value }) }
+            />,
+            <Selector 
+                label={ t("Auth.SignUp.form.role") }
+                icon={ <AutoGraphOutlinedIcon /> }
+                required={ true }
+                name="role"
+                options={[
+                    { label: "Trainee", value: "TRAINEE" },
+                    { label: "Junior", value: "JUNIOR" },
+                    { label: "Mid", value: "MID" },
+                    { label: "Senior", value: "SENIOR" },
+                ]}
+                value={ data.role }
+                change={ (value) => setData({ ...data, role: value }) }
+            />
+        ]
+    ]
 
     const addNotification = useNotifications(); 
     const [step, setStep] = useState(0)
@@ -30,8 +138,6 @@ export default function Form({
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        const data = new FormData(e.currentTarget);
-
         const isValid = validate(data); 
 
         if(isValid !== true) addNotification({
@@ -41,7 +147,7 @@ export default function Form({
         })
     }
 
-    return <form onSubmit={ handleSubmit } className="flex flex-col gap-3 mt-7">
+    return <form onSubmit={ handleSubmit } className="flex flex-col gap-3 mt-7 transition-all">
         {
             steps[step].map((step) => {
                 return step
