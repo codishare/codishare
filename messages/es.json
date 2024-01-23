@@ -1,6 +1,7 @@
 {
     "Errors": {
-        "not-found": "Página no encontrada"
+        "not-found": "Página no encontrada",
+        "internal-server-error": "Error interno del servidor, por favor intenta más tarde"
     },
     "Dashboard": {
         "welcome": "Bienvenido",
@@ -22,6 +23,7 @@
             },
             "form": {
                 "name": "Nombre",
+                "terms": "Acepto los términos y condiciones",
                 "name_placeholder": "Ingresa tu nombre",
                 "email": "Correo electrónico",
                 "email_placeholder": "Ingresa tu correo electrónico",
@@ -31,8 +33,10 @@
                 "confirm_password_placeholder": "Confirma tu contraseña",
                 "role": "Rol",
                 "errors": {
+                    "invalid_format": "El formato de uno de los parámetros no es el esperado",
                     "name": "El nombre es obligatorio",
                     "email": "El correo electrónico es obligatorio",
+                    "email_in_use": "El correo electrónico ya está en uso",
                     "email_format": "El correo electrónico no es válido",
                     "terms": "Debes aceptar los términos y condiciones",
                     "password": "La contraseña es obligatoria",
@@ -46,7 +50,8 @@
                     "stack_invalid": "La pila tecnológica no es válida",
                     "role": "Es obligatorio especificar el rol",
                     "role_invalid": "El rol no es válido"
-                }               
+                },   
+                "account_success": "Tu cuenta ha sido creada exitosamente"
             }
         }
     }
