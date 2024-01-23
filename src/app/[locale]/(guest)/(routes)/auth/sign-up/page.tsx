@@ -1,7 +1,18 @@
 import { useTranslations } from "next-intl"
 import Form from "@/components/auth/sign-up/form";
+import {unstable_setRequestLocale} from 'next-intl/server';
 
-export default function Page() { 
+export default function Page({
+    params: {
+        locale
+    }
+} : {
+    params: {
+        locale: string;
+    };
+}) { 
+    unstable_setRequestLocale(locale);
+
     const t = useTranslations('Auth.SignUp')
 
     return <div className="w-[400px] flex flex-col gap-2">

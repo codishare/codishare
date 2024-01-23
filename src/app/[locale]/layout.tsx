@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Onest } from "next/font/google";
+import { Inter } from "next/font/google";
 import { Providers } from "@/lib/providers";
 import { notFound } from 'next/navigation'
 import { NextIntlClientProvider } from "next-intl";
+import {unstable_setRequestLocale} from 'next-intl/server';
 
-const inter = Onest({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
     title: "Codishare",
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export function generateStaticParams() {
-    return [{ locale: 'en' }, { locale: 'de' }]
+    return [{ locale: 'en' }, { locale: 'es' }]
 }
 
 export default async function RootLayout({
@@ -27,6 +28,8 @@ export default async function RootLayout({
         locale: string;
     };
 }) {
+    unstable_setRequestLocale(locale);
+
     let messages; 
 
     try {
