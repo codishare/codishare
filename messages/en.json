@@ -1,6 +1,7 @@
 {
     "Errors": {
-        "not-found": "Page not found"
+        "not-found": "Page not found", 
+        "internal-server-error": "Internal server error, please try again later"
     },
     "Dashboard": {
         "welcome": "Welcome",
@@ -22,6 +23,7 @@
             },
             "form": {
                 "name": "Name",
+                "terms": "I accept the terms and conditions",
                 "name_placeholder": "Enter your name",
                 "email": "Email",
                 "email_placeholder": "Enter your email",
@@ -31,8 +33,10 @@
                 "confirm_password_placeholder": "Confirm your password",
                 "role": "Role",
                 "errors": {
+                    "invalid_format": "Invalid data type on received param",
                     "name": "Name is required",
                     "email": "Email is required",
+                    "email_in_use": "Email is already in use",
                     "email_format": "Email is not valid",
                     "terms": "You must accept the terms and conditions",
                     "password": "Password is required",
@@ -46,7 +50,8 @@
                     "stack_invalid": "Stack is not valid",
                     "role": "Role is required",
                     "role_invalid": "Role is not valid"
-                }
+                },
+                "account_success": "Account created successfully"
             }
         }
     }

@@ -10,7 +10,7 @@ export default function Checkbox({
     label: string
     name?: string
     value?: boolean
-    change?: (value: boolean) => void,
+    change?: (e: any) => void,
     required?: boolean
 }) {
     return <label className="flex items-center text-sm text-gray-600">

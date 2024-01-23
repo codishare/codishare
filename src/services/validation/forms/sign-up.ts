@@ -1,28 +1,36 @@
 import { isEmail } from "../email";
 import { isSecure } from "../password";
-
-const STACK = "FRONTEND" || "BACKEND" || "FULLSTACK";
-const ROLE = "TRAINEE" || "JUNIOR" || "MID" || "SENIOR";
+import { ROLE, STACK, type SignUp } from "@/_types";
 
 export function validate(
-    data: FormData
-) { 
-    const name = data.get('name') as string;
-    const terms = data.get('terms') as string;
-    const email = data.get('email') as string;
-    const password = data.get('password') as string;
-    const passwordConfirmation = data.get('confirm_password') as string;
-    const stack = data.get('stack') as string;
-    const role = data.get('role') as string;
+    data: SignUp
+) {
+    const {
+        name,
+        terms,
+        email,
+        password,
+        confirm_password,
+        stack,
+        role
+    } = data;
 
     // @ Validate name
     if(!name) {
         return 'name';
     }
 
+    if(typeof name !== 'string') {
+        return 'invalid_format';
+    }
+
     // @ Validate terms
     if(!terms) {
         return 'terms';
+    }
+
+    if(typeof terms !== 'boolean') {
+        return 'invalid_format';
     }
 
     // @ Validate email
@@ -32,6 +40,10 @@ export function validate(
 
     if(!isEmail(email)) {
         return 'email_format';
+    }
+
+    if(typeof email !== 'string') {
+        return 'invalid_format';
     }
 
     // @ Validate password
@@ -45,12 +57,20 @@ export function validate(
         return validPassword;
     }
 
+    if(typeof password !== 'string') {
+        return 'invalid_format';
+    }
+
     // @ Validate password confirmation
-    if(!passwordConfirmation) {
+    if(!confirm_password) {
         return 'confirm_password';
     }
 
-    if(password !== passwordConfirmation) {
+    if(typeof confirm_password !== 'string') {
+        return 'invalid_format';
+    }
+
+    if(password !== confirm_password) {
         return 'confirm_password_match';
     }
 
@@ -59,7 +79,11 @@ export function validate(
         return 'stack';
     }
 
-    if(!STACK.includes(stack)) {
+    if(typeof stack !== 'string') {
+        return 'invalid_format';
+    }
+
+    if(!Object.keys(STACK).includes(stack)) {
         return 'stack_invalid';
     }
 
@@ -68,7 +92,11 @@ export function validate(
         return 'role';
     }
 
-    if(!ROLE.includes(role)) {
+    if(typeof role !== 'string') {
+        return 'invalid_format';
+    }
+
+    if(!Object.keys(ROLE).includes(role)) {
         return 'role_invalid';
     }
 
