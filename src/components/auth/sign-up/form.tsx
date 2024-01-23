@@ -140,8 +140,10 @@ export default function Form() {
 
     return <form onSubmit={ handleSubmit } className="flex flex-col gap-3 mt-7 transition-all">
         {
-            steps[step].map((step) => {
-                return step
+            steps[step].map((step, index) => {
+                return <div key={ index }>
+                    { step }
+                </div>
             })
         }
 
