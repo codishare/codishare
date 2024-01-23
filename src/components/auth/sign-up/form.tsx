@@ -183,7 +183,7 @@ export default function Form() {
 
         <section className="flex mt-3 w-full gap-4">
             {
-                step == 0 && <Link className="bg-indigo-500 text-center dark:bg-indigo-600/40 dark:border-[1px] dark:border-indigo-700 text-sm text-semibold flex-1 text-white rounded-full py-3 hover:bg-indigo-700 hover:scale-95 transition" href='/'>
+                step == 0 && <Link className="bg-indigo-500 text-center dark:bg-indigo-600/40 dark:border-[1px] dark:border-indigo-700 text-sm text-semibold flex-1 text-white rounded-full py-3 hover:bg-indigo-700 hover:scale-95 transition" href='/auth/login'>
                     { t("Auth.SignUp.actions.already-have-account") }
                 </Link>
             }

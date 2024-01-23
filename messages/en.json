@@ -8,6 +8,17 @@
         "sign-up": "Sign up"
     },
     "Auth": {
+        "SignIn": {
+            "header": {
+                "white": "Welcome back to",
+                "colored": "Codishare",
+                "description": "Enter your credentials to access your account"
+            },
+            "actions": {
+                "doesnt_have_account": "Register now", 
+                "sign_in": "Sign in"
+            }
+        },
         "SignUp": {
             "header": {
                 "white": "Sign up on",
