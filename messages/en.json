@@ -49,7 +49,8 @@
                     "stack": "Stack is required",
                     "stack_invalid": "Stack is not valid",
                     "role": "Role is required",
-                    "role_invalid": "Role is not valid"
+                    "role_invalid": "Role is not valid",
+                    "server_error": "Internal server error, please try again later"
                 },
                 "account_success": "Account created successfully"
             }
