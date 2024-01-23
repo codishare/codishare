@@ -49,7 +49,8 @@
                     "stack": "Es obligatorio especificar la pila tecnológica",
                     "stack_invalid": "La pila tecnológica no es válida",
                     "role": "Es obligatorio especificar el rol",
-                    "role_invalid": "El rol no es válido"
+                    "role_invalid": "El rol no es válido",
+                    "server_error": "Ocurrió un error en el servidor, por favor intenta más tarde"
                 },   
                 "account_success": "Tu cuenta ha sido creada exitosamente"
             }
