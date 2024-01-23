@@ -1,6 +1,7 @@
 {
     "Errors": {
-        "not-found": "Página no encontrada"
+        "not-found": "Página no encontrada",
+        "internal-server-error": "Error interno del servidor, por favor intenta más tarde"
     },
     "Dashboard": {
         "welcome": "Bienvenido",
@@ -49,7 +50,8 @@
                     "stack_invalid": "La pila tecnológica no es válida",
                     "role": "Es obligatorio especificar el rol",
                     "role_invalid": "El rol no es válido"
-                }               
+                },   
+                "account_success": "Tu cuenta ha sido creada exitosamente"
             }
         }
     }

@@ -4,6 +4,7 @@ import { validate } from "@/services/validation/forms/sign-up";
 import { countUsers, isEmailInUse } from "@/services/api/user";
 import prisma from "@/lib/prisma";
 import { encrypt } from "@/lib/encryption";
+import { Seniority, Stack } from "@prisma/client";
 
 export async function POST(
     req: Request
@@ -38,7 +39,9 @@ export async function POST(
                 name, 
                 email, 
                 password: encrypt(password),
-                role: await countUsers() === 0 ? 'ADMIN' : 'USER'
+                role: await countUsers() === 0 ? 'ADMIN' : 'USER', 
+                stack: stack as Stack | null | undefined,
+                seniority: role as Seniority | null | undefined
             }
         })
 

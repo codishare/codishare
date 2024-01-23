@@ -20,6 +20,6 @@ export interface SignUp extends Login {
     name: string, 
     confirm_password: string, 
     terms: boolean, 
-    stack: STACK | string, 
-    role: ROLE | string
+    stack: string, 
+    role: string
 }

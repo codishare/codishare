@@ -8,15 +8,17 @@ import PriorityHighOutlinedIcon from '@mui/icons-material/PriorityHighOutlined';
 import { useTranslations } from "next-intl";
 
 import Selector from "@/components/ui/selector";
+import Checkbox from "@/components/ui/checkbox";
+import TextInput from "@/components/ui/text-input"
+import type { SignUp } from "@/_types";
 
 import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
 import CodeOutlinedIcon from '@mui/icons-material/CodeOutlined';
 import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlined';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import AutoGraphOutlinedIcon from '@mui/icons-material/AutoGraphOutlined';
-import Checkbox from "@/components/ui/checkbox";
-import TextInput from "@/components/ui/text-input"
-import type { SignUp } from "@/_types";
+import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
+import DnsOutlinedIcon from '@mui/icons-material/DnsOutlined';
 
 export default function Form() {
     const t = useTranslations();
@@ -131,11 +133,43 @@ export default function Form() {
 
         const isValid = validate(data); 
 
-        if(isValid !== true) addNotification({
+        if(isValid !== true) return addNotification({
             type: "ERROR", 
             icon: <PriorityHighOutlinedIcon />,
             message: t(`Auth.SignUp.form.errors.${ isValid }`)
         })
+
+        try {
+            fetch("/api/auth/register", {
+                method: "POST", 
+                headers: {
+                    "Content-Type": "application/json"
+                }, 
+                body: JSON.stringify(data)
+            }).then(async (res) => {
+                const data = await res.json(); 
+
+                if(res.status == 200 || res.status == 201) {
+                    addNotification({
+                        type: "SUCCESS", 
+                        icon: <CheckCircleOutlinedIcon />,
+                        message: t("Auth.SignUp.form.account_success")
+                    })
+                } else {
+                    addNotification({
+                        type: "ERROR", 
+                        icon: <DnsOutlinedIcon />,
+                        message: t(`Auth.SignUp.form.errors.${ data.message }`)
+                    })
+                }
+            })
+        } catch (error) {
+            return addNotification({
+                type: "ERROR", 
+                icon: <DnsOutlinedIcon />,
+                message: t("Errors.internal-server-error")
+            })
+        }
     }
 
     return <form onSubmit={ handleSubmit } className="flex flex-col gap-3 mt-7 transition-all">

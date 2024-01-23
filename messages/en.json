@@ -1,6 +1,7 @@
 {
     "Errors": {
-        "not-found": "Page not found"
+        "not-found": "Page not found", 
+        "internal-server-error": "Internal server error, please try again later"
     },
     "Dashboard": {
         "welcome": "Welcome",
@@ -49,7 +50,8 @@
                     "stack_invalid": "Stack is not valid",
                     "role": "Role is required",
                     "role_invalid": "Role is not valid"
-                }
+                },
+                "account_success": "Account created successfully"
             }
         }
     }
