@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Link } from "@/navigation"; 
 import { validate } from "@/services/validation/forms/sign-up";
 import { useNotifications } from "@/lib/hooks/useNotifications";
-import PriorityHighOutlinedIcon from '@mui/icons-material/PriorityHighOutlined';
 import { useTranslations } from "next-intl";
 
 import Selector from "@/components/ui/selector";
@@ -12,6 +11,7 @@ import Checkbox from "@/components/ui/checkbox";
 import TextInput from "@/components/ui/text-input"
 import type { SignUp } from "@/_types";
 
+import PriorityHighOutlinedIcon from '@mui/icons-material/PriorityHighOutlined';
 import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
 import CodeOutlinedIcon from '@mui/icons-material/CodeOutlined';
 import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlined';
@@ -183,7 +183,7 @@ export default function Form() {
 
         <section className="flex mt-3 w-full gap-4">
             {
-                step == 0 && <Link className="bg-indigo-500 text-center dark:bg-indigo-600/40 dark:border-[1px] dark:border-indigo-700 text-sm text-semibold flex-1 text-white rounded-full py-3 hover:bg-indigo-700 hover:scale-95 transition" href='/'>
+                step == 0 && <Link className="bg-indigo-500 text-center dark:bg-indigo-600/40 dark:border-[1px] dark:border-indigo-700 text-sm text-semibold flex-1 text-white rounded-full py-3 hover:bg-indigo-700 hover:scale-95 transition" href='/auth/login'>
                     { t("Auth.SignUp.actions.already-have-account") }
                 </Link>
             }

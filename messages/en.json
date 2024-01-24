@@ -8,6 +8,27 @@
         "sign-up": "Sign up"
     },
     "Auth": {
+        "SignIn": {
+            "header": {
+                "white": "Welcome back to",
+                "colored": "Codishare",
+                "description": "Enter your credentials to access your account"
+            },
+            "actions": {
+                "doesnt_have_account": "Register now", 
+                "sign_in": "Sign in"
+            },
+            "form": {
+                "errors": {
+                    "invalid_credentials": "This credentials doesn't match with our records",
+                    "invalid_format": "Invalid data type on received param", 
+                    "email": "Email is required", 
+                    "email_format": "Email is not valid",
+                    "password": "Password is required",
+                    "server_error": "Internal server error, please try again later"
+                }
+            }
+        },
         "SignUp": {
             "header": {
                 "white": "Sign up on",
