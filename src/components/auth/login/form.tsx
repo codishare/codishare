@@ -1,7 +1,7 @@
 'use client'
 
 import { useTranslations } from "next-intl";
-import { Link } from "@/navigation"; 
+import { Link, useRouter } from "@/navigation"; 
 import TextInput from "@/components/ui/text-input";
 
 import { validate } from "@/services/validation/forms/login";
@@ -12,12 +12,12 @@ import { Login } from "@/_types";
 import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlined';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import PriorityHighOutlinedIcon from '@mui/icons-material/PriorityHighOutlined';
-import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import DnsOutlinedIcon from '@mui/icons-material/DnsOutlined';
 
 export default function Form() {
     const t = useTranslations();
     const addNotification = useNotifications();
+    const router = useRouter();
 
     const [data, setData] = useState<Login>({ 
         email: "", 
@@ -47,8 +47,14 @@ export default function Form() {
 
                 if(res.status == 200) {
                     localStorage.setItem("access_token", data.access_token);
+
+                    router.push("/");
                 } else {
-                    // @ Notificaciones de error
+                    addNotification({
+                        type: "ERROR", 
+                        icon: <DnsOutlinedIcon />,
+                        message: t(`Auth.SignIn.form.errors.${ data.message }`)
+                    })
                 }
             })
         } catch (error) {

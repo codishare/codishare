@@ -18,7 +18,16 @@
                 "doesnt_have_account": "Register now", 
                 "sign_in": "Sign in"
             },
-            "invalid_credentials": "This credentials doesn't match with our records"
+            "form": {
+                "errors": {
+                    "invalid_credentials": "This credentials doesn't match with our records",
+                    "invalid_format": "Invalid data type on received param", 
+                    "email": "Email is required", 
+                    "email_format": "Email is not valid",
+                    "password": "Password is required",
+                    "server_error": "Internal server error, please try again later"
+                }
+            }
         },
         "SignUp": {
             "header": {
