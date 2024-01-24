@@ -7,7 +7,28 @@
         "welcome": "Bienvenido",
         "sign-up": "Registrate"
     },
-    "Auth": {
+    "Auth": { 
+        "SignIn": {
+            "header": {
+                "white": "¡Bienvenido de nuevo a",
+                "colored": "Codishare",
+                "description": "Ingresa tus credenciales para acceder a tu cuenta"
+            },
+            "actions": {
+                "doesnt_have_account": "Regístrate ahora",
+                "sign_in": "Iniciar sesión"
+            },
+            "form": {
+                "errors": {
+                    "invalid_credentials": "Estas credenciales no coinciden con nuestros registros",
+                    "invalid_format": "Tipo de dato no válido en el parámetro recibido",
+                    "email": "El correo electrónico es obligatorio",
+                    "email_format": "El correo electrónico no es válido",
+                    "password": "La contraseña es obligatoria",
+                    "server_error": "Error interno del servidor, inténtalo de nuevo más tarde"
+                }
+            }
+        },
         "SignUp": {
             "header": {
                 "white": "Registrate en",
