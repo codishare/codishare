@@ -7,6 +7,7 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
+// @ User management
 model User {
     id        Int      @id @default(autoincrement())
     email     String   @unique
@@ -41,4 +42,29 @@ enum Stack {
     FRONTEND
     BACKEND
     FULLSTACK
+}
+
+// @ Devices
+model Device {
+    id        Int      @id @default(autoincrement())
+    agent     String?
+    device    DeviceType?
+    model     String?
+    browser   String?
+    os        String?
+    ip        String?
+
+    createdAt DateTime @default(now())
+
+    @@map("user_devices")
+}
+
+enum DeviceType {
+    CONSOLE
+    MOBILE
+    TABLET
+    SMARTTV
+    WEARABLE
+    EMBEDDED
+    UNKNOWN
 }

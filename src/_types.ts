@@ -23,3 +23,13 @@ export interface SignUp extends Login {
     stack: string, 
     role: string
 }
+
+export interface RefreshToken {
+    refresh_token: string
+}
+
+export interface DecodedToken {
+    userId: number, 
+    iat: number,
+    exp: number
+}
