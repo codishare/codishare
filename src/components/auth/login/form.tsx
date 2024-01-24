@@ -4,14 +4,16 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/navigation"; 
 import TextInput from "@/components/ui/text-input";
 
-import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlined';
 import { validate } from "@/services/validation/forms/login";
 import { useNotifications } from "@/lib/hooks/useNotifications";
-
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import PriorityHighOutlinedIcon from '@mui/icons-material/PriorityHighOutlined';
 import { useState } from "react";
 import { Login } from "@/_types";
+
+import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlined';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import PriorityHighOutlinedIcon from '@mui/icons-material/PriorityHighOutlined';
+import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
+import DnsOutlinedIcon from '@mui/icons-material/DnsOutlined';
 
 export default function Form() {
     const t = useTranslations();
@@ -32,6 +34,30 @@ export default function Form() {
             icon: <PriorityHighOutlinedIcon />,
             message: t(`Auth.SignUp.form.errors.${ isValid }`)
         })
+
+        try {
+            fetch("/api/auth/login", {
+                method: "POST", 
+                headers: {
+                    "Content-Type": "application/json"
+                }, 
+                body: JSON.stringify(data)
+            }).then(async (res) => {
+                const data = await res.json(); 
+
+                if(res.status == 200) {
+                    localStorage.setItem("access_token", data.access_token);
+                } else {
+                    // @ Notificaciones de error
+                }
+            })
+        } catch (error) {
+            return addNotification({
+                type: "ERROR", 
+                icon: <DnsOutlinedIcon />,
+                message: t("Errors.internal-server-error")
+            })
+        }
     }
 
     return <form onSubmit={ handleSubmit } className="flex flex-col gap-3 mt-7 transition-all">

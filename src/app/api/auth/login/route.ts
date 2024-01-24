@@ -1,8 +1,10 @@
-import { NextResponse, userAgent } from "next/server";
+import { NextResponse } from "next/server";
 import type { Login } from "@/_types";
 import { validate } from "@/services/validation/forms/login";
 import { validateCredentials } from "@/services/api/user";
-import { getClientIp, performUserAgent } from "@/services/api/request";
+import { performUserAgent } from "@/services/api/request";
+import { setCookie } from "cookies-next";
+import { generateAccessToken, generateRefreshToken } from "@/services/api/jwt";
 
 export async function POST(
     req: Request
@@ -33,15 +35,26 @@ export async function POST(
 
         await performUserAgent(req);
 
+        const accessToken = await generateAccessToken(user.id);
+        const refreshToken = await generateRefreshToken(user.id);
+
         const res = new NextResponse(
             JSON.stringify({
-                message: "success", 
-                agent: userAgent(req), 
-                client_ip: getClientIp(req)
+                message: "success",
+                access_token: accessToken
             }), {
                 status: 200
             }
         )
+
+        setCookie('refresh-token', refreshToken, {
+            req, 
+            res, 
+            maxAge: 1000 * 60 * 60 * 24,
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict'
+        });
 
         return res; 
     } catch (error) {

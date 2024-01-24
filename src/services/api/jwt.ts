@@ -1,5 +1,5 @@
 import { getJwtSecretKey } from "@/lib/jwt-secret";
-import { SignJWT, jwtVerify  } from "jose";
+import { SignJWT, decodeJwt, jwtVerify  } from "jose";
 
 export async function generateAccessToken(userId: Number) {
     return await new SignJWT({
@@ -23,4 +23,12 @@ export async function generateRefreshToken(userId: Number) {
 
 export function verifyToken(token: string) {
     return jwtVerify(token, new TextEncoder().encode(getJwtSecretKey()))
+}
+
+export function decodeToken(token: string) {
+    const isValid = verifyToken(token);
+
+    if(!isValid) return false;
+
+    return decodeJwt(token)
 }
