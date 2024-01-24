@@ -17,7 +17,8 @@
             "actions": {
                 "doesnt_have_account": "Register now", 
                 "sign_in": "Sign in"
-            }
+            },
+            "invalid_credentials": "This credentials doesn't match with our records"
         },
         "SignUp": {
             "header": {

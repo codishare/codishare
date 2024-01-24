@@ -5,13 +5,33 @@ import { Link } from "@/navigation";
 import TextInput from "@/components/ui/text-input";
 
 import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlined';
+import { validate } from "@/services/validation/forms/login";
+import { useNotifications } from "@/lib/hooks/useNotifications";
+
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import PriorityHighOutlinedIcon from '@mui/icons-material/PriorityHighOutlined';
+import { useState } from "react";
+import { Login } from "@/_types";
 
 export default function Form() {
     const t = useTranslations();
+    const addNotification = useNotifications();
+
+    const [data, setData] = useState<Login>({ 
+        email: "", 
+        password: ""
+    });
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        const isValid = validate(data); 
+
+        if(isValid !== true) return addNotification({
+            type: "ERROR", 
+            icon: <PriorityHighOutlinedIcon />,
+            message: t(`Auth.SignUp.form.errors.${ isValid }`)
+        })
     }
 
     return <form onSubmit={ handleSubmit } className="flex flex-col gap-3 mt-7 transition-all">
@@ -22,6 +42,8 @@ export default function Form() {
             type="email"
             name="email"
             required={ true }
+            value={ data.email }
+            change={ (value) => setData({ ...data, email: value }) }
         />
 
         <TextInput 
@@ -31,6 +53,8 @@ export default function Form() {
             type="password"
             name="password"
             required={ true }
+            value={ data.password }
+            change={ (value) => setData({ ...data, password: value }) }
         /> 
 
         <section className="flex mt-3 w-full gap-4">

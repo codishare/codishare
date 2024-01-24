@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Link } from "@/navigation"; 
 import { validate } from "@/services/validation/forms/sign-up";
 import { useNotifications } from "@/lib/hooks/useNotifications";
-import PriorityHighOutlinedIcon from '@mui/icons-material/PriorityHighOutlined';
 import { useTranslations } from "next-intl";
 
 import Selector from "@/components/ui/selector";
@@ -12,6 +11,7 @@ import Checkbox from "@/components/ui/checkbox";
 import TextInput from "@/components/ui/text-input"
 import type { SignUp } from "@/_types";
 
+import PriorityHighOutlinedIcon from '@mui/icons-material/PriorityHighOutlined';
 import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
 import CodeOutlinedIcon from '@mui/icons-material/CodeOutlined';
 import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlined';
