@@ -72,3 +72,13 @@ enum DeviceType {
     EMBEDDED
     UNKNOWN
 }
+
+// @ Blacklisted Tokens
+model BlacklistedToken {
+    id        Int     @id @default(autoincrement())
+    token     String  @db.LongText
+    expiresAt DateTime
+    createdAt DateTime @default(now())
+
+    @@map("blacklisted_tokens")
+}

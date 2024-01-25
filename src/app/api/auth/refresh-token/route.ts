@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     })
 
     try {
-        const decoded = decodeToken(refresh_token);
+        const decoded = await decodeToken(refresh_token);
 
         if(!decoded) return NextResponse.json({
             message: "invalid_refresh_token"

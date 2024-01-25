@@ -1,4 +1,6 @@
 import { getJwtSecretKey } from "@/lib/jwt-secret";
+import prisma from "@/lib/prisma";
+import { deleteCookie, getCookie } from "cookies-next";
 import { SignJWT, decodeJwt, jwtVerify  } from "jose";
 
 export async function generateAccessToken(userId: Number) {
@@ -11,7 +13,11 @@ export async function generateAccessToken(userId: Number) {
     .sign(new TextEncoder().encode(getJwtSecretKey()))
 }
 
-export async function generateRefreshToken(userId: Number) {
+export async function generateRefreshToken(req: Request, userId: Number) {
+    const previousRefreshToken = getCookie('refresh-token', { req });
+
+    if(previousRefreshToken) await removeToken([previousRefreshToken]);
+
     return await new SignJWT({
         userId
     })
@@ -21,14 +27,49 @@ export async function generateRefreshToken(userId: Number) {
     .sign(new TextEncoder().encode(getJwtSecretKey()))
 }
 
-export function verifyToken(token: string) {
-    return jwtVerify(token, new TextEncoder().encode(getJwtSecretKey()))
+export async function verifyToken(token: string) {
+    const isBlacklisted = await prisma.blacklistedToken.findFirst({
+        where: {
+            token
+        }
+    })
+
+    if(isBlacklisted) return false;
+
+    return await jwtVerify(token, new TextEncoder().encode(getJwtSecretKey()))
 }
 
-export function decodeToken(token: string) {
-    const isValid = verifyToken(token);
+export async function decodeToken(token: string) {
+    const isValid = await verifyToken(token);
 
     if(!isValid) return false;
 
     return decodeJwt(token)
+}
+
+export async function removeToken(tokens: String[]) {
+    try {
+        const blacklisted = await prisma.blacklistedToken.createMany({
+            data: tokens.map(token => ({
+                token: token.toString(), 
+                expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 5)
+            }))
+        })
+
+        if(!blacklisted) return false;
+
+        await prisma.blacklistedToken.deleteMany({
+            where: {
+                expiresAt: {
+                    lte: new Date()
+                }
+            }
+        })
+
+        deleteCookie('refresh-token');
+
+        return true; 
+    } catch (error) {
+        return false; 
+    }
 }

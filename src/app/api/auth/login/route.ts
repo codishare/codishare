@@ -12,34 +12,32 @@ export async function POST(req: Request) {
 
         const isValid = validate(data);
 
-        if (isValid !== true)
-            return NextResponse.json(
-                {
-                    message: isValid,
-                },
-                {
-                    status: 400,
-                }
-            );
+        if (isValid !== true) return NextResponse.json(
+            {
+                message: isValid,
+            },
+            {
+                status: 400,
+            }
+        );
 
         const { email, password } = data;
 
         const user = await validateCredentials(email, password);
 
-        if (!user)
-            return NextResponse.json(
-                {
-                    message: "invalid_credentials",
-                },
-                {
-                    status: 400,
-                }
-            );
+        if (!user) return NextResponse.json(
+            {
+                message: "invalid_credentials",
+            },
+            {
+                status: 400,
+            }
+        );
 
         await performUserAgent(req, user.id);
 
         const accessToken = await generateAccessToken(user.id);
-        const refreshToken = await generateRefreshToken(user.id);
+        const refreshToken = await generateRefreshToken(req, user.id);
 
         const res = new NextResponse(
             JSON.stringify({
