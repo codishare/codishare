@@ -9,19 +9,21 @@ datasource db {
 
 // @ User management
 model User {
-    id        Int      @id @default(autoincrement())
-    email     String   @unique
-    name      String?
-    alias     String?
-    password  String
+    id             Int     @id @default(autoincrement())
+    email          String  @unique
+    name           String?
+    alias          String?
+    password       String
     email_verified Boolean @default(false)
 
-    role      Role     @default(USER)
+    role      Role       @default(USER)
     seniority Seniority?
     stack     Stack?
 
     createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt @default(now())
+    updatedAt DateTime @default(now()) @updatedAt
+
+    devices Device[]
 
     @@map("users")
 }
@@ -46,13 +48,15 @@ enum Stack {
 
 // @ Devices
 model Device {
-    id        Int      @id @default(autoincrement())
-    agent     String?
-    device    DeviceType?
-    model     String?
-    browser   String?
-    os        String?
-    ip        String?
+    id      Int         @id @default(autoincrement())
+    userId  Int?
+    user    User?       @relation(fields: [userId], references: [id])
+    agent   String?
+    device  DeviceType?
+    model   String?
+    browser String?
+    os      String?
+    ip      String?
 
     createdAt DateTime @default(now())
 
