@@ -1,15 +1,10 @@
-import createIntlMiddleware from "next-intl/middleware";
-import { NextRequest, NextResponse } from "next/server";
+import createMiddleware from "next-intl/middleware";
 export const locales = ["en", "es"];
 
-const localeMiddleware = createIntlMiddleware({
+export default createMiddleware({
     locales: locales,
-    defaultLocale: "en"
-})
-
-export default function middleware(req: NextRequest) {
-    localeMiddleware(req); 
-};
+    defaultLocale: "en",
+});
 
 export const config = {
     matcher: ["/", `/(en|es)/:path*`],
