@@ -3,38 +3,54 @@ import prisma from "@/lib/prisma";
 import { DeviceType } from "@prisma/client";
 
 export function getClientIp(req: Request) {
-    let clientIp = req.headers.get("x-forwarded-for") || null; 
+    let clientIp = req.headers.get("x-forwarded-for") || null;
 
-    if (clientIp && clientIp.includes('::ffff:')) return clientIp.split('::ffff:')[1];
+    if (clientIp && clientIp.includes("::ffff:"))
+        return clientIp.split("::ffff:")[1];
 
-    return false
+    return null;
 }
 
-export async function performUserAgent(req: Request) {
+export async function performUserAgent(req: Request, userId: number) {
     const ip = getClientIp(req);
-    const {
-        ua,
-        device,
-        browser,
-        os
-    } = userAgent(req); 
+    const { ua, device, browser, os } = userAgent(req);
 
     const isRegisteredAgent = await prisma.device.findFirst({
         where: {
-            ip: ip as string
-        }
-    })
+            ip: ip as string,
+        },
+    });
 
-    if(!isRegisteredAgent) {
+    if (!isRegisteredAgent) {
         await prisma.device.create({
             data: {
-                ip: ip as string, 
+                userId,
+                ip: ip as string,
                 agent: ua,
                 model: device.model,
-                device: device.type?.toUpperCase() as DeviceType || "UNKNOWN", 
+                device: (device.type?.toUpperCase() as DeviceType) || "UNKNOWN",
                 browser: browser.name,
-                os: os.name
-            }
-        })
+                os: os.name,
+            },
+        });
     }
+}
+
+export async function RefreshToken() {
+    return fetch('/api/auth/refresh-token', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(async res => {
+        const data = await res.json();
+
+        if (data.access_token) return localStorage.setItem('access_token', data.access_token);
+
+        return false
+    }).catch(error => {
+        console.error((error as Error).message);
+
+        return false; 
+    });
 }

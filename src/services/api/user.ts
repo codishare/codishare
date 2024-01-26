@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-import { compareEncryption } from "@/lib/encryption";
+import { compareEncryption } from "@/lib/encryption"; 
 
 export async function isEmailInUse(email: string) {
     return !! await prisma.user.findFirst({
@@ -27,4 +27,19 @@ export async function validateCredentials(email: string, password: string) {
     if(!isValidPassword) return false;
 
     return user;
+}
+
+export async function getUserById(id: number) {
+    return await prisma.user.findFirst({
+        where: {
+            id
+        }, 
+        select: {
+            id: true,
+            name: true,
+            alias: true,
+            stack: true,
+            seniority: true
+        }
+    })
 }

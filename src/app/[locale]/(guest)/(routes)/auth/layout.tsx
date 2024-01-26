@@ -1,12 +1,19 @@
 'use client'
 
 import { ToggleTheme } from "@/components/theme/Toggle"
+import { useSessions } from "@/lib/hooks/useSessions"
+import { useRouter } from "@/navigation";
 
 export default function Layout({ 
     children 
 } : { 
     children: React.ReactNode 
 }) {
+    const session = useSessions();
+    const router = useRouter();
+
+    if(session) router.push('/');
+
     return (
         <main className="w-screen h-screen flex justify-center">
             {/* @ Toggle theme */}
