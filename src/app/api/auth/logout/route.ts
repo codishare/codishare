@@ -39,9 +39,9 @@ export async function POST(req: Request) {
         console.error((error as Error).message);
 
         return NextResponse.json({
-            message: "invalid_refresh_token"
+            message: "server_error"
         }, {
-            status: 401
+            status: 500
         })
     }
 }

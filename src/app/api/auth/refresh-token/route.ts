@@ -45,7 +45,8 @@ export async function POST(req: Request) {
         })
     } catch (error) {
         return NextResponse.json({
-            redirect: '/auth/login'
+            redirect: '/auth/login',
+            message: 'server_error'
         }, {
             status: 500
         })
