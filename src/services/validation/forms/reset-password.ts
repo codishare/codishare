@@ -1,7 +1,7 @@
-import { ForgotPassword } from "@/_types";
+import { ResetPassword } from "@/_types";
 import { isSecure } from "../password";
 
-export const validate = (data: ForgotPassword) => {
+export const validate = (data: ResetPassword) => {
     const { password, confirm_password } = data;
 
     // @ Validate password
