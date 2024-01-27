@@ -27,6 +27,16 @@
                     "password": "Password is required",
                     "server_error": "Internal server error, please try again later"
                 }
+            },
+            "forgot_password": {
+                "title": "Forgot your password?",
+                "success": "An email has been sent to your inbox with instructions to reset your password",
+                "errors": {
+                    "invalid_format": "Invalid data type on received param", 
+                    "email": "Email is required", 
+                    "user_not_found": "User not found",
+                    "server_error": "Internal server error, please try again later"
+                }
             }
         },
         "SignUp": {
@@ -74,6 +84,36 @@
                     "server_error": "Internal server error, please try again later"
                 },
                 "account_success": "Account created successfully"
+            }
+        },
+        "ForgotPassword": {
+            "header": {
+                "white": "{name}, you want reset your",
+                "colored": "password?",
+                "description": "Enter new password to access your account",
+                "invalidToken": "Invalid token",
+                "invalidTokenDescription": "The token you are trying to use is invalid or has expired"
+            },
+            "actions": {
+                "backToHome": "Back to home",
+                "resetPassword": "Reset password"
+            },
+            "form": {
+                "new_password": "New password",
+                "confirm_password": "Confirm password",
+                "errors": {
+                    "invalid_format": "Invalid data type on received param",
+                    "password": "New password is required",
+                    "password_min_length": "New password must be at least 8 characters long",
+                    "password_uppercase": "New password must contain at least one uppercase letter",
+                    "password_lowercase": "New password must contain at least one lowercase letter",
+                    "password_number": "New password must contain at least one number",
+                    "confirm_password": "Confirm password is required",
+                    "confirm_password_match": "Passwords must match",
+                    "invalid_token": "The token you are trying to use is invalid or has expired",
+                    "server_error": "Internal server error, please try again later"
+                },
+                "success": "Password reset successfully!"
             }
         }
     }

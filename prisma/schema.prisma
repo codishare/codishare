@@ -23,7 +23,8 @@ model User {
     createdAt DateTime @default(now())
     updatedAt DateTime @default(now()) @updatedAt
 
-    devices Device[]
+    devices             Device[]
+    resetPasswordTokens ResetPasswordToken[]
 
     @@map("users")
 }
@@ -75,10 +76,21 @@ enum DeviceType {
 
 // @ Blacklisted Tokens
 model BlacklistedToken {
-    id        Int     @id @default(autoincrement())
-    token     String  @db.LongText
+    id        Int      @id @default(autoincrement())
+    token     String   @db.LongText
     expiresAt DateTime
     createdAt DateTime @default(now())
 
     @@map("blacklisted_tokens")
+}
+
+model ResetPasswordToken {
+    id        Int      @id @default(autoincrement())
+    userId    Int
+    user      User     @relation(fields: [userId], references: [id])
+    token     String   @db.LongText
+    expiresAt DateTime
+    createdAt DateTime @default(now())
+
+    @@map("reset_password_tokens")
 }

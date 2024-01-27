@@ -1,35 +1,40 @@
 export interface Login {
-    email: string, 
-    password: string
+    email: string;
+    password: string;
 }
 
 export enum STACK {
-    "FRONTEND", 
+    "FRONTEND",
     "BACKEND",
-    "FULLSTACK"
+    "FULLSTACK",
 }
 
 export enum ROLE {
     "TRAINEE",
-    "JUNIOR", 
-    "MID", 
-    "SENIOR"
+    "JUNIOR",
+    "MID",
+    "SENIOR",
 }
 
 export interface SignUp extends Login {
-    name: string, 
-    confirm_password: string, 
-    terms: boolean, 
-    stack: string, 
-    role: string
+    name: string;
+    confirm_password: string;
+    terms: boolean;
+    stack: string;
+    role: string;
 }
 
 export interface RefreshToken {
-    refresh_token: string
+    refresh_token: string;
 }
 
 export interface DecodedToken {
-    userId: number, 
-    iat: number,
-    exp: number
+    userId: number;
+    iat: number;
+    exp: number;
+}
+
+export interface ResetPassword {
+    password: string;
+    confirm_password: string;
 }
