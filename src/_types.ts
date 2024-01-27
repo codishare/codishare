@@ -38,3 +38,18 @@ export interface ResetPassword {
     password: string;
     confirm_password: string;
 }
+
+export interface User {
+    id: number;
+    name: string;
+    alias: string;
+    stack: STACK;
+    seniority: ROLE;
+    created_at: Date;
+}
+
+export interface Session extends User {
+    email: string;
+    role: "USER" | "ADMIN";
+    email_verified: boolean;
+}
