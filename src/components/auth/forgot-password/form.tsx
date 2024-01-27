@@ -69,7 +69,11 @@ export default function Form({ token }: { token: string }) {
             addNotification({
                 type: "ERROR",
                 icon: <DnsOutlinedIcon />,
-                message: t(`Auth.ForgotPassword.form.errors.${error.message}`),
+                message: t(
+                    `Auth.ForgotPassword.form.errors.${
+                        (error as Error).message
+                    }`
+                ),
             });
         }
     };
