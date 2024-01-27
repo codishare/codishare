@@ -1,4 +1,4 @@
-import { decodeToken, generateAccessToken } from "@/services/api/jwt";
+import { decodeToken, generateAccessToken, verifyToken } from "@/services/api/jwt";
 import { getCookie } from "cookies-next";
 import { NextResponse } from "next/server";
 
@@ -6,6 +6,14 @@ export async function POST(req: Request) {
     const refresh_token = getCookie('refresh-token', { req });
 
     if(!refresh_token) return NextResponse.json({
+        message: "invalid_refresh_token"
+    }, {
+        status: 401
+    })
+
+    const validateRefreshToken = await verifyToken(refresh_token); 
+
+    if(!validateRefreshToken) return NextResponse.json({
         message: "invalid_refresh_token"
     }, {
         status: 401
@@ -37,7 +45,8 @@ export async function POST(req: Request) {
         })
     } catch (error) {
         return NextResponse.json({
-            redirect: '/auth/login'
+            redirect: '/auth/login',
+            message: 'server_error'
         }, {
             status: 500
         })

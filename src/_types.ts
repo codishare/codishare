@@ -34,11 +34,6 @@ export interface DecodedToken {
     exp: number;
 }
 
-export interface ResetPassword {
-    password: string;
-    confirm_password: string;
-}
-
 export interface User {
     id: number;
     name: string;
@@ -52,4 +47,9 @@ export interface Session extends User {
     email: string;
     role: "USER" | "ADMIN";
     email_verified: boolean;
+}
+
+export interface ResetPassword {
+    password: string;
+    confirm_password: string;
 }

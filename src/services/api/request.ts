@@ -1,8 +1,6 @@
 import { userAgent } from "next/server";
 import prisma from "@/lib/prisma";
 import { DeviceType } from "@prisma/client";
-import { decodeToken } from "./jwt";
-import { getCookie } from "cookies-next";
 
 export function getClientIp(req: Request) {
     let clientIp = req.headers.get("x-forwarded-for") || null;
@@ -36,4 +34,23 @@ export async function performUserAgent(req: Request, userId: number) {
             },
         });
     }
+}
+
+export async function RefreshToken() {
+    return fetch('/api/auth/refresh-token', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(async res => {
+        const data = await res.json();
+
+        if (data.access_token) return localStorage.setItem('access_token', data.access_token);
+
+        return false
+    }).catch(error => {
+        console.error((error as Error).message);
+
+        return false; 
+    });
 }
