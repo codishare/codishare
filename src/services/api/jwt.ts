@@ -28,15 +28,27 @@ export async function generateRefreshToken(req: Request, userId: Number) {
 }
 
 export async function verifyToken(token: string) {
+    if (!token) return false;
+
     const isBlacklisted = await prisma.blacklistedToken.findFirst({
         where: {
             token
         }
     })
 
-    if(isBlacklisted) return false;
+    if (isBlacklisted) return false;
 
-    return await jwtVerify(token, new TextEncoder().encode(getJwtSecretKey()))
+    try {
+        await jwtVerify(token, new TextEncoder().encode(getJwtSecretKey()));
+        
+        return true;
+    } catch (error) {
+        if ((error as Error).name === 'TokenExpiredError') {
+            return false;
+        }
+
+        return false;
+    }
 }
 
 export async function decodeToken(token: string) {
