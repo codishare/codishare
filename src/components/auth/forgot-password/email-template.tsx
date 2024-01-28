@@ -1,9 +1,6 @@
 import * as React from "react";
 import { User } from "@prisma/client";
-
-const GetLocation = () => {
-    return window.location.origin;
-};
+import { getBaseUrl } from "@/utils/get-base-url";
 
 export const EmailTemplate = (
     user: User,
@@ -18,7 +15,7 @@ export const EmailTemplate = (
             did not request a password reset, you can safely ignore this email.
         </p>
         <a
-            href={`${GetLocation()}/${
+            href={`${getBaseUrl()}/${
                 locale || "en"
             }/auth/reset-password?token=${resetPasswordToken}`}
         >
