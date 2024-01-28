@@ -1,6 +1,14 @@
 import * as React from "react";
 import { User } from "@prisma/client";
 
+const GetLocation = () => {
+    if (process.env.VERCEL_ENV === "production") {
+        return process.env.VERCEL_URL;
+    } else {
+        return "http://localhost:3000";
+    }
+};
+
 export const EmailTemplate = (
     user: User,
     resetPasswordToken: string,
@@ -14,7 +22,7 @@ export const EmailTemplate = (
             did not request a password reset, you can safely ignore this email.
         </p>
         <a
-            href={`http://localhost:3000/${
+            href={`${GetLocation()}/${
                 locale || "en"
             }/auth/reset-password?token=${resetPasswordToken}`}
         >

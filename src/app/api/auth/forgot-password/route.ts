@@ -70,7 +70,16 @@ export async function POST(req: Request) {
             subject: "Reset your password",
             react: EmailTemplate(user, resetPasswordToken, locale),
         });
-        console.log(data, error);
+
+        if (error)
+            return NextResponse.json(
+                {
+                    message: "server_error",
+                },
+                {
+                    status: 500,
+                }
+            );
 
         return NextResponse.json(
             {
