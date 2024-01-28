@@ -2,7 +2,7 @@ import * as React from "react";
 import { User } from "@prisma/client";
 
 const GetLocation = () => {
-    return process.env.VERCEL_URL || "http://localhost:3000";
+    return window.location.origin;
 };
 
 export const EmailTemplate = (
