@@ -2,11 +2,7 @@ import * as React from "react";
 import { User } from "@prisma/client";
 
 const GetLocation = () => {
-    if (process.env.VERCEL_ENV === "production") {
-        return process.env.VERCEL_URL;
-    } else {
-        return "http://localhost:3000";
-    }
+    return process.env.VERCEL_URL || "http://localhost:3000";
 };
 
 export const EmailTemplate = (
