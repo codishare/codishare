@@ -141,8 +141,8 @@ export default function Form() {
             />
 
             <button
-                className="text-sm -mt-4 w-fit text-start text-indigo-300 hover:text-indigo-400 hover:underline transition"
-                onClick={handleForgotPassword}
+                className="text-sm w-fit text-gray-400 hover:text-indigo-700 hover:underline transition-all"
+                onClick={ handleForgotPassword }
                 type="button"
             >
                 {t("Auth.SignIn.forgot_password.title")}
