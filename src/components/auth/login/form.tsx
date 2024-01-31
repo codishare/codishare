@@ -17,8 +17,7 @@ import DnsOutlinedIcon from "@mui/icons-material/DnsOutlined";
 
 export default function Form() {
     const t = useTranslations();
-    const locale = useLocale();
-    console.log(locale);
+    const locale = useLocale(); 
     const addNotification = useNotifications();
     const router = useRouter();
 

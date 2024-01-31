@@ -20,9 +20,9 @@ export default function Layout({
     } = useSession();
     const router = useRouter();
 
-    if(!loading && session) router.push('/');
+    if(loading) return <Spinner />
 
-    if(!loading) return <Spinner />
+    if(session) router.push('/');
 
     return (
         <main className="w-screen h-screen flex justify-center">
