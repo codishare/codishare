@@ -1,7 +1,9 @@
 'use client'
 
+import { Session } from "@/_types";
 import { ToggleTheme } from "@/components/theme/Toggle"
-import { useSessions } from "@/lib/hooks/useSessions"
+import Spinner from "@/components/ui/spinner/component";
+import { useSession } from "@/lib/hooks/useSession"
 import { useRouter } from "@/navigation";
 
 export default function Layout({ 
@@ -9,10 +11,18 @@ export default function Layout({
 } : { 
     children: React.ReactNode 
 }) {
-    const session = useSessions();
+    const {
+        session, 
+        loading
+    } : {
+        session: Session | false, 
+        loading: boolean
+    } = useSession();
     const router = useRouter();
 
-    if(session) router.push('/');
+    if(!loading && session) router.push('/');
+
+    if(!loading) return <Spinner />
 
     return (
         <main className="w-screen h-screen flex justify-center">
