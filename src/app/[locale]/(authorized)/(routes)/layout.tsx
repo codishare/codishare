@@ -23,7 +23,7 @@ export default function Layout({
 
     if(loading) return <Spinner />
     
-    if(!loading && !session) router.push('/auth/login');
+    if(!session) router.push('/auth/login');
 
     return (
         <main className="w-screen h-screen flex flex-col gap-3">
