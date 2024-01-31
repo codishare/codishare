@@ -36,9 +36,7 @@ export async function GET(req: Request) {
             status: 404
         })
 
-        return NextResponse.json({
-            user
-        }, {
+        return NextResponse.json(user, {
             status: 200
         })
     } catch (error) {

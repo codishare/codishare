@@ -2,7 +2,15 @@ import { Session } from "@/_types";
 import { RefreshToken } from "@/services/api/request";
 import { createContext, useEffect, useState } from "react";
 
-export const SessionContext = createContext<Session | false>(false);
+interface Context {
+    session: Session | false,
+    loading: boolean
+}
+
+export const SessionContext = createContext<Context>({
+    session: false,
+    loading: false
+});
 
 const SessionProvider = ({
     children
@@ -10,6 +18,7 @@ const SessionProvider = ({
     children: React.ReactNode
 }) => {
     const [session, handleSession] = useState<Session | false>(false);
+    const [loading, handleLoading] = useState<boolean>(true);
 
     async function fetchSession() {
         const access_token = localStorage.getItem('access_token');
@@ -40,11 +49,16 @@ const SessionProvider = ({
     }
 
     useEffect(() => {
-        fetchSession()
+        handleLoading(true);
+
+        fetchSession().finally(() => handleLoading(false));
     }, [])
 
     return <SessionContext.Provider
-        value={ session }
+        value={{
+            session, 
+            loading
+        }}
     >
         { children }
     </SessionContext.Provider>

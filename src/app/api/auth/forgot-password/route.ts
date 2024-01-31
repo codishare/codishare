@@ -71,7 +71,9 @@ export async function POST(req: Request) {
             react: EmailTemplate(user, resetPasswordToken, locale),
         });
 
-        if (error)
+        if (error) {
+            console.log((error as Error).message)
+
             return NextResponse.json(
                 {
                     message: "server_error",
@@ -80,6 +82,7 @@ export async function POST(req: Request) {
                     status: 500,
                 }
             );
+        }
 
         return NextResponse.json(
             {

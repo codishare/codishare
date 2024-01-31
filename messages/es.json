@@ -27,7 +27,17 @@
                     "password": "La contraseña es obligatoria",
                     "server_error": "Error interno del servidor, inténtalo de nuevo más tarde"
                 }
-            }
+            },
+            "forgot_password": {
+                "title": "¿Olvidaste tu contraseña?",
+                "success": "Se ha enviado un correo electrónico a tu bandeja de entrada con instrucciones para restablecer tu contraseña",
+                "errors": {
+                    "invalid_format": "Tipo de dato inválido en el parámetro recibido",
+                    "email": "Se requiere un correo electrónico",
+                    "user_not_found": "Usuario no encontrado",
+                    "server_error": "Error interno del servidor, por favor inténtalo nuevamente más tarde"
+                }
+            }            
         },
         "SignUp": {
             "header": {
@@ -75,6 +85,36 @@
                 },   
                 "account_success": "Tu cuenta ha sido creada exitosamente"
             }
-        }
+        },
+        "ForgotPassword": {
+            "header": {
+                "white": "{name}, ¿quieres restablecer tu",
+                "colored": "contraseña?",
+                "description": "Ingresa una nueva contraseña para acceder a tu cuenta",
+                "invalidToken": "Token inválido",
+                "invalidTokenDescription": "El token que estás intentando usar es inválido o ha caducado"
+            },
+            "actions": {
+                "backToHome": "Volver a inicio",
+                "resetPassword": "Restablecer contraseña"
+            },
+            "form": {
+                "new_password": "Nueva contraseña",
+                "confirm_password": "Confirmar contraseña",
+                "errors": {
+                    "invalid_format": "Tipo de dato inválido en el parámetro recibido",
+                    "password": "Se requiere una nueva contraseña",
+                    "password_min_length": "La nueva contraseña debe tener al menos 8 caracteres",
+                    "password_uppercase": "La nueva contraseña debe contener al menos una letra mayúscula",
+                    "password_lowercase": "La nueva contraseña debe contener al menos una letra minúscula",
+                    "password_number": "La nueva contraseña debe contener al menos un número",
+                    "confirm_password": "Se requiere confirmar la contraseña",
+                    "confirm_password_match": "Las contraseñas deben coincidir",
+                    "invalid_token": "El token que estás intentando usar es inválido o ha caducado",
+                    "server_error": "Error interno del servidor, por favor inténtalo nuevamente más tarde"
+                },
+                "success": "¡Contraseña restablecida exitosamente!"
+            }
+        }        
     }
 }
