@@ -1,5 +1,4 @@
 import { Session } from "@/_types";
-import Spinner from "@/components/ui/spinner/component";
 import { RefreshToken } from "@/services/api/request";
 import { createContext, useEffect, useState } from "react";
 
@@ -61,9 +60,7 @@ const SessionProvider = ({
             loading
         }}
     >
-        {
-            loading ? <Spinner /> : children
-        }
+        { children }
     </SessionContext.Provider>
 }
 
