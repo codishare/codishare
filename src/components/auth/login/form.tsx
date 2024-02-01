@@ -14,12 +14,14 @@ import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlin
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import PriorityHighOutlinedIcon from "@mui/icons-material/PriorityHighOutlined";
 import DnsOutlinedIcon from "@mui/icons-material/DnsOutlined";
+import { useSession } from "@/lib/hooks/useSession";
 
 export default function Form() {
     const t = useTranslations();
-    const locale = useLocale(); 
+    const locale = useLocale();
     const addNotification = useNotifications();
     const router = useRouter();
+    const { refetchSession } = useSession();
 
     const [data, setData] = useState<Login>({
         email: "",
@@ -50,7 +52,8 @@ export default function Form() {
 
                 if (res.status == 200) {
                     localStorage.setItem("access_token", data.access_token);
-
+                    console.log("Logged in successfully");
+                    refetchSession();
                     router.push("/");
                 } else {
                     addNotification({
@@ -141,7 +144,7 @@ export default function Form() {
 
             <button
                 className="text-sm w-fit text-gray-400 hover:text-indigo-700 hover:underline transition-all"
-                onClick={ handleForgotPassword }
+                onClick={handleForgotPassword}
                 type="button"
             >
                 {t("Auth.SignIn.forgot_password.title")}

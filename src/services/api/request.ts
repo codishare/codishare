@@ -1,6 +1,7 @@
 import { userAgent } from "next/server";
 import prisma from "@/lib/prisma";
 import { DeviceType } from "@prisma/client";
+import { useRouter } from "@/navigation";
 
 export function getClientIp(req: Request) {
     let clientIp = req.headers.get("x-forwarded-for") || null;
@@ -37,20 +38,31 @@ export async function performUserAgent(req: Request, userId: number) {
 }
 
 export async function RefreshToken() {
-    return fetch('/api/auth/refresh-token', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(async res => {
-        const data = await res.json();
+    return new Promise((resolve, reject) => {
+        fetch("/api/auth/refresh-token", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then(async (res) => {
+                const data = await res.json();
 
-        if (data.access_token) return localStorage.setItem('access_token', data.access_token);
+                if (res.status == 401) {
+                    return reject("401 Unauthorized");
+                }
 
-        return false
-    }).catch(error => {
-        console.error((error as Error).message);
+                if (data.access_token) {
+                    localStorage.setItem("access_token", data.access_token);
+                    return resolve(data.access_token);
+                }
 
-        return false; 
+                reject();
+            })
+            .catch((error) => {
+                console.error((error as Error).message);
+
+                reject("500");
+            });
     });
 }

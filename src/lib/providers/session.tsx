@@ -3,65 +3,82 @@ import { RefreshToken } from "@/services/api/request";
 import { createContext, useEffect, useState } from "react";
 
 interface Context {
-    session: Session | false,
-    loading: boolean
+    session: Session | false;
+    loading: boolean;
+    refetchSession: () => void;
 }
 
 export const SessionContext = createContext<Context>({
     session: false,
-    loading: false
+    loading: false,
+    refetchSession: () => {},
 });
 
-const SessionProvider = ({
-    children
-} : {
-    children: React.ReactNode
-}) => {
+const SessionProvider = ({ children }: { children: React.ReactNode }) => {
     const [session, handleSession] = useState<Session | false>(false);
     const [loading, handleLoading] = useState<boolean>(true);
 
-    async function fetchSession() {
-        const access_token = localStorage.getItem('access_token');
+    async function fetchSession(callback: (res: boolean) => void) {
+        const access_token = localStorage.getItem("access_token");
 
         if (!access_token) {
-            RefreshToken().then(async res => {
-                console.log("Refreshing token")
-                
-                if(res) return await fetchSession();
-            });
+            return RefreshToken()
+                .then(async (res) => {
+                    if (res) await fetchSession(callback);
+                })
+                .catch((err) => {
+                    console.log(err);
+                    handleSession(false);
+                    callback(false);
+                });
         }
 
-        fetch(`/api/user?access_token=${ access_token }`).then(async res => {
-            if(res.status === 200) {
+        fetch(`/api/user?access_token=${access_token}`).then(async (res) => {
+            if (res.status === 200) {
                 const data = await res.json();
 
-                console.log("Session has been stored: " + JSON.stringify(data));
-
-                return handleSession(data);
+                console.log("Session fetched and stored", data);
+                handleSession(data);
+                callback(true);
             }
 
-            if(res.status === 401) return RefreshToken().then(async res => {
-                console.log("Refreshing token")
-                
-                if(res) return await fetchSession();
-            })
-        })
+            if (res.status === 401)
+                if (!localStorage.getItem("access_token"))
+                    return handleSession(false);
+                else
+                    return RefreshToken()
+                        .then(async (res) => {
+                            if (res) await fetchSession(callback);
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                            handleSession(false);
+                            callback(false);
+                        });
+        });
+    }
+
+    function refetchSession() {
+        fetchSession(() => handleLoading(false));
+        console.log("Refetching session");
     }
 
     useEffect(() => {
         handleLoading(true);
+        refetchSession();
+    }, []);
 
-        fetchSession().finally(() => handleLoading(false));
-    }, [])
-
-    return <SessionContext.Provider
-        value={{
-            session, 
-            loading
-        }}
-    >
-        { children }
-    </SessionContext.Provider>
-}
+    return (
+        <SessionContext.Provider
+            value={{
+                session,
+                loading,
+                refetchSession,
+            }}
+        >
+            {children}
+        </SessionContext.Provider>
+    );
+};
 
 export default SessionProvider;
