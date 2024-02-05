@@ -15,7 +15,7 @@ export default function Navigator() {
 
     const t = useTranslations(); 
 
-    return <nav className="p-3 border-b flex items-center justify-between">
+    return <nav className="px-2 py-3 shadow flex items-center justify-between">
         <SearchBar />
 
         {/* @ Right section */}

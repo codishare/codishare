@@ -10,7 +10,12 @@
     "Components": {
         "UI": {
             "navigator": {
-                "dashboard": "Dashboard"
+                "bar": "Search..."
+            },
+            "searchbar": {
+                "user": "user", 
+                "project": "project", 
+                "no_results": "No results found..."
             }
         }
     },

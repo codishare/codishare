@@ -14,6 +14,8 @@ export default function TextInput({
     required,
     className,
     ref,
+    focus, 
+    blur, 
 }: {
     label?: string;
     icon?: React.ReactNode;
@@ -26,6 +28,8 @@ export default function TextInput({
     required?: boolean;
     className?: string;
     ref?: any;
+    focus?: () => void;
+    blur?: () => void;
 }) {
     return (
         <label className="flex flex-col gap-2 cursor-pointer">
@@ -53,6 +57,8 @@ export default function TextInput({
                     name={name}
                     placeholder={placeholder}
                     disabled={disabled || false}
+                    onFocus={focus}
+                    onBlur={blur}
                     className="bg-transparent focus:outline-none focus:ring-0 flex-1"
                     onChange={(e) => change && change(e.target.value)}
                 />
