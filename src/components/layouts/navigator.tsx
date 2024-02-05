@@ -3,8 +3,8 @@ import { useSession } from "@/lib/hooks/useSession";
 import { ToggleTheme } from "../theme/Toggle";
 import { useTranslations } from "next-intl";
 
-import SettingsSharpIcon from '@mui/icons-material/SettingsSharp';
 import SearchBar from "./searchbar";
+import Settings from "./aside-settings";
 
 export default function Navigator() {
     const {
@@ -24,11 +24,7 @@ export default function Navigator() {
                 { session && session.name }
             </span> 
 
-            <button
-                className="flex items-center p-2 rounded-lg border transition-all"
-            >
-                <SettingsSharpIcon />
-            </button>
+            <Settings />
 
             <ToggleTheme />
         </section>
