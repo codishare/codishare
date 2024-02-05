@@ -15,6 +15,6 @@ export default function Index({
     const t = useTranslations('Dashboard');
 
     return <div className='text-red-500'>  
-        Contenido del Dashboard
+        {/* @ Dashboard content */}
     </div>
 }
