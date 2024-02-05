@@ -1,7 +1,7 @@
 "use client";
 
 import { Session } from "@/_types";
-import Navigator from "@/components/ui/navigator";
+import Navigator from "@/components/layouts/navigator";
 // import Spinner from "@/components/ui/spinner/component";
 import { useSession } from "@/lib/hooks/useSession";
 import { useRouter } from "@/navigation";
