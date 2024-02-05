@@ -7,6 +7,13 @@
         "welcome": "Welcome",
         "sign-up": "Sign up"
     },
+    "Components": {
+        "UI": {
+            "navigator": {
+                "dashboard": "Dashboard"
+            }
+        }
+    },
     "Auth": {
         "SignIn": {
             "header": {
