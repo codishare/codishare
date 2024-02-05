@@ -7,6 +7,13 @@
         "welcome": "Bienvenido",
         "sign-up": "Registrate"
     },
+    "Components": {
+        "UI": {
+            "navigator": {
+                "dashboard": "Tablero"
+            }
+        }
+    },
     "Auth": { 
         "SignIn": {
             "header": {

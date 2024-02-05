@@ -2,6 +2,7 @@ import { Session } from "@/_types";
 import { useSession } from "@/lib/hooks/useSession";
 import { ToggleTheme } from "../theme/Toggle";
 import SpaceDashboardRoundedIcon from '@mui/icons-material/SpaceDashboardRounded';
+import { useTranslations } from "next-intl";
 
 export default function Navigator() {
     const {
@@ -9,6 +10,8 @@ export default function Navigator() {
     }: {
         session: Session | false;
     } = useSession();
+
+    const t = useTranslations(); 
 
     return <nav className="p-3 border-b flex items-center justify-between">
         <section className="flex items-center gap-5 divide-x px-2">
@@ -24,7 +27,7 @@ export default function Navigator() {
                 <li className="flex items-center gap-2 text-black/30 cursor-pointer select-none hover:text-indigo-500 transition dark:text-white">
                     <SpaceDashboardRoundedIcon />
 
-                    Dashboard
+                    { t("Components.UI.navigator.dashboard") }
                 </li>
             </ul>
         </section>
