@@ -90,8 +90,6 @@ export default function Settings() {
                                             }).then(async (res) => {
                                                 const data = await res.json();
 
-                                                console.log(data, res.status)
-
                                                 if (res.status == 200) {
                                                     localStorage.removeItem('access_token');
                                                     router.push('/auth/login'); 
