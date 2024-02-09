@@ -7,6 +7,18 @@
         "welcome": "Welcome",
         "sign-up": "Sign up"
     },
+    "Components": {
+        "UI": {
+            "navigator": {
+                "bar": "Search..."
+            },
+            "searchbar": {
+                "user": "user", 
+                "project": "project", 
+                "no_results": "No results found..."
+            }
+        }
+    },
     "Auth": {
         "SignIn": {
             "header": {

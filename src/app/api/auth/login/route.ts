@@ -12,27 +12,29 @@ export async function POST(req: Request) {
 
         const isValid = validate(data);
 
-        if (isValid !== true) return NextResponse.json(
-            {
-                message: isValid,
-            },
-            {
-                status: 400,
-            }
-        );
+        if (isValid !== true)
+            return NextResponse.json(
+                {
+                    message: isValid,
+                },
+                {
+                    status: 400,
+                }
+            );
 
         const { email, password } = data;
 
         const user = await validateCredentials(email, password);
 
-        if (!user) return NextResponse.json(
-            {
-                message: "invalid_credentials",
-            },
-            {
-                status: 400,
-            }
-        );
+        if (!user)
+            return NextResponse.json(
+                {
+                    message: "invalid_credentials",
+                },
+                {
+                    status: 400,
+                }
+            );
 
         await performUserAgent(req, user.id);
 
@@ -52,7 +54,7 @@ export async function POST(req: Request) {
         setCookie("refresh-token", refreshToken, {
             req,
             res,
-            maxAge: 1000 * 60 * 60 * 24,
+            maxAge: 1000 * 60 * 60 * 24, // 1 day
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
             sameSite: "strict",
