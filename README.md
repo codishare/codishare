@@ -17,7 +17,11 @@ To get started with the app, clone the repo and then run the following commands:
 ```
 npm install
 npm run dev
-# or
+```
+
+or
+
+```
 yarn
 yarn dev
 ```
