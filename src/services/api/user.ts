@@ -39,7 +39,10 @@ export async function getUserById(id: number) {
             name: true,
             alias: true,
             stack: true,
-            seniority: true
+            seniority: true, 
+            email: true,
+            email_verified: true,
+            devices: true,
         }
     })
 }
