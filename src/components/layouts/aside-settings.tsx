@@ -6,6 +6,9 @@ import { Session } from "@/_types";
 import SettingsSharpIcon from '@mui/icons-material/SettingsSharp';
 import Spinner from "../ui/spinner/component";
 import Logout from "./settings/logout";
+import { SupportOutlined } from "@mui/icons-material";
+import Profile from "./settings/profile";
+import Language from "./settings/language";
 
 export default function Settings() {
     const [focused, setFocused] = useState<boolean>(false);
@@ -63,8 +66,24 @@ export default function Settings() {
                         </section>
 
                         {/* @ Settings */}
-                        <section className="py-5">
-                            <ul>
+                        <section className="h-full">
+                            <ul className="flex pt-5 flex-col h-full gap-4">
+                                {/* @ Settings */}
+                                <Profile />
+                                <Language />
+
+                                {/* @ Separator */}
+                                <div className="flex-1"></div>
+
+                                {/* @ Bottom of the list */}
+                                <li
+                                    className="flex gap-3 items-center cursor-pointer bg-zinc-100 dark:bg-zinc-800 text-sm p-2.5 hover:bg-indigo-500 hover:text-white transition rounded-lg"
+                                >
+                                    <SupportOutlined />
+
+                                    Help
+                                </li>
+
                                 <Logout handleLoad={(bool: boolean) => setLoading(bool)} />
                             </ul>
                         </section>
