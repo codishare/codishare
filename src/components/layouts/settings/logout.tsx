@@ -1,10 +1,10 @@
 'use client'
 
-import { useNotifications } from "@/lib/hooks/useNotifications";
-import { useRouter } from "next/router";
+import { useNotifications } from "@/lib/hooks/useNotifications"; 
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline'; 
 import { DnsOutlined } from "@mui/icons-material";
 import { useTranslations } from "next-intl";
+import { useRouter } from "@/navigation";
 
 export default function Logout({
     handleLoad
