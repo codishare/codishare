@@ -1,96 +1,91 @@
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "mysql"
-    url      = env("DATABASE_URL")
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
-// @ User management
 model User {
-    id             Int     @id @default(autoincrement())
-    email          String  @unique
-    name           String?
-    alias          String?
-    password       String
-    email_verified Boolean @default(false)
+  id                  Int                  @id @default(autoincrement())
+  email               String               @unique
+  name                String?
+  alias               String?
+  password            String
+  email_verified      Boolean              @default(false)
+  role                Role                 @default(USER)
+  seniority           Seniority?
+  stack               Stack?
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @default(now()) @updatedAt
+  resetPasswordTokens ResetPasswordToken[]
+  devices             Device[]
 
-    role      Role       @default(USER)
-    seniority Seniority?
-    stack     Stack?
-
-    createdAt DateTime @default(now())
-    updatedAt DateTime @default(now()) @updatedAt
-
-    devices             Device[]
-    resetPasswordTokens ResetPasswordToken[]
-
-    @@map("users")
+  @@map("users")
 }
 
-enum Role {
-    ADMIN
-    USER
-}
-
-enum Seniority {
-    TRAINEE
-    JUNIOR
-    MID
-    SENIOR
-}
-
-enum Stack {
-    FRONTEND
-    BACKEND
-    FULLSTACK
-}
-
-// @ Devices
 model Device {
-    id      Int         @id @default(autoincrement())
-    userId  Int
-    user    User?       @relation(fields: [userId], references: [id])
-    agent   String?
-    device  DeviceType?
-    model   String?
-    browser String?
-    os      String?
-    ip      String?
+  id        Int         @id @default(autoincrement())
+  userId    Int
+  device    DeviceType?
+  agent     String?
+  model     String?
+  browser   String?
+  os        String?
+  ip        String?
+  createdAt DateTime    @default(now())
+  user      User        @relation(fields: [userId], references: [id])
 
-    createdAt DateTime @default(now())
-
-    @@map("user_devices")
+  @@index([userId], map: "user_devices_userId_fkey")
+  @@map("user_devices")
 }
 
-enum DeviceType {
-    CONSOLE
-    MOBILE
-    TABLET
-    SMARTTV
-    WEARABLE
-    EMBEDDED
-    UNKNOWN
-}
-
-// @ Blacklisted Tokens
 model BlacklistedToken {
-    id        Int      @id @default(autoincrement())
-    token     String   @db.LongText
-    expiresAt DateTime
-    createdAt DateTime @default(now())
+  id        Int      @id @default(autoincrement())
+  token     String   @db.LongText
+  expiresAt DateTime
+  createdAt DateTime @default(now())
 
-    @@map("blacklisted_tokens")
+  @@map("blacklisted_tokens")
 }
 
 model ResetPasswordToken {
-    id        Int      @id @default(autoincrement())
-    userId    Int
-    user      User     @relation(fields: [userId], references: [id])
-    token     String   @db.LongText
-    expiresAt DateTime
-    createdAt DateTime @default(now())
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  token     String   @db.LongText
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
 
-    @@map("reset_password_tokens")
+  @@index([userId], map: "reset_password_tokens_userId_fkey")
+  @@map("reset_password_tokens")
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum Seniority {
+  TRAINEE
+  JUNIOR
+  MID
+  SENIOR
+}
+
+enum Stack {
+  FRONTEND
+  BACKEND
+  FULLSTACK
+}
+
+enum DeviceType {
+  CONSOLE
+  MOBILE
+  TABLET
+  SMARTTV
+  WEARABLE
+  EMBEDDED
+  UNKNOWN
 }

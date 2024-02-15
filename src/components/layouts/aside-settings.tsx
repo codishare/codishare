@@ -1,23 +1,15 @@
-import { useTranslations } from "next-intl";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { useSession } from "@/lib/hooks/useSession";
 import { Session } from "@/_types";
 
 import SettingsSharpIcon from '@mui/icons-material/SettingsSharp';
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-import { useNotifications } from "@/lib/hooks/useNotifications";
-import { DnsOutlined } from "@mui/icons-material";
-import { useRouter } from "@/navigation";
 import Spinner from "../ui/spinner/component";
+import Logout from "./settings/logout";
 
 export default function Settings() {
     const [focused, setFocused] = useState<boolean>(false);
     const [loading, setLoading] = useState<Boolean>(false);
-
-    const t = useTranslations(); 
-    const addNotification = useNotifications(); 
-    const router = useRouter(); 
     
     const {
         session,
@@ -73,51 +65,7 @@ export default function Settings() {
                         {/* @ Settings */}
                         <section className="py-5">
                             <ul>
-                                <li
-                                    className="flex gap-3 items-center cursor-pointer bg-zinc-100 dark:bg-zinc-800 text-sm p-2.5 hover:bg-indigo-500 hover:text-white transition rounded-lg"
-                                    onClick={() => {
-                                        try {
-                                            setLoading(true);
-
-                                            fetch('/api/auth/logout', {
-                                                method: 'POST',
-                                                headers: {
-                                                    'Content-Type': 'application/json',
-                                                },
-                                                body: JSON.stringify({
-                                                    access_token: localStorage.getItem('access_token'),
-                                                })
-                                            }).then(async (res) => {
-                                                const data = await res.json();
-
-                                                if (res.status == 200) {
-                                                    localStorage.removeItem('access_token');
-                                                    router.push('/auth/login'); 
-                                                } else {
-                                                    addNotification({
-                                                        type: "ERROR",
-                                                        icon: <DnsOutlined />,
-                                                        message: t(
-                                                            `Auth.SignIn.forgot_password.errors.${data.message}`
-                                                        ),
-                                                    });
-                                                }
-                                            }).finally(() => setLoading(false));
-                                        } catch (error) {
-                                            setLoading(false);
-
-                                            return addNotification({
-                                                type: "ERROR",
-                                                icon: <DnsOutlined />,
-                                                message: t("Errors.internal-server-error"),
-                                            });
-                                        }
-                                    }}
-                                >
-                                    <PersonOutlineIcon />
-
-                                    Logout
-                                </li>
+                                <Logout handleLoad={(bool: boolean) => setLoading(bool)} />
                             </ul>
                         </section>
                     </motion.div>
