@@ -21,7 +21,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     }
 
     return (
-        <main className="w-screen h-screen flex flex-col gap-3">
+        <main className="w-screen h-screen bg-gray-50 flex flex-col gap-3">
             <Navigator />
 
             {children}
