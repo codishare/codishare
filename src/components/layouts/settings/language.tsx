@@ -19,7 +19,7 @@ export default function Language() {
         </section>
 
         <section className="flex-col gap-3 hidden group-hover:flex transition-all">
-            <article onClick={() => switchLang('en')} className="flex gap-3 border rounded p-2.5 cursor-pointer select-none text-sm hover:border-indigo-500 hover:text-white hover:bg-indigo-500 transiton-all">
+            <article onClick={() => switchLang('en')} className="flex gap-3 border border-gray-700 rounded p-2.5 cursor-pointer select-none text-sm hover:border-indigo-500 hover:text-white hover:bg-indigo-500 transiton-all">
                 <span>
                     🇬🇧
                 </span>
@@ -27,7 +27,7 @@ export default function Language() {
                 English
             </article>
 
-            <article onClick={() => switchLang('es')} className="flex gap-3 border rounded p-2.5 cursor-pointer select-none text-sm hover:border-indigo-500 hover:text-white hover:bg-indigo-500 transiton-all">
+            <article onClick={() => switchLang('es')} className="flex gap-3 border border-gray-700 rounded p-2.5 cursor-pointer select-none text-sm hover:border-indigo-500 hover:text-white hover:bg-indigo-500 transiton-all">
                 <span>
                     🇪🇸
                 </span>
