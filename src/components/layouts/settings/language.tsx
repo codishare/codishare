@@ -1,15 +1,13 @@
 'use client'
 
 import { ExpandMoreOutlined } from "@mui/icons-material";
-import { useRouter, usePathname } from '@/navigation';
+import { useRouter, usePathname } from '@/navigation'; 
 
 export default function Language() {
     const router = useRouter();
-    const pathname = usePathname();
+    const pathname = usePathname();  
 
-    const switchLang = (lang: string) => {
-        router.push(pathname, { locale: lang });
-    }
+    const switchLang = (lang: string) => router.push(pathname, { locale: lang });
 
     return <li className="flex flex-col gap-3 group transition-all">
         <section

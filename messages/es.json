@@ -16,6 +16,9 @@
                 "user": "usuario", 
                 "project": "proyecto", 
                 "no_results": "No se encontraron resultados..."
+            }, 
+            "aside_settings": {
+                "on_translate": "Ahora estás viendo la página en español"
             }
         }
     },

@@ -16,6 +16,9 @@
                 "user": "user", 
                 "project": "project", 
                 "no_results": "No results found..."
+            },
+            "aside_settings": {
+                "on_translate": "You are using the English version"
             }
         }
     },
