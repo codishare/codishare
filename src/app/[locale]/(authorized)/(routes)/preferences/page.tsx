@@ -1,3 +1,4 @@
+import Content from "@/components/layouts/preferences/content";
 import Header from "@/components/layouts/preferences/header"; 
 import { ChevronLeftOutlined, SettingsAccessibilityOutlined } from "@mui/icons-material";
 
@@ -21,6 +22,7 @@ export default function Page() {
         {/* @ Profile information */}
         <Header />
 
-        {/* @ User devices */}
+        {/* @ Content */}
+        <Content />
     </div>
 }

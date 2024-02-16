@@ -16,6 +16,16 @@ export enum ROLE {
     "SENIOR",
 }
 
+export enum DEVICE_TYPES {
+    "CONSOLE", 
+    "MOBILE",
+    "TABLET",
+    "SMARTTV",
+    "WEARABLE",
+    "EMBEDDED",
+    "UNKNOWN"
+}
+
 export interface SignUp extends Login {
     name: string;
     confirm_password: string;
@@ -43,10 +53,23 @@ export interface User {
     created_at: Date;
 }
 
+export interface Device {
+    id: number;
+    name: string;
+    device?: DEVICE_TYPES;
+    agent?: string;
+    model?: string;
+    browser?: string;
+    os?: string;
+    ip?: string;
+    created_at: Date;
+}
+
 export interface Session extends User {
     email: string;
     role: "USER" | "ADMIN";
     email_verified: boolean;
+    devices: Device[];
 }
 
 export interface ResetPassword {
