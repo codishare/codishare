@@ -25,8 +25,8 @@ export default function Content() {
         <ul className="flex w-full items-center justify-start gap-4">
             {
                 views.map((view: View, index:number) => {
-                    return <li key={ view.label } className={
-                        `px-3 py-2 rounded border ${ active == index ? "bg-indigo-500 text-white border-indigo-500" : "bg-white text-gray-500" } transition-all hover:scale-90 cursor-pointer`
+                    return <li key={ view.label } onClick={() => setActive(index)} className={
+                        `px-3 py-2 rounded border ${ active == index ? "bg-indigo-500 text-white border-indigo-500" : "bg-white text-gray-500" } transition-all cursor-pointer`
                     }>
                         { view.label }
                     </li>
