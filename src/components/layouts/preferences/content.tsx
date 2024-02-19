@@ -1,7 +1,7 @@
 'use client'
 
 import { Fragment, useState } from "react";
-import Devices from "./elements/devices"
+import Devices from "./elements/devices/devices"
 
 interface View {
     label: string;
