@@ -31,7 +31,7 @@ export default function Content() {
             {
                 views.map((view: View, index:number) => {
                     return <li key={ view.label } onClick={() => setActive(index)} className={
-                        `px-3 py-2 rounded border dark:border-zinc-900 ${ active == index ? "bg-indigo-500 text-white dark:text-zinc-950 border-indigo-500" : "bg-white dark:bg-zinc-950 dark:text-zinc-400 text-gray-500" } transition-all cursor-pointer`
+                        `px-3 py-2 rounded border dark:border-zinc-900 ${ active == index ? "bg-indigo-500 text-white dark:text-zinc-950 border-indigo-500 dark:border-indigo-500" : "bg-white dark:bg-zinc-900 dark:text-zinc-400 text-gray-500" } transition-all cursor-pointer`
                     }>
                         { view.label }
                     </li>
