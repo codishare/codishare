@@ -21,7 +21,8 @@
                 "on_translate": "You are using the English version",
                 "support": "Help",
                 "logout": "Logout",
-                "profile": "Profile"
+                "profile": "Profile",
+                "language": "Language"
             }
         }
     },

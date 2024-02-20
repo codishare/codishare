@@ -21,7 +21,8 @@
                 "on_translate": "Ahora estás viendo la página en español",
                 "support": "Soporte",
                 "logout": "Cerrar sesión",
-                "profile": "Perfil"
+                "profile": "Perfil",
+                "language": "Idioma"
             }
         }
     },
