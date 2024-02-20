@@ -40,7 +40,7 @@ export default function Devices() {
                         </h1>
 
                         <p className="text-xs text-gray-400">
-                            { device_type }, { os ? os : 'Unknown OS' }
+                            { os ? os : 'Unknown OS' }
                         </p>
                     </section>
                     
