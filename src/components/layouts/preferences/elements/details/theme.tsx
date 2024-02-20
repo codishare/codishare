@@ -9,7 +9,7 @@ export default function Theme() {
 
     return <article>
         {/* @ Header */}
-        <section className="flex mt-5 items-center justify-between">
+        <section className="flex mt-5 items-center justify-between flex-col md:flex-row gap-4">
             <div>
                 <h3 className="text-lg font-bold">
                     Color scheme
@@ -36,7 +36,7 @@ export default function Theme() {
         </section>
 
         {/* @ Themes */}
-        <section className="flex items-center gap-5 mt-5">
+        <section className="flex items-center gap-5 mt-5 flex-col md:flex-row">
             {/* @ Light */}
             <article onClick={() => setTheme('light')} className="border p-5 bg-white cursor-pointer group hover:border-indigo-500 transition-all rounded-md flex-1">
                 <h3 className="text-lg font-bold">

@@ -16,7 +16,7 @@ export default function Information() {
 
         </div>
         
-        <div className="flex gap-4 items-end">
+        <div className="flex gap-4 flex-wrap items-end">
             <div className="flex-1">
                 <TextInput
                     label="Name"
@@ -39,7 +39,7 @@ export default function Information() {
             </div>
         </div>
 
-        <div className="flex gap-4 mt-4 items-end">
+        <div className="flex flex-wrap gap-4 mt-4 items-end">
             <div className="flex-1">
                 <Selector 
                     label="Stack"
@@ -70,7 +70,7 @@ export default function Information() {
             </div>
         </div>
 
-        <button className="self-end bg-indigo-500 text-white dark:text-zinc-950 mt-7 px-5 py-2 rounded">
+        <button className="self-end bg-indigo-500 w-full md:w-auto text-white dark:text-zinc-950 mt-7 px-5 py-2 rounded">
             Save changes
         </button>
     </div>

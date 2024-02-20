@@ -4,19 +4,19 @@ import { Link } from "@/navigation";
 import { ChevronLeftOutlined, RocketLaunchOutlined } from "@mui/icons-material";
 
 export default function Page() {
-    return <div className="flex flex-col gap-5 mt-5 items-center self-center w-full px-5 lg:px-0 lg:w-2/3 mb-10">
+    return <div className="flex flex-col gap-5 mt-5 items-center self-center w-full px-3 lg:px-0 lg:w-2/3 mb-10">
         {/* @ Actions */}
-        <section className="flex items-center gap-5 justify-between w-full">
+        <section className="flex items-center flex-wrap gap-5 justify-between w-full">
             <Link 
                 href="/"
-                className="p-2 flex items-center gap-3 rounded-lg bg-white dark:bg-zinc-950 border dark:text-zinc-400 dark:border-zinc-900 transition-all"
+                className="p-2 w-full md:w-auto flex items-center gap-3 rounded-lg bg-white dark:bg-zinc-950 border dark:text-zinc-400 dark:border-zinc-900 transition-all"
             >
                 <ChevronLeftOutlined />
 
                 Go back
             </Link>
 
-            <button className="p-2 flex items-center gap-3 rounded-lg border bg-white transition-all dark:text-zinc-400 dark:bg-zinc-950 dark:border-zinc-900">
+            <button className="p-2 flex w-full md:w-auto items-center gap-3 rounded-lg border bg-white transition-all dark:text-zinc-400 dark:bg-zinc-950 dark:border-zinc-900">
                 <RocketLaunchOutlined />
 
                 View profile

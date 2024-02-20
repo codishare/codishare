@@ -1,5 +1,5 @@
 export default function Privacy() {
-    return <div className="w-full flex items-center justify-between py-7">
+    return <div className="w-full flex items-center flex-wrap gap-4 justify-between py-7">
         <section className="flex flex-col">
             <h3 className="text-lg font-bold">
                 Privacy

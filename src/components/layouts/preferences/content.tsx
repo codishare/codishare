@@ -27,7 +27,7 @@ export default function Content() {
     const [active, setActive] = useState<number>(0)
     
     return <Fragment>
-        <ul className="flex w-full items-center justify-start gap-4">
+        <ul className="flex w-full flex-wrap items-center justify-start gap-4">
             {
                 views.map((view: View, index:number) => {
                     return <li key={ view.label } onClick={() => setActive(index)} className={

@@ -43,7 +43,7 @@ export default function Settings() {
 
     return <div>
         <button
-            className="flex items-center p-2 rounded-lg border transition-all"
+            className="flex items-center p-2 rounded-lg border dark:border-zinc-900 transition-all"
             onClick={() => setFocused(true)}
         >
             <SettingsSharpIcon />

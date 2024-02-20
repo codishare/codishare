@@ -10,7 +10,7 @@ export default function SearchBar() {
     const [focused, setFocused] = useState<boolean>(false);
     const t = useTranslations(); 
 
-    return <section>
+    return <section className="order-2 md:order-1">
         <TextInput
             placeholder={ t("Components.UI.navigator.bar") }
             icon={ <SearchOutlinedIcon /> }
@@ -35,7 +35,7 @@ export default function SearchBar() {
                         transition={{ duration: 0.3 }}
                         exit={{ opacity: 0, scale: 0.5 }}
                         onClick={(e) => e.stopPropagation()} 
-                        className="bg-white dark:bg-zinc-900 p-5 w-[600px] flex flex-col gap-3 shadow rounded-lg"
+                        className="bg-white dark:bg-zinc-900 p-5 w-[600px] flex flex-col gap-3 shadow rounded-md"
                     >
                         {/* @ Filter */} 
                         <TextInput
