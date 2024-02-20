@@ -12,7 +12,7 @@ export default function Devices() {
 
     if(!session) return; 
 
-    return <section className="w-full bg-white px-7 flex flex-col divide-y border rounded">
+    return <section className="w-full bg-white dark:bg-zinc-900 dark:border-zinc-950 dark:divide-zinc-950 dark:text-zinc-400 px-7 flex flex-col divide-y border rounded">
         {
             session.devices.map((device: Device) => {
                 const {
@@ -35,7 +35,7 @@ export default function Devices() {
                     </span>
 
                     <section className="flex-1 flex flex-col gap-1">
-                        <h1 className="text-lg">
+                        <h1 className="text-lg text-white">
                             { browser }
                         </h1>
 
