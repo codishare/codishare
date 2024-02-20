@@ -1,7 +1,8 @@
 'use client'
 
 import { Fragment, useState } from "react";
-import Devices from "./elements/devices/devices"
+import Devices from "./elements/devices/devices" 
+import Details from "./elements/details/details";
 
 interface View {
     label: string;
@@ -10,6 +11,10 @@ interface View {
 
 export default function Content() {
     const views = [ 
+        {
+            label: "Details", 
+            element: <Details />
+        },
         {
             label: "Devices", 
             element: <Devices />
