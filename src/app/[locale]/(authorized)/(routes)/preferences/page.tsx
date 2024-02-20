@@ -4,7 +4,7 @@ import { Link } from "@/navigation";
 import { ChevronLeftOutlined, RocketLaunchOutlined } from "@mui/icons-material";
 
 export default function Page() {
-    return <div className="flex flex-col gap-5 mt-5 items-center self-center w-full px-5 lg:px-0 lg:w-2/3">
+    return <div className="flex flex-col gap-5 mt-5 items-center self-center w-full px-5 lg:px-0 lg:w-2/3 mb-10">
         {/* @ Actions */}
         <section className="flex items-center gap-5 justify-between w-full">
             <Link 
