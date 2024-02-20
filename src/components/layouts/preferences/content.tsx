@@ -1,9 +1,10 @@
 'use client'
 
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Devices from "./elements/devices/devices" 
 import Details from "./elements/details/details";
 import { useTranslations } from "next-intl";
+import { useSearchParams } from "next/navigation";
 
 interface View {
     label: string;
@@ -28,6 +29,26 @@ export default function Content() {
     ]
 
     const [active, setActive] = useState<number>(0)
+
+    const searchParams = useSearchParams();
+
+    useEffect(() => { 
+        const current = new URLSearchParams(Array.from(searchParams.entries()));
+       
+        if(!active) {
+            current.delete('presel');
+        } else current.set('presel', active.toString());
+
+        if(current.toString().length > 0) window.history.pushState({}, '', `${window.location.pathname}?${current.toString()}`);
+    }, [active])
+
+    useEffect(() => {
+        const current = new URLSearchParams(Array.from(searchParams.entries()));
+
+        const preferenceParam = current.get('presel');
+
+        if (preferenceParam) setActive(parseInt(preferenceParam));
+    }, [])
     
     return <Fragment>
         <ul className="flex w-full flex-wrap items-center justify-start gap-4">
