@@ -18,7 +18,10 @@
                 "no_results": "No results found..."
             },
             "aside_settings": {
-                "on_translate": "You are using the English version"
+                "on_translate": "You are using the English version",
+                "support": "Help",
+                "logout": "Logout",
+                "profile": "Profile"
             }
         }
     },
@@ -129,6 +132,41 @@
                     "server_error": "Internal server error, please try again later"
                 },
                 "success": "Password reset successfully!"
+            }
+        }
+    },
+    "Modules": {
+        "Preferences": {
+            "header": {
+                "back": "Back to Home",
+                "view_profile": "View Profile"
+            },
+            "content": {
+                "details": "Details",
+                "devices": "Devices",
+                "notifications": "Notifications",
+        
+                "information": {
+                    "title": "Account",
+                    "description": "Manage your account information",
+                    "name": "Name",
+                    "alias": "Alias",
+                    "stack": "Stack",
+                    "role": "Role",
+                    "save": "Save Changes"
+                },
+        
+                "privacy": {
+                    "title": "Privacy",
+                    "description": "Manage your account privacy"
+                },
+        
+                "theme": {
+                    "title": "Theme",
+                    "description": "Manage the application theme",
+                    "system": "System",
+                    "custom": "Custom"
+                }
             }
         }
     }

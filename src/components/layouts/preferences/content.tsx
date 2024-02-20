@@ -3,6 +3,7 @@
 import { Fragment, useState } from "react";
 import Devices from "./elements/devices/devices" 
 import Details from "./elements/details/details";
+import { useTranslations } from "next-intl";
 
 interface View {
     label: string;
@@ -10,17 +11,19 @@ interface View {
 }
 
 export default function Content() {
+    const t = useTranslations('Modules.Preferences.content')
+
     const views = [ 
         {
-            label: "Details", 
+            label: t('details'), 
             element: <Details />
         },
         {
-            label: "Devices", 
+            label: t('devices'), 
             element: <Devices />
         },
         {
-            label: "Notifications"
+            label: t('notifications')
         }
     ]
 

@@ -10,10 +10,13 @@ import { SupportOutlined } from "@mui/icons-material";
 import Profile from "./settings/profile";
 import Language from "./settings/language";
 import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export default function Settings() {
     const [focused, setFocused] = useState<boolean>(false);
     const [loading, setLoading] = useState<Boolean>(false);
+
+    const t = useTranslations('Components.UI.aside_settings');
     
     const searchParams = useSearchParams(); 
 
@@ -100,7 +103,7 @@ export default function Settings() {
                                 >
                                     <SupportOutlined />
 
-                                    Help
+                                    { t('support') }
                                 </li>
 
                                 <Logout handleLoad={(bool: boolean) => setLoading(bool)} />

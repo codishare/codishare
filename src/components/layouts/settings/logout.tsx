@@ -59,6 +59,6 @@ export default function Logout({
     >
         <PersonOutlineIcon />
 
-        Logout
+        { t('Components.UI.aside_settings.logout') }
     </li>
 }

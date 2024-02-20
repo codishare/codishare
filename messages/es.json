@@ -18,7 +18,10 @@
                 "no_results": "No se encontraron resultados..."
             }, 
             "aside_settings": {
-                "on_translate": "Ahora estás viendo la página en español"
+                "on_translate": "Ahora estás viendo la página en español",
+                "support": "Soporte",
+                "logout": "Cerrar sesión",
+                "profile": "Perfil"
             }
         }
     },
@@ -131,5 +134,40 @@
                 "success": "¡Contraseña restablecida exitosamente!"
             }
         }        
+    },
+    "Modules": {
+        "Preferences": {
+            "header": {
+                "back": "Volver a inicio",
+                "view_profile": "Ver perfil"
+            },
+            "content": {
+                "details": "Detalles",
+                "devices": "Dispositivos",
+                "notifications": "Notificaciones",
+
+                "information": {
+                    "title": "Cuenta", 
+                    "description": "Gestiona la información de tu cuenta", 
+                    "name": "Nombre",
+                    "alias": "Alias",
+                    "stack": "Stack", 
+                    "role": "Rol",
+                    "save": "Guardar cambios"
+                }, 
+                
+                "privacy": {
+                    "title": "Privacidad", 
+                    "description": "Gestiona la privacidad de tu cuenta"
+                },
+
+                "theme": {
+                    "title": "Tema", 
+                    "description": "Gestiona el tema de la aplicación",
+                    "system": "Sistema",
+                    "custom": "Personalizado"
+                }
+            }
+        }
     }
 }

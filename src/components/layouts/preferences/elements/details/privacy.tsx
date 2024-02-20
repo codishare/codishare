@@ -1,12 +1,16 @@
+import { useTranslations } from "next-intl"
+
 export default function Privacy() {
+    const t = useTranslations('Modules.Preferences.content.privacy')
+
     return <div className="w-full flex items-center flex-wrap gap-4 justify-between py-7">
         <section className="flex flex-col">
             <h3 className="text-lg font-bold dark:text-white">
-                Privacy
+                { t('title') }
             </h3>
 
             <small className="text-gray-400">
-                Does your profile will be public to everyone?
+                { t('description') }
             </small>
         </section>
 

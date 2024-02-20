@@ -1,5 +1,6 @@
 import SkeletonUI from "@/components/ui/skeleton";
 import { DashboardCustomizeOutlined, LightModeOutlined } from "@mui/icons-material";
+import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 
 export default function Theme() {
@@ -7,16 +8,18 @@ export default function Theme() {
         theme, setTheme
     } = useTheme();
 
+    const t = useTranslations('Modules.Preferences.content.theme');
+
     return <article className="w-full">
         {/* @ Header */}
         <section className="flex mt-5 items-center justify-between flex-col md:flex-row gap-4">
             <div className="w-full">
                 <h3 className="text-lg font-bold dark:text-white">
-                    Color scheme
+                    { t('title') }
                 </h3>
 
                 <small className="text-gray-400">
-                    Choose a color scheme for the application
+                    { t('description') }
                 </small>
             </div>
 
@@ -24,13 +27,13 @@ export default function Theme() {
                 <button onClick={() => setTheme('system')} className={ `py-3 px-5 flex-1 md:flex-none text-sm flex items-center gap-2 rounded-l ${ theme == 'system' ? 'bg-indigo-500 text-white dark:text-zinc-900' : '' }` }>
                     <LightModeOutlined className="text-sm" />
 
-                    System
+                    { t('system') }
                 </button>
 
                 <button onClick={() => setTheme('light')} className={ `py-3 px-5 flex-1 md:flex-none text-sm flex items-center gap-2 rounded-r ${ theme != 'system' ? 'bg-indigo-500 text-white dark:text-zinc-900' : '' }` }>
                     <DashboardCustomizeOutlined className="text-sm" />
                     
-                    Custom
+                    { t('custom') }
                 </button>
             </div>
         </section>
