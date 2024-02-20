@@ -20,14 +20,14 @@ export default function Theme() {
                 </small>
             </div>
 
-            <div className="flex border divide-x rounded">
-                <button onClick={() => setTheme('system')} className={ `py-3 px-5 text-sm flex items-center gap-2 rounded-l ${ theme == 'system' ? 'bg-indigo-500 text-white' : '' }` }>
+            <div className="flex border divide-x dark:divide-zinc-900 dark:border-zinc-900 rounded">
+                <button onClick={() => setTheme('system')} className={ `py-3 px-5 text-sm flex items-center gap-2 rounded-l ${ theme == 'system' ? 'bg-indigo-500 text-white dark:text-zinc-900' : '' }` }>
                     <LightModeOutlined className="text-sm" />
 
                     System
                 </button>
 
-                <button onClick={() => setTheme('light')} className={ `py-3 px-5 text-sm flex items-center gap-2 rounded-r ${ theme != 'system' ? 'bg-indigo-500 text-white' : '' }` }>
+                <button onClick={() => setTheme('light')} className={ `py-3 px-5 text-sm flex items-center gap-2 rounded-r ${ theme != 'system' ? 'bg-indigo-500 text-white dark:text-zinc-900' : '' }` }>
                     <DashboardCustomizeOutlined className="text-sm" />
                     
                     Custom
@@ -38,7 +38,7 @@ export default function Theme() {
         {/* @ Themes */}
         <section className="flex items-center gap-5 mt-5">
             {/* @ Light */}
-            <article onClick={() => setTheme('light')} className="border p-5 cursor-pointer group hover:border-indigo-500 transition-all rounded-md flex-1">
+            <article onClick={() => setTheme('light')} className="border p-5 bg-white cursor-pointer group hover:border-indigo-500 transition-all rounded-md flex-1">
                 <h3 className="text-lg font-bold">
                     <SkeletonUI className="w-20 h-5 group-hover:bg-indigo-500 transition-all" />
                 </h3>
@@ -58,7 +58,7 @@ export default function Theme() {
             </article>
 
             {/* @ Dark */}
-            <article onClick={() => setTheme('dark')} className="border cursor-pointer group hover:border-indigo-500 transition-all border-slate-600 p-5 rounded-md bg-slate-800 flex-1">
+            <article onClick={() => setTheme('dark')} className="border cursor-pointer group hover:border-indigo-500 transition-all border-zinc-600 p-5 rounded-md bg-zinc-700 flex-1">
                 <h3 className="text-lg font-bold">
                     <SkeletonUI className="w-20 bg-gray-500 h-5 group-hover:bg-indigo-500 transition-all" />
                 </h3>

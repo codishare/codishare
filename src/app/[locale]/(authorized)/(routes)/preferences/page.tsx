@@ -9,14 +9,14 @@ export default function Page() {
         <section className="flex items-center gap-5 justify-between w-full">
             <Link 
                 href="/"
-                className="p-2 flex items-center gap-3 rounded-lg bg-white border transition-all"
+                className="p-2 flex items-center gap-3 rounded-lg bg-white dark:bg-zinc-950 border dark:text-zinc-400 dark:border-zinc-900 transition-all"
             >
                 <ChevronLeftOutlined />
 
                 Go back
             </Link>
 
-            <button className="p-2 flex items-center gap-3 rounded-lg border bg-white transition-all">
+            <button className="p-2 flex items-center gap-3 rounded-lg border bg-white transition-all dark:text-zinc-400 dark:bg-zinc-950 dark:border-zinc-900">
                 <RocketLaunchOutlined />
 
                 View profile

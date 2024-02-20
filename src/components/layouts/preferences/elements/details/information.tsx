@@ -8,11 +8,11 @@ export default function Information() {
             Account
         </h3>
 
-        <small className="text-gray-400 mb-7">
+        <small className="text-gray-400 dark:text-zinc-400 mb-7">
             Update your basic account information
         </small>
 
-        <div className="w-full border h-24 mb-7 rounded bg-gray-100">
+        <div className="w-full border h-24 mb-7 rounded bg-gray-100 dark:bg-zinc-900 dark:border-zinc-900">
 
         </div>
         
@@ -70,7 +70,7 @@ export default function Information() {
             </div>
         </div>
 
-        <button className="self-end bg-indigo-500 text-white mt-7 px-5 py-2 rounded">
+        <button className="self-end bg-indigo-500 text-white dark:text-zinc-950 mt-7 px-5 py-2 rounded">
             Save changes
         </button>
     </div>

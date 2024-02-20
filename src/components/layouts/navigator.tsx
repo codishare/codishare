@@ -13,9 +13,7 @@ export default function Navigator() {
         session: Session | false;
     } = useSession();
 
-    const t = useTranslations(); 
-
-    return <nav className="px-2 bg-white py-3 shadow flex items-center justify-between">
+    return <nav className="px-2 bg-white dark:bg-zinc-950 py-3 shadow dark:shadow-none flex items-center justify-between">
         <SearchBar />
 
         {/* @ Right section */}
