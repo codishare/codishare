@@ -99,7 +99,7 @@ export default function Settings() {
 
                                 {/* @ Bottom of the list */}
                                 <li
-                                    className="flex gap-3 items-center cursor-pointer bg-zinc-100 dark:bg-zinc-800 text-sm p-2.5 hover:bg-indigo-500 hover:text-white transition rounded-lg"
+                                    className="flex gap-3 items-center cursor-pointer bg-zinc-100 dark:bg-zinc-800 text-sm p-2.5 hover:bg-indigo-500 dark:hover:bg-indigo-500 dark:hover:text-white hover:text-white transition rounded-lg"
                                 >
                                     <SupportOutlined />
 
