@@ -22,7 +22,7 @@ export default function Selector({
     required?: boolean,
     options?: Option[]
 }) {
-    return <label className="flex flex-col gap-2 mb-3 cursor-pointer">
+    return <label className="flex flex-col gap-2 cursor-pointer">
         {
             label && <span className="text-sm text-gray-600 flex items-center gap-1">
                 { label } { required && <span className="text-red-500 text-xl">*</span> }
