@@ -39,7 +39,7 @@ export default function Content() {
             current.delete('presel');
         } else current.set('presel', active.toString());
 
-        if(current.toString().length > 0) window.history.pushState({}, '', `${window.location.pathname}?${current.toString()}`);
+        window.history.pushState({}, '', `${window.location.pathname}?${current.toString()}`)
     }, [active])
 
     useEffect(() => {
