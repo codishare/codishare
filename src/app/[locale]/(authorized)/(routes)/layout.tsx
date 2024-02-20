@@ -1,8 +1,7 @@
 "use client";
 
 import { Session } from "@/_types";
-import Navigator from "@/components/layouts/navigator";
-// import Spinner from "@/components/ui/spinner/component";
+import Navigator from "@/components/layouts/navigator"; 
 import { useSession } from "@/lib/hooks/useSession";
 import { useRouter } from "@/navigation";
 
@@ -21,7 +20,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     }
 
     return (
-        <main className="w-screen h-screen bg-gray-50 flex flex-col gap-3">
+        <main className="w-screen min-h-screen bg-gray-100 flex flex-col gap-3">
             <Navigator />
 
             {children}
