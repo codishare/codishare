@@ -1,6 +1,6 @@
 import Selector from "@/components/ui/selector";
 import TextInput from "@/components/ui/text-input";
-import { AutoGraphOutlined, CodeOutlined } from "@mui/icons-material";
+import { AutoGraphOutlined, CodeOutlined, FilterCenterFocusOutlined } from "@mui/icons-material";
 
 export default function Information() {
     return <div className="w-full flex flex-col py-7">
@@ -12,8 +12,10 @@ export default function Information() {
             Update your basic account information
         </small>
 
-        <div className="w-full border h-24 mb-7 rounded bg-gray-100 dark:bg-zinc-950 dark:border-zinc-900">
-
+        <div className="w-full border relative h-24 mb-12 rounded bg-gray-100 dark:bg-zinc-950 dark:border-zinc-900">
+            <div className="bg-white dark:bg-zinc-900 border group hover:bg-indigo-500 cursor-pointer select-none hover:border-indigo-500 hover:dark:border-indigo-500 hover:dark:bg-indigo-500 transition-all dark:border-zinc-950 absolute -bottom-8 flex items-center justify-center left-6 rounded-full h-16 w-16">
+                <FilterCenterFocusOutlined className="text-3xl text-indigo-500 dark:text-indigo-400 group-hover:text-white group-hover:dark:text-zinc-900 transition-all" />
+            </div>
         </div>
         
         <div className="flex gap-4 flex-wrap items-end">
