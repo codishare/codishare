@@ -27,7 +27,7 @@ export default function SearchBar() {
                     transition={{ duration: 0.2 }}
                     exit={{ opacity: 0 }}
                     onClick={() => setFocused(false)} 
-                    className="h-screen w-screen fixed top-0 left-0 bg-black/40 dark:bg-zinc-800/40 backdrop-blur-sm flex items-center justify-center"
+                    className="h-screen w-screen fixed z-30 top-0 left-0 bg-black/40 dark:bg-zinc-800/40 backdrop-blur-sm flex items-center justify-center"
                 >
                     <motion.div 
                         initial={{ opacity: 0, scale: 0.5 }}

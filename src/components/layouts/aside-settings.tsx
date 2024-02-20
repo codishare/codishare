@@ -57,7 +57,7 @@ export default function Settings() {
                     transition={{ duration: 0.1 }}
                     exit={{ opacity: 0 }}
                     onClick={() => setFocused(false)} 
-                    className="h-screen w-screen fixed top-0 left-0 bg-black/40 dark:bg-zinc-800/40 backdrop-blur-sm flex items-center justify-end"
+                    className="h-screen w-screen fixed z-30 top-0 left-0 bg-black/40 dark:bg-zinc-800/40 backdrop-blur-sm flex items-center justify-end"
                 >
                     <motion.div 
                         initial={{ opacity: 0, right: '-100%', width: '450px' }}
