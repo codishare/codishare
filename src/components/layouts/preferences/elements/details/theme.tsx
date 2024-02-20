@@ -9,7 +9,7 @@ export default function Theme() {
 
     return <article>
         {/* @ Header */}
-        <section className="flex items-center justify-between">
+        <section className="flex mt-5 items-center justify-between">
             <div>
                 <h3 className="text-lg font-bold">
                     Color scheme
