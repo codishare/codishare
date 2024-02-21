@@ -1,15 +1,20 @@
 import { ROLE, STACK } from "@/_types";
 
-export default function validate(
-    data: FormData
-) {
-    const name = data.get('name') as string;
-    const alias = data.get('alias') as string;
-    const stack = data.get('stack') as string;
-    const role = data.get('role') as string;
-    const icon = data.get('icon') as File;
-    const banner = data.get('banner') as File;
-
+export default function validate({
+    name,
+    alias,
+    stack,
+    role,
+    icon,
+    banner
+}: {
+    name?: string,
+    alias?: string,
+    stack?: string,
+    role?: string,
+    icon?: File,
+    banner?: File
+}) { 
     // @ Validate name 
     if(!name) {
         return 'name';
@@ -51,24 +56,28 @@ export default function validate(
     }
 
     // @ Validate icon
-    if(icon && !(icon instanceof File)) {
+    let iconExtension
+
+    if(icon && (icon as File).name && !(icon instanceof File)) {
+        iconExtension = (icon as File).name.split('.').pop()?.toLowerCase();
+
         return 'icon_invalid';
     }
-
-    const iconExtension = icon.name.split('.').pop()?.toLowerCase();
     
-    if (icon && iconExtension && !['jpg', 'jpeg', 'png'].includes(iconExtension)) {
+    if (icon && (icon as File).name && iconExtension && !['jpg', 'jpeg', 'png'].includes(iconExtension)) {
         return 'icon_invalid';
     }
 
     // @ Validate banner
-    if(banner && !(banner instanceof File)) {
+    let bannerExtension
+
+    if(banner && (banner as File).name && !(banner instanceof File)) {
+        bannerExtension = (banner as File).name.split('.').pop()?.toLowerCase();
+
         return 'banner_invalid';
     }
-
-    const bannerExtension = banner.name.split('.').pop()?.toLowerCase();
-
-    if (banner && bannerExtension && !['jpg', 'jpeg', 'png'].includes(bannerExtension)) {
+    
+    if (banner && (banner as File).name && bannerExtension && !['jpg', 'jpeg', 'png'].includes(bannerExtension)) {
         return 'banner_invalid';
     }
 
