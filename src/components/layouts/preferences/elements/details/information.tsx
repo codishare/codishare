@@ -1,19 +1,36 @@
+import { Session } from "@/_types";
 import Selector from "@/components/ui/selector";
 import TextInput from "@/components/ui/text-input";
 import { useNotifications } from "@/lib/hooks/useNotifications";
+import { useSession } from "@/lib/hooks/useSession";
 import validate from "@/services/validation/forms/preferences";
-import { AutoGraphOutlined, CodeOutlined, FilterCenterFocusOutlined } from "@mui/icons-material";
+import { AutoGraphOutlined, CancelOutlined, CheckCircleOutlineRounded, CodeOutlined, FilterCenterFocusOutlined } from "@mui/icons-material";
 import PriorityHighOutlined from "@mui/icons-material/PriorityHighOutlined";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useRef, useState } from "react";
 
+interface Form {
+    name?: string,
+    alias?: string,
+    stack?: string,
+    role?: string,
+    icon?: File,
+    banner?: File
+}
+
 export default function Information() {
+    const {
+        session
+    } : {
+        session: Session | false
+    } = useSession();
+
     const iconRef = useRef<HTMLInputElement>(null);
     const bannerRef = useRef<HTMLInputElement>(null);
 
-    const [banner, handleBanner] = useState<string | null>(null);
-    const [icon, handleIcon] = useState<string | null>(null);
+    const [banner, handleBanner] = useState<string | false>(false);
+    const [icon, handleIcon] = useState<string | false>(false);
 
     const addNotification = useNotifications();
 
@@ -22,14 +39,47 @@ export default function Information() {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const isValid: string | true = validate(new FormData(e.currentTarget));
+        const form = new FormData(e.currentTarget);
+
+        const content: Form = Object.fromEntries(form.entries());
+
+        const isValid: string | true = validate(content);
 
         if(isValid !== true) return addNotification({
             type: "ERROR",
             icon: <PriorityHighOutlined />,
             message: t(`Auth.SignUp.form.errors.${isValid}`),
         });
+
+        fetch('/api/user/me', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${ localStorage.getItem('access_token') || '' }`,
+            },
+            body: JSON.stringify(content)
+        }).then(async res => {
+            const data = await res.json();
+
+            if(res.ok) return addNotification({
+                type: "SUCCESS",
+                icon: <CheckCircleOutlineRounded />,
+                message: "SUCCESS"
+            });
+
+            addNotification({
+                type: "ERROR",
+                icon: <PriorityHighOutlined />,
+                message: data.message
+            });
+        }).catch((e) => addNotification({
+            type: "ERROR",
+            icon: <PriorityHighOutlined />,
+            message: (e as Error).message
+        }));
     }
+
+    if(!session) return;
 
     return <div className="w-full flex flex-col py-7">
         <h3 className="text-lg font-bold dark:text-white">
@@ -45,9 +95,9 @@ export default function Information() {
             <input
                 type="file"
                 ref={ bannerRef }
-                name="banner"
+                name="banner" 
                 style={{ display: 'none' }}
-                accept="image/*"
+                accept="image/*" 
                 onChange={(e) => {
                     const file = e.target.files?.[0];
 
@@ -65,7 +115,7 @@ export default function Information() {
                 type="file"
                 ref={ iconRef }
                 name="icon"
-                style={{ display: 'none' }}
+                style={{ display: 'none' }}  
                 accept="image/*"
                 onChange={(e) => {
                     const file = e.target.files?.[0];
@@ -88,6 +138,24 @@ export default function Information() {
                         objectFit="cover"
                         className="rounded"
                     />
+                }
+
+                {
+                    bannerRef && banner && <button 
+                        className="z-30 absolute top-0 flex items-center gap-2 border border-red-500 text-red-500 bg-red-300/80 px-2 rounded m-2 right-0 text-sm"
+                        onClick={(e) => { 
+                            handleBanner(false);
+
+                            // @ Stop the parent click event
+                            e.stopPropagation()
+                        }}
+                    >
+                        <CancelOutlined 
+                            className="text-md text-sm"
+                        />
+
+                        Remove
+                    </button>
                 }
                 
                 <div onClick={(e) => {
@@ -115,6 +183,7 @@ export default function Information() {
                         type="text"
                         name="name" 
                         className="py-3"
+                        value={ session.name }
                         required={ true }
                         placeholder="e.g Xavier Morell" 
                     />
@@ -125,6 +194,7 @@ export default function Information() {
                         label={ t('Modules.Preferences.content.information.alias') }
                         type="text"
                         name="alias" 
+                        value={ session.alias }
                         className="py-3"
                         placeholder="e.g xavier-morell"
                     />
@@ -137,6 +207,7 @@ export default function Information() {
                         label={ t('Modules.Preferences.content.information.stack') }
                         icon={ <CodeOutlined /> } 
                         required={ true }
+                        value={ session.stack }
                         name="stack"
                         options={[
                             { label: "Frontend", value: "FRONTEND" },
@@ -152,6 +223,7 @@ export default function Information() {
                         required={ true }
                         icon={ <AutoGraphOutlined /> } 
                         name="role"
+                        value={ session.seniority }
                         options={[
                             { label: "Trainee", value: "TRAINEE" },
                             { label: "Junior", value: "JUNIOR" },
