@@ -1,12 +1,11 @@
 import { decodeToken, verifyToken } from "@/services/api/jwt";
 import { extractAccessToken } from "@/services/api/request";
 import { getUserById } from "@/services/api/user";
+import validate from "@/services/validation/forms/preferences";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
-    try {
-        const { searchParams } = new URL(req.url);
-
+    try { 
         const access_token = extractAccessToken(req); 
 
         if (!access_token || !(await verifyToken(access_token)))
@@ -63,11 +62,9 @@ export async function GET(req: Request) {
 }
 
 export async function PUT(req: Request) {
-    const {
-        access_token
-    } = await req.json();
+    const access_token = extractAccessToken(req)
 
-    const form = await req.formData();
+    const data = await req.json();
 
     if (!access_token || !(await verifyToken(access_token)))
         return NextResponse.json(
@@ -93,11 +90,23 @@ export async function PUT(req: Request) {
 
     const { userId } = decoded;
 
+    const isValid = validate(data);
+
+    if (isValid !== true)
+        return NextResponse.json(
+            {
+                message: isValid,
+            },
+            {
+                status: 400,
+            }
+        );
+
     return NextResponse.json({
         message: "success",
         access_token,
         userId,
-        form:  Object.fromEntries(form)
+        data
     }, {
         status: 200
     })
