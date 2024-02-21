@@ -51,8 +51,7 @@ export default function Form() {
                 const data = await res.json();
 
                 if (res.status == 200) {
-                    localStorage.setItem("access_token", data.access_token);
-                    console.log("Logged in successfully");
+                    localStorage.setItem("access_token", data.access_token); 
                     refetchSession();
                     router.push("/");
                 } else {
