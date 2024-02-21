@@ -25,7 +25,9 @@ export default function Information() {
     } : {
         session: Session | false
     } = useSession();
-
+    
+    if(!session) return;
+    
     const iconRef = useRef<HTMLInputElement>(null);
     const bannerRef = useRef<HTMLInputElement>(null);
 
@@ -78,8 +80,6 @@ export default function Information() {
             message: (e as Error).message
         }));
     }
-
-    if(!session) return;
 
     return <div className="w-full flex flex-col py-7">
         <h3 className="text-lg font-bold dark:text-white">
