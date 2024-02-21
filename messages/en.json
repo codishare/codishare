@@ -100,7 +100,9 @@
                     "stack_invalid": "Stack is not valid",
                     "role": "Role is required",
                     "role_invalid": "Role is not valid",
-                    "server_error": "Internal server error, please try again later"
+                    "server_error": "Internal server error, please try again later",
+                    "icon_invalid": "Icon is not valid",
+                    "banner_invalid": "Banner is not valid"
                 },
                 "account_success": "Account created successfully"
             }
