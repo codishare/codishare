@@ -5,11 +5,15 @@ import validate from "@/services/validation/forms/preferences";
 import { AutoGraphOutlined, CodeOutlined, FilterCenterFocusOutlined } from "@mui/icons-material";
 import PriorityHighOutlined from "@mui/icons-material/PriorityHighOutlined";
 import { useTranslations } from "next-intl";
-import { useRef } from "react";
+import Image from "next/image";
+import { useRef, useState } from "react";
 
 export default function Information() {
     const iconRef = useRef<HTMLInputElement>(null);
     const bannerRef = useRef<HTMLInputElement>(null);
+
+    const [banner, handleBanner] = useState<string | null>(null);
+    const [icon, handleIcon] = useState<string | null>(null);
 
     const addNotification = useNotifications();
 
@@ -44,6 +48,16 @@ export default function Information() {
                 name="banner"
                 style={{ display: 'none' }}
                 accept="image/*"
+                onChange={(e) => {
+                    const file = e.target.files?.[0];
+
+                    if(file) {
+                        const reader = new FileReader();
+
+                        reader.onload = () => handleBanner(reader.result as string);
+                        reader.readAsDataURL(file);
+                    }
+                }}
             />
 
             {/* @ Icon */}
@@ -53,16 +67,44 @@ export default function Information() {
                 name="icon"
                 style={{ display: 'none' }}
                 accept="image/*"
+                onChange={(e) => {
+                    const file = e.target.files?.[0];
+
+                    if(file) {
+                        const reader = new FileReader();
+
+                        reader.onload = () => handleIcon(reader.result as string);
+                        reader.readAsDataURL(file);
+                    }
+                }}
             />
 
-            <div onClick={() => iconRef.current?.click() } className="w-full cursor-pointer border relative h-24 mb-12 rounded bg-gray-100 dark:bg-zinc-950 dark:border-zinc-900">
+            <div onClick={() => bannerRef.current?.click() } className="w-full cursor-pointer border relative h-24 mb-12 rounded bg-gray-100 dark:bg-zinc-950 dark:border-zinc-900">
+                {
+                    banner && <Image
+                        src={ banner }
+                        layout="fill"
+                        alt="Banner"
+                        objectFit="cover"
+                        className="rounded"
+                    />
+                }
+                
                 <div onClick={(e) => {
                     iconRef.current?.click()
 
                     // @ Prevent the parent click event
                     e.stopPropagation()
                 }} className="bg-white dark:bg-zinc-900 border group hover:bg-indigo-500 cursor-pointer select-none hover:border-indigo-500 hover:dark:border-indigo-500 hover:dark:bg-indigo-500 transition-all dark:border-zinc-950 absolute -bottom-8 flex items-center justify-center left-6 rounded-full h-16 w-16">
-                    <FilterCenterFocusOutlined className="text-3xl text-indigo-500 dark:text-indigo-400 group-hover:text-white group-hover:dark:text-zinc-900 transition-all" />
+                    {
+                        icon ? <Image
+                            src={ icon }
+                            layout="fill"
+                            alt="Banner"
+                            objectFit="cover"
+                            className="rounded-full"
+                        /> : <FilterCenterFocusOutlined className="text-3xl text-indigo-500 dark:text-indigo-400 group-hover:text-white group-hover:dark:text-zinc-900 transition-all" />
+                    }
                 </div>
             </div>
             
