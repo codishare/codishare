@@ -1,4 +1,5 @@
 import { decodeToken, verifyToken } from "@/services/api/jwt";
+import { extractAccessToken } from "@/services/api/request";
 import { getUserById } from "@/services/api/user";
 import { NextResponse } from "next/server";
 
@@ -6,7 +7,7 @@ export async function GET(req: Request) {
     try {
         const { searchParams } = new URL(req.url);
 
-        const access_token = searchParams.get("access_token");
+        const access_token = extractAccessToken(req); 
 
         if (!access_token || !(await verifyToken(access_token)))
             return NextResponse.json(
@@ -59,4 +60,45 @@ export async function GET(req: Request) {
             }
         );
     }
+}
+
+export async function PUT(req: Request) {
+    const {
+        access_token
+    } = await req.json();
+
+    const form = await req.formData();
+
+    if (!access_token || !(await verifyToken(access_token)))
+        return NextResponse.json(
+            {
+                message: "invalid_access_token",
+            },
+            {
+                status: 401,
+            }
+        );
+
+    const decoded = await decodeToken(access_token);
+
+    if (!decoded || !decoded.userId)
+        return NextResponse.json(
+            {
+                message: "invalid_access_token",
+            },
+            {
+                status: 401,
+            }
+        );
+
+    const { userId } = decoded;
+
+    return NextResponse.json({
+        message: "success",
+        access_token,
+        userId,
+        form:  Object.fromEntries(form)
+    }, {
+        status: 200
+    })
 }

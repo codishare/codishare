@@ -66,3 +66,7 @@ export async function RefreshToken() {
             });
     });
 }
+
+export function extractAccessToken(req: Request) {
+    return req.headers.get("authorization")?.split(" ")[1];
+}

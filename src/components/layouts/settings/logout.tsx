@@ -26,10 +26,8 @@ export default function Logout({
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        access_token: localStorage.getItem('access_token'),
-                    })
+                        'Authorization': 'Bearer ' + localStorage.getItem('access_token') || ''
+                    }
                 }).then(async (res) => {
                     const data = await res.json();
 

@@ -1,12 +1,11 @@
 import { removeToken, verifyToken } from "@/services/api/jwt";
+import { extractAccessToken } from "@/services/api/request";
 import { getCookie } from "cookies-next";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
     try {
-        const {
-            access_token
-        } = await req.json();
+        const access_token = extractAccessToken(req); 
         
         if(!access_token || !await verifyToken(access_token)) return NextResponse.json({
             message: "invalid_access_token"

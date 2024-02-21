@@ -33,7 +33,11 @@ const SessionProvider = ({ children }: { children: React.ReactNode }) => {
                 });
         }
 
-        fetch(`/api/user/me?access_token=${access_token}`).then(async (res) => {
+        fetch(`/api/user/me`, {
+            headers: {
+                Authorization: `Bearer ${access_token}`,
+            },
+        }).then(async (res) => {
             if (res.status === 200) {
                 const data = await res.json();
 
