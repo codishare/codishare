@@ -35,7 +35,7 @@ export default function Devices() {
                     </span>
 
                     <section className="flex-1 flex flex-col gap-1">
-                        <h1 className="text-lg text-white">
+                        <h1 className="text-lg dark:text-white">
                             { browser }
                         </h1>
 
