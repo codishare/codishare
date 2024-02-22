@@ -76,3 +76,12 @@ export interface ResetPassword {
     password: string;
     confirm_password: string;
 }
+
+export interface PreferencesForm {
+    name?: string,
+    alias?: string,
+    stack?: string,
+    role?: string,
+    icon?: File,
+    banner?: File
+}
