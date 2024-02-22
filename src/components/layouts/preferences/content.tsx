@@ -23,9 +23,6 @@ export default function Content() {
         {
             label: t('devices'), 
             element: <Devices />
-        },
-        {
-            label: t('notifications')
         }
     ]
 
