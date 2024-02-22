@@ -42,6 +42,8 @@ export async function getUserById(id: number) {
             seniority: true, 
             email: true,
             email_verified: true,
+            icon: true,
+            banner: true,
             devices: true,
         }
     })
