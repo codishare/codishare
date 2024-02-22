@@ -107,18 +107,10 @@ export async function PUT(req: Request) {
         );
 
     try {
-        const icon = await store(data.get('icon') as File, ['public', 'users', `${ userId }`, 'icons']);
-        const banner = await store(data.get('banner') as File, ['public', 'users', `${ userId }`, 'banners']);
-
-        if (!icon || !banner)
-            return NextResponse.json(
-                {
-                    message: "server_error",
-                },
-                {
-                    status: 500,
-                }
-            );
+        let icon, banner; 
+        
+        if(icon) icon = await store(data.get('icon') as File, ['public', 'users', `${ userId }`, 'icons']);
+        if(banner) banner = await store(data.get('banner') as File, ['public', 'users', `${ userId }`, 'banners']);
 
         await prisma.user.update({
             where: {
