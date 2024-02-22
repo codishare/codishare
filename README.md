@@ -39,6 +39,16 @@ Create your own cypress.env.json file. Cypress will check and import it to use i
 }
 ```
 
+# Sentry
+
+Sentry is an error monitoring platform that allows you to identify, diagnose, and fix issues in your application. It integrates real-time error tracking, instant notifications, and provides detailed information to facilitate issue resolution.
+
+Setup your sentry token on .env and handle errors on sentry. 
+
+```
+https://codishare.sentry.io/
+```
+
 # Contributing
 
 Contributions are always welcome! If you have any suggestions or find any bugs, please create an issue or submit a pull request.
