@@ -1,3 +1,5 @@
+import prisma from "@/lib/prisma";
+import { store } from "@/services/api/images";
 import { decodeToken, verifyToken } from "@/services/api/jwt";
 import { extractAccessToken } from "@/services/api/request";
 import { getUserById } from "@/services/api/user";
@@ -64,7 +66,7 @@ export async function GET(req: Request) {
 export async function PUT(req: Request) {
     const access_token = extractAccessToken(req)
 
-    const data = await req.json();
+    const data = await req.formData();
 
     if (!access_token || !(await verifyToken(access_token)))
         return NextResponse.json(
@@ -90,7 +92,9 @@ export async function PUT(req: Request) {
 
     const { userId } = decoded;
 
-    const isValid = validate(data);
+    const content = Object.fromEntries(data.entries());
+
+    const isValid = validate(content);
 
     if (isValid !== true)
         return NextResponse.json(
@@ -102,11 +106,49 @@ export async function PUT(req: Request) {
             }
         );
 
+    try {
+        const icon = await store(data.get('icon') as File, ['public', 'users', `${ userId }`, 'icons']);
+        const banner = await store(data.get('banner') as File, ['public', 'users', `${ userId }`, 'banners']);
+
+        if (!icon || !banner)
+            return NextResponse.json(
+                {
+                    message: "server_error",
+                },
+                {
+                    status: 500,
+                }
+            );
+
+        await prisma.user.update({
+            where: {
+                id: userId as number,
+            },
+            data: {
+                name: content.name as string,
+                alias: content.alias as string,
+                icon,
+                banner
+            }
+        });
+    } catch (error) {
+        console.log((error as Error).message);
+
+        return NextResponse.json(
+            {
+                message: "server_error",
+            },
+            {
+                status: 500,
+            }
+        );
+    }
+
+    const updatedUser = await getUserById(userId as number);
+
     return NextResponse.json({
         message: "success",
-        access_token,
-        userId,
-        data
+        user: updatedUser
     }, {
         status: 200
     })
