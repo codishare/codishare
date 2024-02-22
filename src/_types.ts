@@ -68,6 +68,8 @@ export interface Device {
 export interface Session extends User {
     email: string;
     role: "USER" | "ADMIN";
+    icon: string;
+    banner: string;
     email_verified: boolean;
     devices: Device[];
 }
