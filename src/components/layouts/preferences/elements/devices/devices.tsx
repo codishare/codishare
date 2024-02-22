@@ -2,6 +2,7 @@ import { Device, Session } from "@/_types"
 import { useSession } from "@/lib/hooks/useSession";
 import Icon from "./icon";
 import Location from "./location";
+import { motion } from "framer-motion";
 
 export default function Devices() {
     const {
@@ -12,7 +13,13 @@ export default function Devices() {
 
     if(!session) return; 
 
-    return <section className="w-full bg-white dark:bg-zinc-900 dark:border-zinc-950 dark:divide-zinc-950 dark:text-zinc-400 px-7 flex flex-col divide-y border rounded">
+    return <motion.section 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: .4 }}
+        exit={{ opacity: 0 }} 
+        className="w-full bg-white dark:bg-zinc-900 dark:border-zinc-950 dark:divide-zinc-950 dark:text-zinc-400 px-7 flex flex-col divide-y border rounded"
+    >
         {
             session.devices.map((device: Device) => {
                 const {
@@ -48,5 +55,5 @@ export default function Devices() {
                 </article>
             })
         }
-    </section>
+    </motion.section>
 }

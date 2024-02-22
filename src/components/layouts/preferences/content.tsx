@@ -5,6 +5,7 @@ import Devices from "./elements/devices/devices"
 import Details from "./elements/details/details";
 import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
+import { AnimatePresence } from "framer-motion";
 
 interface View {
     label: string;
@@ -63,8 +64,10 @@ export default function Content() {
             }
         </ul>
 
-        {
-            views[active] ? views[active].element : null
-        }
+        <AnimatePresence>
+            {
+                views[active] ? views[active].element : null
+            }
+        </AnimatePresence>
     </Fragment>
 }
