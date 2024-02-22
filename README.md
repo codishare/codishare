@@ -28,6 +28,17 @@ yarn dev
 
 The app should now be running on localhost:3000.
 
+# E2E Testing
+
+Create your own cypress.env.json file. Cypress will check and import it to use in Authorization process testing. 
+
+```
+{
+    "CYPRESS_EMAIL": "sample@email",
+    "CYPRESS_PASSWORD": "random_password"
+}
+```
+
 # Contributing
 
 Contributions are always welcome! If you have any suggestions or find any bugs, please create an issue or submit a pull request.
