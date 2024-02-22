@@ -1,4 +1,4 @@
-import { Session } from "@/_types";
+import { PreferencesForm, Session } from "@/_types";
 import Selector from "@/components/ui/selector";
 import TextInput from "@/components/ui/text-input";
 import { useNotifications } from "@/lib/hooks/useNotifications";
@@ -9,15 +9,6 @@ import PriorityHighOutlined from "@mui/icons-material/PriorityHighOutlined";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useRef, useState } from "react";
-
-interface Form {
-    name?: string,
-    alias?: string,
-    stack?: string,
-    role?: string,
-    icon?: File,
-    banner?: File
-}
 
 export default function Information() {
     const {
@@ -31,8 +22,8 @@ export default function Information() {
     const iconRef = useRef<HTMLInputElement>(null);
     const bannerRef = useRef<HTMLInputElement>(null);
 
-    const [banner, handleBanner] = useState<string | false>(false);
-    const [icon, handleIcon] = useState<string | false>(false);
+    const [banner, handleBanner] = useState<string | false>();
+    const [icon, handleIcon] = useState<string | false>();
 
     const addNotification = useNotifications();
 
@@ -43,7 +34,7 @@ export default function Information() {
 
         const form = new FormData(e.currentTarget);
 
-        const content: Form = Object.fromEntries(form.entries());
+        const content: PreferencesForm = Object.fromEntries(form.entries());
 
         const isValid: string | true = validate(content);
 
@@ -55,13 +46,14 @@ export default function Information() {
 
         fetch('/api/user/me', {
             method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
+            headers: { 
                 'Authorization': `Bearer ${ localStorage.getItem('access_token') || '' }`,
             },
-            body: JSON.stringify(content)
+            body: form
         }).then(async res => {
             const data = await res.json();
+
+            console.log(data)
 
             if(res.ok) return addNotification({
                 type: "SUCCESS",
@@ -95,8 +87,8 @@ export default function Information() {
             <input
                 type="file"
                 ref={ bannerRef }
-                name="banner" 
                 style={{ display: 'none' }}
+                name="banner"
                 accept="image/*" 
                 onChange={(e) => {
                     const file = e.target.files?.[0];
@@ -183,7 +175,6 @@ export default function Information() {
                         type="text"
                         name="name" 
                         className="py-3"
-                        value={ session.name }
                         required={ true }
                         placeholder="e.g Xavier Morell" 
                     />
@@ -194,7 +185,6 @@ export default function Information() {
                         label={ t('Modules.Preferences.content.information.alias') }
                         type="text"
                         name="alias" 
-                        value={ session.alias }
                         className="py-3"
                         placeholder="e.g xavier-morell"
                     />
@@ -207,7 +197,6 @@ export default function Information() {
                         label={ t('Modules.Preferences.content.information.stack') }
                         icon={ <CodeOutlined /> } 
                         required={ true }
-                        value={ session.stack }
                         name="stack"
                         options={[
                             { label: "Frontend", value: "FRONTEND" },
@@ -223,7 +212,6 @@ export default function Information() {
                         required={ true }
                         icon={ <AutoGraphOutlined /> } 
                         name="role"
-                        value={ session.seniority }
                         options={[
                             { label: "Trainee", value: "TRAINEE" },
                             { label: "Junior", value: "JUNIOR" },
