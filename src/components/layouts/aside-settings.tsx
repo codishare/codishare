@@ -11,6 +11,7 @@ import Profile from "./settings/profile";
 import Language from "./settings/language";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
+import ProfilePicture from "../ui/profile-picture";
 
 export default function Settings() {
     const [focused, setFocused] = useState<boolean>(false);
@@ -72,9 +73,7 @@ export default function Settings() {
                     >
                         {/* @ Profile information */}
                         <section className="flex gap-5 h-12 items-center">
-                            <div className="rounded-full border w-12 h-12">
-                                {/* @ Image */}
-                            </div>
+                            <ProfilePicture icon={ session ? session.icon : '' } />
 
                             <div className="flex flex-col gap-1">
                                 <h2 className="text-xl">
@@ -82,7 +81,7 @@ export default function Settings() {
                                 </h2>
 
                                 <small className="text-gray-400 text-xs">
-                                    { session && session.alias }
+                                    @{ session && session.alias }
                                 </small>
                             </div>
                         </section>
