@@ -46,7 +46,7 @@ const NotificationProvider = ({
                 {
                     notifications.map((notification: Notification, index: number) => {
                         return <motion.div
-                            className="bg-white border cursor-pointer px-5 py-3.5 rounded-lg text-sm flex gap-5 select-none items-center dark:bg-black/30 dark:border-gray-600"
+                            className="bg-white border notification cursor-pointer px-5 py-3.5 rounded-lg text-sm flex gap-5 select-none items-center dark:bg-black/30 dark:border-gray-600"
                             key={ index }
                             initial={{ opacity: 0, y: 50, scale: 0.3 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -65,7 +65,9 @@ const NotificationProvider = ({
                                 </div>
                             }
 
-                            { notification.message }
+                            <p className="notification-content">
+                                { notification.message }
+                            </p>
                         </motion.div>
                     })
                 }
