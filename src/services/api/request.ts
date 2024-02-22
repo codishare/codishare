@@ -1,7 +1,6 @@
 import { userAgent } from "next/server";
 import prisma from "@/lib/prisma";
-import { DeviceType } from "@prisma/client";
-import { useRouter } from "@/navigation";
+import { DeviceType } from "@prisma/client"; 
 
 export function getClientIp(req: Request) {
     let clientIp = req.headers.get("x-forwarded-for") || null;
