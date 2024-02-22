@@ -41,7 +41,6 @@ const SessionProvider = ({ children }: { children: React.ReactNode }) => {
             if (res.status === 200) {
                 const data = await res.json();
 
-                console.log("Session fetched and stored", data);
                 handleSession(data);
                 callback(true);
             }

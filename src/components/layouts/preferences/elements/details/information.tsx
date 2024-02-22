@@ -53,8 +53,6 @@ export default function Information() {
         }).then(async res => {
             const data = await res.json();
 
-            console.log(data)
-
             if(res.ok) return addNotification({
                 type: "SUCCESS",
                 icon: <CheckCircleOutlineRounded />,
