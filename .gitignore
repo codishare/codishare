@@ -11,6 +11,8 @@ cypress.env.json
 
 .env
 
+public/users
+
 # testing
 /coverage
 
