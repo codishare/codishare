@@ -109,8 +109,8 @@ export async function PUT(req: Request) {
     try {
         let icon, banner; 
         
-        if(data.get('icon')) icon = await store(data.get('icon') as File, ['users', `${ userId }`, 'icons']);
-        if(data.get('banner')) banner = await store(data.get('banner') as File, ['users', `${ userId }`, 'banners']);
+        if(data.get('icon') && (data.get('icon') as File).name) icon = await store(data.get('icon') as File, ['users', `${ userId }`, 'icons']);
+        if(data.get('banner') && (data.get('banner') as File).name) banner = await store(data.get('banner') as File, ['users', `${ userId }`, 'banners']);
 
         await prisma.user.update({
             where: {
