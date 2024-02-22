@@ -6,15 +6,18 @@ import { useSession } from "@/lib/hooks/useSession";
 import validate from "@/services/validation/forms/preferences";
 import { AutoGraphOutlined, CancelOutlined, CheckCircleOutlineRounded, CodeOutlined, FilterCenterFocusOutlined } from "@mui/icons-material";
 import PriorityHighOutlined from "@mui/icons-material/PriorityHighOutlined";
+import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useRef, useState } from "react";
 
 export default function Information() {
     const {
-        session
+        session,
+        refetchSession
     } : {
-        session: Session | false
+        session: Session | false,
+        refetchSession: () => void
     } = useSession();
     
     if(!session) return;
@@ -53,16 +56,18 @@ export default function Information() {
         }).then(async res => {
             const data = await res.json();
 
-            if(res.ok) return addNotification({
-                type: "SUCCESS",
-                icon: <CheckCircleOutlineRounded />,
-                message: "SUCCESS"
-            });
-
-            addNotification({
+            if(!res.ok) addNotification({
                 type: "ERROR",
                 icon: <PriorityHighOutlined />,
                 message: data.message
+            });
+
+            refetchSession();
+
+            addNotification({
+                type: "SUCCESS",
+                icon: <CheckCircleOutlineRounded />,
+                message: "SUCCESS"
             });
         }).catch((e) => addNotification({
             type: "ERROR",
@@ -71,158 +76,164 @@ export default function Information() {
         }));
     }
 
-    return <div className="w-full flex flex-col py-7">
-        <h3 className="text-lg font-bold dark:text-white">
-            { t('Modules.Preferences.content.information.title') }
-        </h3>
+    return <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: .4 }}
+            exit={{ opacity: 0 }} 
+            className="w-full flex flex-col py-7"
+        >
+            <h3 className="text-lg font-bold dark:text-white">
+                { t('Modules.Preferences.content.information.title') }
+            </h3>
 
-        <small className="text-gray-400 dark:text-zinc-400 mb-7">
-            { t('Modules.Preferences.content.information.description') }
-        </small>
+            <small className="text-gray-400 dark:text-zinc-400 mb-7">
+                { t('Modules.Preferences.content.information.description') }
+            </small>
 
-        <form onSubmit={ handleSubmit } className="flex flex-col">
-            {/* @ Banner */}
-            <input
-                type="file"
-                ref={ bannerRef }
-                style={{ display: 'none' }}
-                name="banner"
-                accept="image/*" 
-                onChange={(e) => {
-                    const file = e.target.files?.[0];
+            <form onSubmit={ handleSubmit } className="flex flex-col">
+                {/* @ Banner */}
+                <input
+                    type="file"
+                    ref={ bannerRef }
+                    style={{ display: 'none' }}
+                    name="banner"
+                    accept="image/*" 
+                    onChange={(e) => {
+                        const file = e.target.files?.[0];
 
-                    if(file) {
-                        const reader = new FileReader();
+                        if(file) {
+                            const reader = new FileReader();
 
-                        reader.onload = () => handleBanner(reader.result as string);
-                        reader.readAsDataURL(file);
-                    }
-                }}
-            />
+                            reader.onload = () => handleBanner(reader.result as string);
+                            reader.readAsDataURL(file);
+                        }
+                    }}
+                />
 
-            {/* @ Icon */}
-            <input
-                type="file"
-                ref={ iconRef }
-                name="icon"
-                style={{ display: 'none' }}  
-                accept="image/*"
-                onChange={(e) => {
-                    const file = e.target.files?.[0];
+                {/* @ Icon */}
+                <input
+                    type="file"
+                    ref={ iconRef }
+                    name="icon"
+                    style={{ display: 'none' }}  
+                    accept="image/*"
+                    onChange={(e) => {
+                        const file = e.target.files?.[0];
 
-                    if(file) {
-                        const reader = new FileReader();
+                        if(file) {
+                            const reader = new FileReader();
 
-                        reader.onload = () => handleIcon(reader.result as string);
-                        reader.readAsDataURL(file);
-                    }
-                }}
-            />
+                            reader.onload = () => handleIcon(reader.result as string);
+                            reader.readAsDataURL(file);
+                        }
+                    }}
+                />
 
-            <div onClick={() => bannerRef.current?.click() } className="w-full cursor-pointer border relative h-24 mb-12 rounded bg-gray-100 dark:bg-zinc-950 dark:border-zinc-900">
-                {
-                    banner && <Image
-                        src={ banner }
-                        layout="fill"
-                        alt="Banner"
-                        objectFit="cover"
-                        className="rounded"
-                    />
-                }
-
-                {
-                    bannerRef && banner && <button 
-                        className="z-30 absolute top-0 flex items-center gap-2 border border-red-500 text-red-500 bg-red-300/80 px-2 rounded m-2 right-0 text-sm"
-                        onClick={(e) => { 
-                            handleBanner(false);
-
-                            // @ Stop the parent click event
-                            e.stopPropagation()
-                        }}
-                    >
-                        <CancelOutlined 
-                            className="text-md text-sm"
-                        />
-
-                        Remove
-                    </button>
-                }
-                
-                <div onClick={(e) => {
-                    iconRef.current?.click()
-
-                    // @ Prevent the parent click event
-                    e.stopPropagation()
-                }} className="bg-white dark:bg-zinc-900 border group hover:bg-indigo-500 cursor-pointer select-none hover:border-indigo-500 hover:dark:border-indigo-500 hover:dark:bg-indigo-500 transition-all dark:border-zinc-950 absolute -bottom-8 flex items-center justify-center left-6 rounded-full h-16 w-16">
+                <div onClick={() => bannerRef.current?.click() } className="w-full cursor-pointer border relative h-24 mb-12 rounded bg-gray-100 dark:bg-zinc-950 dark:border-zinc-900">
                     {
-                        icon ? <Image
-                            src={ icon }
+                        banner && <Image
+                            src={ banner }
                             layout="fill"
                             alt="Banner"
                             objectFit="cover"
-                            className="rounded-full"
-                        /> : <FilterCenterFocusOutlined className="text-3xl text-indigo-500 dark:text-indigo-400 group-hover:text-white group-hover:dark:text-zinc-900 transition-all" />
+                            className="rounded"
+                        />
                     }
+
+                    {
+                        bannerRef && banner && <button 
+                            className="z-30 absolute top-0 flex items-center gap-2 border border-red-500 text-red-500 bg-red-300/80 px-2 rounded m-2 right-0 text-sm"
+                            onClick={(e) => { 
+                                handleBanner(false);
+
+                                // @ Stop the parent click event
+                                e.stopPropagation()
+                            }}
+                        >
+                            <CancelOutlined 
+                                className="text-md text-sm"
+                            />
+
+                            Remove
+                        </button>
+                    }
+                    
+                    <div onClick={(e) => {
+                        iconRef.current?.click()
+
+                        // @ Prevent the parent click event
+                        e.stopPropagation()
+                    }} className="bg-white dark:bg-zinc-900 border group hover:bg-indigo-500 cursor-pointer select-none hover:border-indigo-500 hover:dark:border-indigo-500 hover:dark:bg-indigo-500 transition-all dark:border-zinc-950 absolute -bottom-8 flex items-center justify-center left-6 rounded-full h-16 w-16">
+                        {
+                            icon ? <Image
+                                src={ icon }
+                                layout="fill"
+                                alt="Banner"
+                                objectFit="cover"
+                                className="rounded-full"
+                            /> : <FilterCenterFocusOutlined className="text-3xl text-indigo-500 dark:text-indigo-400 group-hover:text-white group-hover:dark:text-zinc-900 transition-all" />
+                        }
+                    </div>
                 </div>
-            </div>
-            
-            <div className="flex gap-4 flex-wrap items-end">
-                <div className="flex-1">
-                    <TextInput
-                        label={ t('Modules.Preferences.content.information.name') }
-                        type="text"
-                        name="name" 
-                        className="py-3"
-                        required={ true }
-                        placeholder="e.g Xavier Morell" 
-                    />
+                
+                <div className="flex gap-4 flex-wrap items-end">
+                    <div className="flex-1">
+                        <TextInput
+                            label={ t('Modules.Preferences.content.information.name') }
+                            type="text"
+                            name="name" 
+                            className="py-3"
+                            required={ true }
+                            placeholder="e.g Xavier Morell" 
+                        />
+                    </div>
+
+                    <div className="flex-1">
+                        <TextInput
+                            label={ t('Modules.Preferences.content.information.alias') }
+                            type="text"
+                            name="alias" 
+                            className="py-3"
+                            placeholder="e.g xavier-morell"
+                        />
+                    </div>
                 </div>
 
-                <div className="flex-1">
-                    <TextInput
-                        label={ t('Modules.Preferences.content.information.alias') }
-                        type="text"
-                        name="alias" 
-                        className="py-3"
-                        placeholder="e.g xavier-morell"
-                    />
-                </div>
-            </div>
+                <div className="flex flex-wrap gap-4 mt-4 items-end">
+                    <div className="flex-1">
+                        <Selector 
+                            label={ t('Modules.Preferences.content.information.stack') }
+                            icon={ <CodeOutlined /> } 
+                            required={ true }
+                            name="stack"
+                            options={[
+                                { label: "Frontend", value: "FRONTEND" },
+                                { label: "Backend", value: "BACKEND" },
+                                { label: "Fullstack", value: "FULLSTACK" },
+                            ]}
+                        />
+                    </div>
 
-            <div className="flex flex-wrap gap-4 mt-4 items-end">
-                <div className="flex-1">
-                    <Selector 
-                        label={ t('Modules.Preferences.content.information.stack') }
-                        icon={ <CodeOutlined /> } 
-                        required={ true }
-                        name="stack"
-                        options={[
-                            { label: "Frontend", value: "FRONTEND" },
-                            { label: "Backend", value: "BACKEND" },
-                            { label: "Fullstack", value: "FULLSTACK" },
-                        ]}
-                    />
+                    <div className="flex-1">
+                        <Selector 
+                            label={ t('Modules.Preferences.content.information.role') }
+                            required={ true }
+                            icon={ <AutoGraphOutlined /> } 
+                            name="role"
+                            options={[
+                                { label: "Trainee", value: "TRAINEE" },
+                                { label: "Junior", value: "JUNIOR" },
+                                { label: "Mid", value: "MID" },
+                                { label: "Senior", value: "SENIOR" },
+                            ]} 
+                        />
+                    </div>
                 </div>
 
-                <div className="flex-1">
-                    <Selector 
-                        label={ t('Modules.Preferences.content.information.role') }
-                        required={ true }
-                        icon={ <AutoGraphOutlined /> } 
-                        name="role"
-                        options={[
-                            { label: "Trainee", value: "TRAINEE" },
-                            { label: "Junior", value: "JUNIOR" },
-                            { label: "Mid", value: "MID" },
-                            { label: "Senior", value: "SENIOR" },
-                        ]} 
-                    />
-                </div>
-            </div>
-
-            <button type="submit" className="self-end bg-indigo-500 w-full md:w-auto text-white dark:text-zinc-950 mt-7 px-5 py-2 rounded">
-                { t('Modules.Preferences.content.information.save') }
-            </button>
-        </form>
-    </div>
+                <button type="submit" className="self-end bg-indigo-500 w-full md:w-auto text-white dark:text-zinc-950 mt-7 px-5 py-2 rounded">
+                    { t('Modules.Preferences.content.information.save') }
+                </button>
+            </form>
+    </motion.div> 
 }
