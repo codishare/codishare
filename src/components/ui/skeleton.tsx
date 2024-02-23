@@ -1,5 +1,5 @@
 import { Skeleton } from "@mui/material";
-import { cn } from "@/utils/cn";
+import { cn } from "@/lib/cn";
 
 export default function SkeletonUI({
     className,

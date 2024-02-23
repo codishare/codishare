@@ -1,6 +1,6 @@
 import * as React from "react";
 import { User } from "@prisma/client";
-import { getBaseUrl } from "@/utils/get-base-url";
+import { getBaseUrl } from "@/lib/get-base-url";
 
 export const EmailTemplate = (
     user: User,
