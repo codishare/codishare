@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl"
-import Form from "@/components/auth/sign-up/form";
-import {unstable_setRequestLocale} from 'next-intl/server';
+import Form from "@/components/layouts/auth/sign-up/form";
+import { unstable_setRequestLocale } from 'next-intl/server';
 
 export default function Page({
     params: {
