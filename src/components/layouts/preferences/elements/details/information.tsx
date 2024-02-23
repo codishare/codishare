@@ -4,7 +4,7 @@ import TextInput from "@/components/ui/text-input";
 import { useNotifications } from "@/lib/hooks/useNotifications";
 import { useSession } from "@/lib/hooks/useSession";
 import validate from "@/services/validation/forms/preferences";
-import { AutoGraphOutlined, CancelOutlined, CheckCircleOutlineRounded, CodeOutlined, FilterCenterFocusOutlined } from "@mui/icons-material";
+import { AutoGraphOutlined, CheckCircleOutlineRounded, CodeOutlined, FilterCenterFocusOutlined } from "@mui/icons-material";
 import PriorityHighOutlined from "@mui/icons-material/PriorityHighOutlined";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
@@ -25,8 +25,26 @@ export default function Information() {
     const iconRef = useRef<HTMLInputElement>(null);
     const bannerRef = useRef<HTMLInputElement>(null);
 
-    const [banner, handleBanner] = useState<string | false>();
-    const [icon, handleIcon] = useState<string | false>();
+    const [icon, handleIcon] = useState<string | false>(session.icon ? session.icon.replace(/\\/g, '/') : false);
+    const [banner, handleBanner] = useState<string | false>(session.banner ? session.banner.replace(/\\/g, '/') : false);
+
+    const [formData, handleFormData] = useState({
+        name: session.name,
+        alias: session.alias,
+        stack: session.stack,
+        role: session.seniority, 
+        icon: session.icon,
+        banner: session.banner
+    })
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+
+        handleFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
 
     const addNotification = useNotifications();
 
@@ -135,28 +153,10 @@ export default function Information() {
                         banner && <Image
                             src={ banner }
                             layout="fill"
-                            alt="Banner"
+                            alt=""
                             objectFit="cover"
                             className="rounded"
                         />
-                    }
-
-                    {
-                        bannerRef && banner && <button 
-                            className="z-30 absolute top-0 flex items-center gap-2 border border-red-500 text-red-500 bg-red-300/80 px-2 rounded m-2 right-0 text-sm"
-                            onClick={(e) => { 
-                                handleBanner(false);
-
-                                // @ Stop the parent click event
-                                e.stopPropagation()
-                            }}
-                        >
-                            <CancelOutlined 
-                                className="text-md text-sm"
-                            />
-
-                            Remove
-                        </button>
                     }
                     
                     <div onClick={(e) => {
@@ -169,7 +169,7 @@ export default function Information() {
                             icon ? <Image
                                 src={ icon }
                                 layout="fill"
-                                alt="Banner"
+                                alt=""
                                 objectFit="cover"
                                 className="rounded-full"
                             /> : <FilterCenterFocusOutlined className="text-3xl text-indigo-500 dark:text-indigo-400 group-hover:text-white group-hover:dark:text-zinc-900 transition-all" />
@@ -186,6 +186,8 @@ export default function Information() {
                             className="py-3"
                             required={ true }
                             placeholder="e.g Xavier Morell" 
+                            value={ formData.name }
+                            change={ handleInputChange }
                         />
                     </div>
 
@@ -196,6 +198,8 @@ export default function Information() {
                             name="alias" 
                             className="py-3"
                             placeholder="e.g xavier-morell"
+                            value={ formData.alias }
+                            change={ handleInputChange }
                         />
                     </div>
                 </div>
@@ -212,6 +216,8 @@ export default function Information() {
                                 { label: "Backend", value: "BACKEND" },
                                 { label: "Fullstack", value: "FULLSTACK" },
                             ]}
+                            value={ formData.stack }
+                            change={ handleInputChange }
                         />
                     </div>
 
@@ -227,6 +233,8 @@ export default function Information() {
                                 { label: "Mid", value: "MID" },
                                 { label: "Senior", value: "SENIOR" },
                             ]} 
+                            value={ formData.role }
+                            change={ handleInputChange }
                         />
                     </div>
                 </div>

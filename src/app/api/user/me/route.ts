@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-import { store } from "@/services/api/images";
+import { isValidImage, store } from "@/services/api/images";
 import { decodeToken, verifyToken } from "@/services/api/jwt";
 import { extractAccessToken } from "@/services/api/request";
 import { getUserById } from "@/services/api/user";
@@ -109,8 +109,8 @@ export async function PUT(req: Request) {
     try {
         let icon, banner; 
         
-        if(data.get('icon') && (data.get('icon') as File).name) icon = await store(data.get('icon') as File, ['users', `${ userId }`, 'icons']);
-        if(data.get('banner') && (data.get('banner') as File).name) banner = await store(data.get('banner') as File, ['users', `${ userId }`, 'banners']);
+        if(isValidImage(data.get('icon') as File)) icon = await store(data.get('icon') as File, ['users', `${ userId }`, 'icons']);
+        if(isValidImage(data.get('banner') as File)) banner = await store(data.get('banner') as File, ['users', `${ userId }`, 'banners']);
 
         await prisma.user.update({
             where: {
