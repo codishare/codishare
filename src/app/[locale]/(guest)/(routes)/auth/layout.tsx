@@ -1,7 +1,7 @@
 "use client";
 
 import { Session } from "@/_types";
-import { ToggleTheme } from "@/components/theme/Toggle";
+import { ToggleTheme } from "@/components/ui/theme/toggle";
 import Spinner from "@/components/ui/spinner/component";
 import { useSession } from "@/lib/hooks/useSession";
 import { useRouter } from "@/navigation";

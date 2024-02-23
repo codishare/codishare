@@ -1,4 +1,4 @@
-import Form from "@/components/auth/login/form";
+import Form from "@/components/layouts/auth/login/form";
 import { useTranslations } from "next-intl";
 import { unstable_setRequestLocale } from "next-intl/server";
 
