@@ -10,7 +10,7 @@ import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlin
 import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
 import PriorityHighOutlinedIcon from "@mui/icons-material/PriorityHighOutlined";
 import DnsOutlinedIcon from "@mui/icons-material/DnsOutlined";
-import { validate } from "@/services/validation/forms/reset-password";
+import { validate } from "@/lib/services/shared/auth/reset-password";
 
 export default function Form({ token }: { token: string }) {
     const t = useTranslations();

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { isEmail } from "@/services/validation/email";
+import { isEmail } from "@/lib/services/shared/email";
 import prisma from "@/lib/prisma";
 import resend from "@/lib/resend";
 import { EmailTemplate } from "@/components/layouts/auth/forgot-password/email-template";

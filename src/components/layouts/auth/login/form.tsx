@@ -4,8 +4,8 @@ import { useTranslations, useLocale } from "next-intl";
 import { Link, useRouter } from "@/navigation";
 import TextInput from "@/components/ui/text-input";
 
-import { validate } from "@/services/validation/forms/login";
-import { isEmail } from "@/services/validation/email";
+import { validate } from "@/lib/services/shared/auth/login";
+import { isEmail } from "@/lib/services/shared/email";
 import { useNotifications } from "@/lib/hooks/useNotifications";
 import { useState } from "react";
 import { Login } from "@/types/auth/_types";

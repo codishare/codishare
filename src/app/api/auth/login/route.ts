@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 import type { Login } from "@/types/auth/_types";
-import { validate } from "@/services/validation/forms/login";
-import { validateCredentials } from "@/services/api/user";
-import { performUserAgent } from "@/services/api/request";
+import { validate } from "@/lib/services/shared/auth/login";
+import { validateCredentials } from "@/lib/services/api/auth/user";
+import { performUserAgent } from "@/lib/services/api/request";
 import { setCookie } from "cookies-next";
-import { generateAccessToken, generateRefreshToken } from "@/services/api/jwt";
+import { generateAccessToken, generateRefreshToken } from "@/lib/services/api/jwt";
 
 export async function POST(req: Request) {
     try {

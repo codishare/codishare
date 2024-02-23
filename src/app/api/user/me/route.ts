@@ -1,9 +1,9 @@
 import prisma from "@/lib/prisma";
-import { isValidImage, store } from "@/services/api/images";
-import { decodeToken, verifyToken } from "@/services/api/jwt";
-import { extractAccessToken } from "@/services/api/request";
-import { getUserById } from "@/services/api/user";
-import validate from "@/services/validation/forms/preferences";
+import { isValidImage, store } from "@/lib/services/api/images";
+import { decodeToken, verifyToken } from "@/lib/services/api/jwt";
+import { extractAccessToken } from "@/lib/services/api/request";
+import { getUserById } from "@/lib/services/api/auth/user";
+import validate from "@/lib/services/shared/auth/preferences";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {

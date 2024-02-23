@@ -2,7 +2,7 @@ import {
     decodeToken,
     generateAccessToken,
     verifyToken,
-} from "@/services/api/jwt";
+} from "@/lib/services/api/jwt";
 import { getCookie } from "cookies-next";
 import { NextResponse } from "next/server";
 

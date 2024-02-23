@@ -1,5 +1,5 @@
-import { removeToken, verifyToken } from "@/services/api/jwt";
-import { extractAccessToken } from "@/services/api/request";
+import { removeToken, verifyToken } from "@/lib/services/api/jwt";
+import { extractAccessToken } from "@/lib/services/api/request";
 import { getCookie } from "cookies-next";
 import { NextResponse } from "next/server";
 

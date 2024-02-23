@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Link } from "@/navigation"; 
-import { validate } from "@/services/validation/forms/sign-up";
+import { validate } from "@/lib/services/shared/auth/sign-up";
 import { useNotifications } from "@/lib/hooks/useNotifications";
 import { useTranslations } from "next-intl";
 
