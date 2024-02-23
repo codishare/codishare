@@ -14,6 +14,20 @@ export async function store(file: File, route: string[]) {
     return path.replace('public', '');
 }
 
+export function isValidImage(file: File) {
+    if(file.type !== 'image/png' && file.type !== 'image/jpeg' && file.type !== 'image/jpg') return false;
+
+    if(file.size <= 0) return false;
+
+    if(file.size > 5 * 1024 * 1024) return false;
+
+    if(file.name.length > 100) return false;
+
+    if(file.name == 'undefined') return false;
+
+    return true;
+}
+
 export async function get() {
     return 
 }
