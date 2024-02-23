@@ -73,7 +73,7 @@ export default function Settings() {
                     >
                         {/* @ Profile information */}
                         <section className="flex gap-5 h-12 items-center">
-                            <ProfilePicture icon={ session ? session.icon : '' } />
+                            <ProfilePicture icon={ session && session.icon ? session.icon : '' } />
 
                             <div className="flex flex-col gap-1">
                                 <h2 className="text-xl">
