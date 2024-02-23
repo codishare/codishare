@@ -1,14 +1,8 @@
 import { createContext, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion"; 
+import { Notification } from "@/types/components/notifications/_types";
 
 export const NotificationContext = createContext<(notification: Notification) => void>(() => {});
-
-interface Notification {
-    id?: number,
-    icon?: React.ReactNode, 
-    type?: "INFO" | "SUCCESS" | "WARNING" | "ERROR", 
-    message: string
-}
 
 const NotificationProvider = ({
     children

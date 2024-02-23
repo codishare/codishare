@@ -9,7 +9,7 @@ import { useTranslations } from "next-intl";
 import Selector from "@/components/ui/selector";
 import Checkbox from "@/components/ui/checkbox";
 import TextInput from "@/components/ui/text-input"
-import type { SignUp } from "@/_types";
+import type { SignUp } from "@/types/auth/_types";
 
 import PriorityHighOutlinedIcon from '@mui/icons-material/PriorityHighOutlined';
 import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';

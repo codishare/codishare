@@ -1,6 +1,7 @@
 import { isEmail } from "../email";
 import { isSecure } from "../password";
-import { ROLE, STACK, type SignUp } from "@/_types";
+import { ROLE, STACK } from "@/types/auth/_enums";
+import { type SignUp } from "@/types/auth/_types";
 
 export function validate(
     data: SignUp

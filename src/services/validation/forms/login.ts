@@ -1,4 +1,4 @@
-import { Login } from "@/_types";
+import { Login } from "@/types/auth/_types";
 import { isEmail } from "../email";
 
 export function validate(

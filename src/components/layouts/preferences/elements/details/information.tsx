@@ -1,4 +1,5 @@
-import { PreferencesForm, Session } from "@/_types";
+import { Session } from "@/types/auth/_types";
+import { PreferencesForm } from "@/types/preferences/_types";
 import Selector from "@/components/ui/selector";
 import TextInput from "@/components/ui/text-input";
 import { useNotifications } from "@/lib/hooks/useNotifications";

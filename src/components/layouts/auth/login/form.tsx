@@ -8,7 +8,7 @@ import { validate } from "@/services/validation/forms/login";
 import { isEmail } from "@/services/validation/email";
 import { useNotifications } from "@/lib/hooks/useNotifications";
 import { useState } from "react";
-import { Login } from "@/_types";
+import { Login } from "@/types/auth/_types";
 
 import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlined";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";

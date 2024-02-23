@@ -1,4 +1,4 @@
-import { Device, Session } from "@/_types"
+import { Device, Session } from "@/types/auth/_types"
 import { useSession } from "@/lib/hooks/useSession";
 import Icon from "./icon";
 import Location from "./location";

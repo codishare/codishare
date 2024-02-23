@@ -6,11 +6,7 @@ import Details from "./elements/details/details";
 import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { AnimatePresence } from "framer-motion";
-
-interface View {
-    label: string;
-    element?: JSX.Element;
-}
+import { View } from "@/types/preferences/_types";
 
 export default function Content() {
     const t = useTranslations('Modules.Preferences.content')

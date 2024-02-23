@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import type { Login } from "@/_types";
+import type { Login } from "@/types/auth/_types";
 import { validate } from "@/services/validation/forms/login";
 import { validateCredentials } from "@/services/api/user";
 import { performUserAgent } from "@/services/api/request";

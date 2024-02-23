@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useSession } from "@/lib/hooks/useSession";
-import { Session } from "@/_types";
+import { Session } from "@/types/auth/_types";
 
 import SettingsSharpIcon from '@mui/icons-material/SettingsSharp';
 import Spinner from "../ui/spinner/component";

@@ -1,4 +1,4 @@
-import { Session } from "@/_types";
+import { Session } from "@/types/auth/_types";
 import { useSession } from "@/lib/hooks/useSession";
 import { ToggleTheme } from "@/components/ui/theme/toggle";
 

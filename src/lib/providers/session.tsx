@@ -1,12 +1,7 @@
-import { Session } from "@/_types";
+import { Session } from "@/types/auth/_types";
 import { RefreshToken } from "@/services/api/request";
 import { createContext, useEffect, useState } from "react";
-
-interface Context {
-    session: Session | false;
-    loading: boolean;
-    refetchSession: () => void;
-}
+import { Context } from "@/types/auth/_types";
 
 export const SessionContext = createContext<Context>({
     session: false,

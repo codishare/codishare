@@ -1,6 +1,6 @@
 "use client";
 
-import { Session } from "@/_types";
+import { Session } from "@/types/auth/_types";
 import Navigator from "@/components/layouts/navigator"; 
 import { useSession } from "@/lib/hooks/useSession";
 import { useRouter } from "@/navigation";

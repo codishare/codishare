@@ -1,4 +1,4 @@
-import { ResetPassword } from "@/_types";
+import { ResetPassword } from "@/types/auth/_types";
 import { isSecure } from "../password";
 
 export const validate = (data: ResetPassword) => {

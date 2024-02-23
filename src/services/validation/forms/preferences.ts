@@ -1,4 +1,4 @@
-import { ROLE, STACK } from "@/_types";
+import { ROLE, STACK } from "@/types/auth/_enums";
 
 export default function validate({
     name,

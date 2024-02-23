@@ -1,9 +1,6 @@
 'use client'
 
-interface Option {
-    label: string,
-    value: any
-}
+import { Option } from "@/types/components/selector/_types";
 
 export default function Selector({
     label, 

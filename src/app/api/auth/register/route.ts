@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import type { SignUp } from "@/_types";
+import type { SignUp } from "@/types/auth/_types";
 import { validate } from "@/services/validation/forms/sign-up";
 import { countUsers, isEmailInUse } from "@/services/api/user";
 import prisma from "@/lib/prisma";

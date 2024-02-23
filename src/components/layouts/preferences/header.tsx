@@ -1,6 +1,6 @@
 'use client'
 
-import { Session } from "@/_types"
+import { Session } from "@/types/auth/_types"
 import ProfilePicture from "@/components/ui/profile-picture";
 import { useSession } from "@/lib/hooks/useSession" 
 import { AnimatePresence, motion } from "framer-motion";
