@@ -6,7 +6,7 @@ import { useSession } from "@/lib/hooks/useSession";
 import validate from "@/services/validation/forms/preferences";
 import { AutoGraphOutlined, CancelOutlined, CheckCircleOutlineRounded, CodeOutlined, FilterCenterFocusOutlined } from "@mui/icons-material";
 import PriorityHighOutlined from "@mui/icons-material/PriorityHighOutlined";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useRef, useState } from "react";
