@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { isEmail } from "@/services/validation/email";
 import prisma from "@/lib/prisma";
 import resend from "@/lib/resend";
-import { EmailTemplate } from "@/components/auth/forgot-password/email-template";
+import { EmailTemplate } from "@/components/layouts/auth/forgot-password/email-template";
 import crypto from "crypto";
 
 export async function POST(req: Request) {

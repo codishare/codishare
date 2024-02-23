@@ -1,6 +1,6 @@
 import { Session } from "@/_types";
 import { useSession } from "@/lib/hooks/useSession";
-import { ToggleTheme } from "../theme/Toggle"; 
+import { ToggleTheme } from "@/components/ui/theme/toggle";
 
 import SearchBar from "./searchbar";
 import Settings from "./aside-settings";
