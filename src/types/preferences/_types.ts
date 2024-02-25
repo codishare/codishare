@@ -8,6 +8,6 @@ export interface PreferencesForm {
 }
 
 export interface View {
-    label: string;
-    element?: JSX.Element;
+    label: string; 
+    route: string
 }

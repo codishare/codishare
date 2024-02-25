@@ -1,3 +1,5 @@
+'use client'
+
 import Information from "./information"; 
 import Privacy from "./privacy";
 import Theme from "./theme";
