@@ -6,9 +6,7 @@ import { NextResponse } from "next/server";
 import { SignUp } from "@/types/auth/_types";
 import { validate } from "../../shared/layouts/auth/sign-up";
 
-export default async function register(req : Request) {
-    const data = await req.json() as SignUp; 
-
+export default async function register(data: SignUp) { 
     const isValid = validate(data);
 
     if(isValid !== true) return NextResponse.json({
