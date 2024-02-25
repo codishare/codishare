@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react";
-import { Link } from "@/navigation"; 
+import { Link, useRouter } from "@/navigation"; 
 import { validate } from "@/lib/services/shared/layouts/auth/sign-up";
 import { useNotifications } from "@/lib/hooks/useNotifications";
 import { useTranslations } from "next-intl";
@@ -22,6 +22,8 @@ import DnsOutlinedIcon from '@mui/icons-material/DnsOutlined';
 
 export default function Form() {
     const t = useTranslations();
+
+    const router = useRouter();
 
     const [data, setData] = useState<SignUp>({
         name: "", 
@@ -150,11 +152,7 @@ export default function Form() {
                 const data = await res.json(); 
 
                 if(res.status == 200 || res.status == 201) {
-                    addNotification({
-                        type: "SUCCESS", 
-                        icon: <CheckCircleOutlinedIcon />,
-                        message: t("Auth.SignUp.form.account_success")
-                    })
+                    router.push('/')
                 } else {
                     addNotification({
                         type: "ERROR", 
