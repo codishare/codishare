@@ -1,36 +1,11 @@
 "use client";
 
 import { cn } from "@/lib/cn";
+import { type TextInput } from "@/types/components/text-input/_types";
 
 export default function TextInput({
-    label,
-    icon,
-    type,
-    value,
-    change,
-    placeholder,
-    name,
-    disabled,
-    required,
-    className,
-    ref,
-    focus, 
-    blur, 
-}: {
-    label?: string;
-    icon?: React.ReactNode;
-    type?: string;
-    value?: any;
-    change?: (e: any) => void;
-    placeholder?: string;
-    name?: string;
-    disabled?: boolean;
-    required?: boolean;
-    className?: string;
-    ref?: any;
-    focus?: () => void;
-    blur?: () => void;
-}) {
+    label, icon, type, value, change, placeholder, name, disabled, required, className, ref, focus,  blur, defaultValue
+} : TextInput) {
     return (
         <label className="flex flex-col gap-2 cursor-pointer">
             {label && (
@@ -55,6 +30,7 @@ export default function TextInput({
                     type={type || "text"}
                     value={value}
                     name={name}
+                    defaultValue={ defaultValue }
                     placeholder={placeholder}
                     disabled={disabled || false}
                     onFocus={focus}
