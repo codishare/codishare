@@ -29,24 +29,6 @@ export default function Information() {
     const [icon, handleIcon] = useState<string | false>(session.icon ? session.icon.replace(/\\/g, '/') : false);
     const [banner, handleBanner] = useState<string | false>(session.banner ? session.banner.replace(/\\/g, '/') : false);
 
-    const [formData, handleFormData] = useState({
-        name: session.name,
-        alias: session.alias,
-        stack: session.stack,
-        role: session.seniority, 
-        icon: session.icon,
-        banner: session.banner
-    })
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-
-        handleFormData({
-            ...formData,
-            [name]: value,
-        });
-    };
-
     const addNotification = useNotifications();
 
     const t = useTranslations()
@@ -188,9 +170,9 @@ export default function Information() {
                             name="name" 
                             className="py-3"
                             required={ true }
-                            placeholder="e.g Xavier Morell" 
-                            value={ formData.name }
-                            change={ handleInputChange }
+                            placeholder="e.g Xavier Morell"  
+                            defaultValue={ session.name }
+                            
                         />
                     </div>
 
@@ -201,8 +183,7 @@ export default function Information() {
                             name="alias" 
                             className="py-3"
                             placeholder="e.g xavier-morell"
-                            value={ formData.alias }
-                            change={ handleInputChange }
+                            defaultValue={ session.alias }
                         />
                     </div>
                 </div>
@@ -219,8 +200,7 @@ export default function Information() {
                                 { label: "Backend", value: "BACKEND" },
                                 { label: "Fullstack", value: "FULLSTACK" },
                             ]}
-                            value={ formData.stack }
-                            change={ handleInputChange }
+                            defaultValue={ session.stack }
                         />
                     </div>
 
@@ -236,8 +216,7 @@ export default function Information() {
                                 { label: "Mid", value: "MID" },
                                 { label: "Senior", value: "SENIOR" },
                             ]} 
-                            value={ formData.role }
-                            change={ handleInputChange }
+                            defaultValue={ session.seniority }
                         />
                     </div>
                 </div>
