@@ -156,6 +156,7 @@ export default function Information() {
                             layout="fill"
                             alt=""
                             objectFit="cover"
+                            onError={(e) => e.target.classList.add('hidden')}
                             className="rounded"
                         />
                     }
@@ -171,6 +172,7 @@ export default function Information() {
                                 src={ icon }
                                 layout="fill"
                                 alt=""
+                                onError={(e) => e.target.classList.add('hidden')}
                                 objectFit="cover"
                                 className="rounded-full"
                             /> : <FilterCenterFocusOutlined className="text-3xl text-indigo-500 dark:text-indigo-400 group-hover:text-white group-hover:dark:text-zinc-900 transition-all" />
