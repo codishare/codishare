@@ -1,24 +1,10 @@
 'use client'
 
-import { Option } from "@/types/components/selector/_types";
+import { type Selector } from "@/types/components/selector/_types";
 
 export default function Selector({
-    label, 
-    icon,   
-    value, 
-    change, 
-    name,  
-    required,
-    options
-} : {
-    label?: string, 
-    icon?: React.ReactNode,  
-    value?: any,
-    change?: (e: any) => void,  
-    name?: string, 
-    required?: boolean,
-    options?: Option[]
-}) {
+    label, icon, value, change, name,  required, options, defaultValue
+} : Selector) {
     return <label className="flex flex-col gap-2 cursor-pointer">
         {
             label && <span className="text-sm text-gray-600 flex items-center gap-1">
@@ -40,6 +26,7 @@ export default function Selector({
                 name={ name }  
                 className="bg-transparent focus:outline-none focus:ring-0 flex-1 cursor-pointer"
                 onChange={ e => change && change(e.target.value)}
+                defaultValue={ defaultValue }
             >
                 <option value=""></option>
 
