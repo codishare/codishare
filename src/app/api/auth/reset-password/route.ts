@@ -1,4 +1,4 @@
-import { validate } from "@/lib/services/shared/auth/reset-password";
+import { validate } from "@/lib/services/shared/layouts/auth/reset-password";
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { encrypt } from "@/lib/encryption";

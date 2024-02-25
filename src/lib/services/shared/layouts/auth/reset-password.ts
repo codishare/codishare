@@ -1,5 +1,5 @@
 import { ResetPassword } from "@/types/auth/_types";
-import { isSecure } from "../password";
+import { isSecure } from "../../password";
 
 export const validate = (data: ResetPassword) => {
     const { password, confirm_password } = data;

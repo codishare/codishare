@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { SignUp } from "@/types/auth/_types";
-import { validate } from "@/lib/services/shared/auth/sign-up";
+import { validate } from "@/lib/services/shared/layouts/auth/sign-up";
 import { countUsers, isEmailInUse } from "@/lib/services/api/auth/user";
 import prisma from "@/lib/prisma";
 import { encrypt } from "@/lib/encryption";

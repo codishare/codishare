@@ -4,7 +4,7 @@ import Selector from "@/components/ui/selector";
 import TextInput from "@/components/ui/text-input";
 import { useNotifications } from "@/lib/hooks/useNotifications";
 import { useSession } from "@/lib/hooks/useSession";
-import validate from "@/lib/services/shared/auth/preferences";
+import validate from "@/lib/services/shared/layouts/preferences";
 import { AutoGraphOutlined, CheckCircleOutlineRounded, CodeOutlined, FilterCenterFocusOutlined } from "@mui/icons-material";
 import PriorityHighOutlined from "@mui/icons-material/PriorityHighOutlined";
 import { motion } from "framer-motion";

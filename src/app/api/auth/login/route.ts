@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { Login } from "@/types/auth/_types";
-import { validate } from "@/lib/services/shared/auth/login";
+import { validate } from "@/lib/services/shared/layouts/auth/login";
 import { validateCredentials } from "@/lib/services/api/auth/user";
 import { performUserAgent } from "@/lib/services/api/request";
 import { setCookie } from "cookies-next";

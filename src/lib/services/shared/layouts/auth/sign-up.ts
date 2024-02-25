@@ -1,5 +1,5 @@
-import { isEmail } from "../email";
-import { isSecure } from "../password";
+import { isEmail } from "../../email";
+import { isSecure } from "../../password";
 import { ROLE, STACK } from "@/types/auth/_enums";
 import { type SignUp } from "@/types/auth/_types";
 

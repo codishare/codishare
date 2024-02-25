@@ -3,7 +3,7 @@ import { isValidImage, store } from "@/lib/services/api/images";
 import { decodeToken, verifyToken } from "@/lib/services/api/jwt";
 import { extractAccessToken } from "@/lib/services/api/request";
 import { getUserById } from "@/lib/services/api/auth/user";
-import validate from "@/lib/services/shared/auth/preferences";
+import validate from "@/lib/services/shared/layouts/preferences";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {

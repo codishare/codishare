@@ -1,5 +1,5 @@
 import { Session } from "@/types/auth/_types";
-import { RefreshToken } from "../services/layouts/session";
+import { RefreshToken } from "../services/shared/session";
 import { createContext, useEffect, useState } from "react";
 import { Context } from "@/types/auth/_types";
 
