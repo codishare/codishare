@@ -1,6 +1,6 @@
 import { removeToken } from "@/lib/services/api/jwt";
 import { extractAccessToken } from "@/lib/services/api/request";
-import { getCookie } from "cookies-next";
+import { deleteCookie, getCookie } from "cookies-next";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
@@ -11,11 +11,18 @@ export async function POST(req: Request) {
 
         await removeToken([refresh_token, access_token]);
 
-        return NextResponse.json({
-            message: "success"
-        }, {
-            status: 200
-        })
+        const response = new NextResponse(
+            JSON.stringify({
+                message: "success"
+            }),
+            {
+                status: 200
+            }
+        );
+
+        deleteCookie('refresh-token', { res: response });
+
+        return response;
     } catch (error) {
         console.error((error as Error).message);
 

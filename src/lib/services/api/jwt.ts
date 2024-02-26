@@ -75,7 +75,5 @@ export async function removeToken(tokens: String[]) {
         }
     })
 
-    deleteCookie('refresh-token');
-
     return true; 
 }
