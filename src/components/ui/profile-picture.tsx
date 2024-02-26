@@ -16,8 +16,8 @@ export default function ProfilePicture({
         src={ icon.replace(/\\/g, '/') }
         alt=""
         width={ width }
-        height={ height }
+        height={ height } 
         onError={(e) => e.target.classList.add('hidden')}
-        className={ cn('object-cover rounded-full shadow-lg', className) }
+        className={ cn('rounded-full shadow-lg aspect-square', className) }
     />
 }

@@ -123,6 +123,15 @@ export async function PUT(req: Request) {
                 banner
             }
         });
+
+        const updatedUser = await getUserById(userId as number);
+
+        return NextResponse.json({
+            message: "success",
+            user: updatedUser
+        }, {
+            status: 200
+        })
     } catch (error) {
         console.log((error as Error).message);
 
@@ -135,13 +144,4 @@ export async function PUT(req: Request) {
             }
         );
     }
-
-    const updatedUser = await getUserById(userId as number);
-
-    return NextResponse.json({
-        message: "success",
-        user: updatedUser
-    }, {
-        status: 200
-    })
 }
