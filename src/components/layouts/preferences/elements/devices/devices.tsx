@@ -54,8 +54,8 @@ export default function Devices() {
                     
                     <Location ip={ ip } />
                 </article>
-            }) : [...Array(3)].map(() => {
-                return <Template /> 
+            }) : [...Array(3)].map((index: number) => {
+                return <Template key={ index } /> 
             })
         }
     </motion.section>
