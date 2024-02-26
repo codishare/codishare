@@ -3,13 +3,6 @@ import handleLocaleRouting, { locales } from "./lib/middlewares/localeMiddleware
 import isAuthorized from "./lib/middlewares/authorized";
 
 export default async function middleware(req: NextRequest) {
-    /* @ Locales validation */
-    locales.map(locale => {
-        if(req.nextUrl.pathname.startsWith(`/${ locale }`)) return handleLocaleRouting(req);
-
-        /* @ Authorized routes */
-    })
-
     /* @ API Endpoints */
     if(req.nextUrl.pathname.startsWith('/api')) {
         /* @ Auth module */
@@ -18,6 +11,15 @@ export default async function middleware(req: NextRequest) {
         /* @ Token validation */
         return isAuthorized(req);
     }
+
+    /* @ Locales validation */
+    locales.map(locale => {
+        if(req.nextUrl.pathname.startsWith(`/${ locale }`)) return handleLocaleRouting(req);
+
+        /* @ Authorized routes */
+    })
+
+    return handleLocaleRouting(req)
 }
 
 export const config = {
