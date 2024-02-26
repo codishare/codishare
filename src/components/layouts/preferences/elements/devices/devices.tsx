@@ -1,10 +1,12 @@
+'use client'
+
 import { Device, Session } from "@/types/auth/_types"
 import { useSession } from "@/lib/hooks/useSession";
 import Icon from "./icon";
 import Location from "./location";
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"; 
 
-export default function Devices() {
+export default function Devices() { 
     const {
         session
     } : {
