@@ -22,6 +22,7 @@
     "framer-motion": "^10.18.0",
     "jose": "^5.2.0",
     "next": "14.0.4",
+    "next-auth": "^4.24.6",
     "next-intl": "^3.4.2",
     "next-themes": "^0.2.1",
     "react": "^18",
