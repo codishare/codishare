@@ -4,16 +4,15 @@ import { Device, Session } from "@/types/auth/_types"
 import { useSession } from "@/lib/hooks/useSession";
 import Icon from "./icon";
 import Location from "./location";
-import { motion } from "framer-motion"; 
+import { motion } from "framer-motion";  
+import Template from "./skeleton";
 
 export default function Devices() { 
     const {
         session
     } : {
         session: Session | false; 
-    } = useSession();
-
-    if(!session) return; 
+    } = useSession(); 
 
     return <motion.section 
         initial={{ opacity: 0 }}
@@ -23,7 +22,7 @@ export default function Devices() {
         className="w-full bg-white dark:bg-zinc-900 dark:border-zinc-950 dark:divide-zinc-950 dark:text-zinc-400 px-7 flex flex-col divide-y border rounded"
     >
         {
-            session.devices.map((device: Device) => {
+            session && session.devices ? session.devices.map((device: Device) => {
                 const {
                     device: device_type,
                     browser, 
@@ -55,6 +54,8 @@ export default function Devices() {
                     
                     <Location ip={ ip } />
                 </article>
+            }) : [...Array(3)].map(() => {
+                return <Template /> 
             })
         }
     </motion.section>
