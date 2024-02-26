@@ -1,3 +1,5 @@
+'use client'
+
 import TextInput from "../ui/text-input";
 import { useTranslations } from "next-intl";
 import { AnimatePresence, motion } from "framer-motion";
