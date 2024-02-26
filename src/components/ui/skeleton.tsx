@@ -1,5 +1,4 @@
-import { Skeleton } from "@mui/material";
-import { cn } from "@/lib/cn";
+import { Skeleton } from "@mui/material"; 
 
 export default function SkeletonUI({
     className,
@@ -8,5 +7,5 @@ export default function SkeletonUI({
     className?: string;
     children?: React.ReactNode;
 }) {
-    return <Skeleton className={cn("p-3", className)}>{children}</Skeleton>;
+    return <Skeleton className={ className }>{children}</Skeleton>;
 }

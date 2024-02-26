@@ -1,5 +1,3 @@
-'use server'
-
 import { ToggleTheme } from "@/components/ui/theme/toggle";
 import SearchBar from "./searchbar";
 import Settings from "./aside-settings";
