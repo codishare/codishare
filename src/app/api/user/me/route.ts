@@ -54,7 +54,7 @@ export async function GET(req: Request) {
 
         return NextResponse.json(
             {
-                message: "server_error",
+                message: "server_error"
             },
             {
                 status: 500,
