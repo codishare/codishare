@@ -3,7 +3,11 @@ import NextAuth from 'next-auth/next';
 import GithubProvider from 'next-auth/providers/github';
 
 export const options: NextAuthOptions = {
-    secret: "mQ46qpFwfE1BHuqMC+qlm19qBAD9fVPgh28werwe3ASFlAfnKjM=",
+    secret: process.env.NEXTAUTH_SECRET as string,
+
+    session: {
+        strategy: 'jwt'
+    },
     
     providers: [
         GithubProvider({
