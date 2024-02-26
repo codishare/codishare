@@ -19,18 +19,6 @@ export async function POST(req: Request) {
             }
         );
 
-    const validateRefreshToken = await verifyToken(refresh_token);
-
-    if (!validateRefreshToken)
-        return NextResponse.json(
-            {
-                message: "invalid_refresh_token",
-            },
-            {
-                status: 401,
-            }
-        );
-
     try {
         const decoded = await decodeToken(refresh_token);
 
@@ -69,7 +57,6 @@ export async function POST(req: Request) {
     } catch (error) {
         return NextResponse.json(
             {
-                redirect: "/auth/login",
                 message: "server_error",
             },
             {

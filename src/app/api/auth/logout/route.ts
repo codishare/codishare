@@ -12,8 +12,9 @@ export async function POST(req: Request) {
         await removeToken([refresh_token, access_token]);
 
         const response = new NextResponse(
-            JSON.stringify({
-                message: "success"
+            JSON.stringify({ 
+                redirect: '/auth/login', 
+                message: "success"  
             }),
             {
                 status: 200
