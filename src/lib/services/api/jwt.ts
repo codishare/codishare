@@ -81,3 +81,25 @@ export async function removeToken(tokens: String[]) {
 
     return true; 
 }
+
+export async function getServerSessionByToken() {
+    const token = getCookie('refresh-token'); 
+
+    if(!token) return false;
+
+    const {
+        userId
+    } = await decodeToken(token) as { userId: number };
+
+    if(!userId) return false;
+
+    const user = await prisma.user.findFirst({
+        where: {
+            id: userId
+        }
+    })
+
+    if(!user) return false;
+
+    return user;
+}
