@@ -1,57 +1,27 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { extractAccessToken } from "../services/api/request"; 
 import { jwtVerify } from "jose";
 import { getJwtSecretKey } from "../jwt-secret";
+import { getCookie } from "cookies-next";
 
-export default async function isAuthorized(req: NextRequest) {
+export default async function isAuthorized(req: NextRequest, useRefreshToken: boolean = false) {
     try {
-        const access_token = extractAccessToken(req); 
-    
-        if (!access_token)
-            return NextResponse.json(
-                {
-                    message: "invalid_access_token",
-                    entry: 'middleware'
-                },
-                {
-                    status: 401,
-                }
-            );
+        let token: any = extractAccessToken(req);
 
+        if(useRefreshToken) token = getCookie("refresh-token", { req });
+
+        if (!token) return false
+        
         try {
-            await jwtVerify(access_token, new TextEncoder().encode(getJwtSecretKey()));
-            
-            return NextResponse.next();
-        } catch (error) {
-            if ((error as Error).name === 'TokenExpiredError') return NextResponse.json(
-                {
-                    message: "expired_access_token",
-                    entry: 'middleware'
-                },
-                {
-                    status: 401,
-                }
-            );
+            const isValid = await jwtVerify(token, new TextEncoder().encode(getJwtSecretKey()));
 
-            return NextResponse.json(
-                {
-                    message: "invalid_access_token",
-                    entry: 'middleware'
-                },
-                {
-                    status: 401,
-                }
-            );
+            if(!isValid) return false
+
+            return true
+        } catch (error) { 
+            return false
         } 
     } catch (error) {
-        return NextResponse.json(
-            {
-                message: "server_error",
-                entry: 'middleware'
-            },
-            {
-                status: 500,
-            }
-        );
+        return false
     }
 }

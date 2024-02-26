@@ -36,6 +36,10 @@ export async function performUserAgent(req: Request, userId: number) {
     }
 }
 
-export function extractAccessToken(req: Request) {
-    return req.headers.get("authorization")?.split(" ")[1];
+export function extractAccessToken(req: Request) : String | Boolean {
+    const auth = req.headers.get("authorization"); 
+
+    if(!auth) return false; 
+
+    return auth?.split(" ")[1];
 }

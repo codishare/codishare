@@ -60,28 +60,22 @@ export async function decodeToken(token: string) {
 }
 
 export async function removeToken(tokens: String[]) {
-    try {
-        const blacklisted = await prisma.blacklistedToken.createMany({
-            data: tokens.map(token => ({
-                token: token.toString(), 
-                expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 5)
-            }))
-        })
+    await prisma.blacklistedToken.createMany({
+        data: tokens.map(token => ({
+            token: token.toString(), 
+            expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 5)
+        }))
+    })
 
-        if(!blacklisted) return false;
-
-        await prisma.blacklistedToken.deleteMany({
-            where: {
-                expiresAt: {
-                    lte: new Date()
-                }
+    await prisma.blacklistedToken.deleteMany({
+        where: {
+            expiresAt: {
+                lte: new Date()
             }
-        })
+        }
+    })
 
-        deleteCookie('refresh-token');
+    deleteCookie('refresh-token');
 
-        return true; 
-    } catch (error) {
-        return false; 
-    }
+    return true; 
 }

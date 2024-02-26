@@ -8,7 +8,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
     try { 
-        const access_token = extractAccessToken(req); 
+        const access_token: any = extractAccessToken(req); 
 
         if (!access_token || !(await verifyToken(access_token)))
             return NextResponse.json(
@@ -64,7 +64,7 @@ export async function GET(req: Request) {
 }
 
 export async function PUT(req: Request) {
-    const access_token = extractAccessToken(req)
+    const access_token: any = extractAccessToken(req)
 
     const data = await req.formData();
 

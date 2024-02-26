@@ -9,15 +9,25 @@ export default async function middleware(req: NextRequest) {
         if(req.nextUrl.pathname.startsWith('/api/auth')) return NextResponse.next();
 
         /* @ Token validation */
-        return isAuthorized(req);
+        const auth = await isAuthorized(req);
+
+        if(!auth) return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+
+        return NextResponse.next();
     }
 
-    /* @ Locales validation */
-    locales.map(locale => {
-        if(req.nextUrl.pathname.startsWith(`/${ locale }`)) return handleLocaleRouting(req);
+    if(locales.some(locale => req.nextUrl.pathname.startsWith(`/${ locale }`))) {
+        /* @ Validate Refresh token */
+        const auth = await isAuthorized(req, true);
+
+        /* @ Auth prefix */
+        if(!auth && req.nextUrl.pathname.includes('/auth')) return handleLocaleRouting(req);
 
         /* @ Authorized routes */
-    })
+        if(!auth) return NextResponse.redirect(new URL('/auth/login', req.url));
+
+        return handleLocaleRouting(req);
+    };
 
     return handleLocaleRouting(req)
 }
