@@ -47,8 +47,7 @@ export default async function isAuthorized(req: NextRequest) {
         return NextResponse.json(
             {
                 message: "server_error",
-                entry: 'middleware', 
-                error: (error as Error).message
+                entry: 'middleware'
             },
             {
                 status: 500,
