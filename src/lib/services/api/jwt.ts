@@ -60,11 +60,15 @@ export async function decodeToken(token: string) {
 }
 
 export async function removeToken(tokens: String[]) {
-    await prisma.blacklistedToken.createMany({
-        data: tokens.map(token => ({
-            token: token.toString(), 
-            expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 5)
-        }))
+    tokens.map(async token => {
+        if(!token) return; 
+
+        await prisma.blacklistedToken.create({
+            data: {
+                token: token?.toString(), 
+                expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 5)
+            }
+        })
     })
 
     await prisma.blacklistedToken.deleteMany({
