@@ -7,8 +7,8 @@ export const options: NextAuthOptions = {
     
     providers: [
         GithubProvider({
-            clientId: "f96b1116506ff30962eb",
-            clientSecret: "63d0d3ffdc5a5f8e4f5b08092af68d37ad527441",
+            clientId: process.env.GITHUB_CLIENT_ID as string,
+            clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
         }),
     ],
 };
