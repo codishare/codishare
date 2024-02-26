@@ -1,49 +1,25 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSession } from "@/lib/hooks/useSession";
 import { Session } from "@/types/auth/_types";
 
-import SettingsSharpIcon from '@mui/icons-material/SettingsSharp';
-import Spinner from "../ui/spinner/component";
+import SettingsSharpIcon from '@mui/icons-material/SettingsSharp'; 
 import Logout from "./settings/logout";
 import { SupportOutlined } from "@mui/icons-material";
 import Profile from "./settings/profile";
-import Language from "./settings/language";
-import { useSearchParams } from "next/navigation";
+import Language from "./settings/language"; 
 import { useTranslations } from "next-intl";
 import ProfilePicture from "../ui/profile-picture";
 
 export default function Settings() {
-    const [focused, setFocused] = useState<boolean>(false);
-    const [loading, setLoading] = useState<Boolean>(false);
-
+    const [focused, setFocused] = useState(false);
     const t = useTranslations('Components.UI.aside_settings');
-    
-    const searchParams = useSearchParams(); 
-
-    useEffect(() => { 
-        const current = new URLSearchParams(Array.from(searchParams.entries()));
-       
-        if(!focused) {
-            current.delete('settings');
-        } else current.set('settings', 'true');
-
-        window.history.pushState({}, '', `${window.location.pathname}?${current.toString()}`);
-    }, [focused])
-
-    useEffect(() => {
-        const current = new URLSearchParams(Array.from(searchParams.entries()));
-
-        if(current.get('settings')) setFocused(true);
-    }, [])
 
     const {
         session,
     }: {
         session: Session | false;
     } = useSession();
-
-    if(loading) return <Spinner />; 
 
     return <div>
         <button
@@ -105,7 +81,7 @@ export default function Settings() {
                                     { t('support') }
                                 </li>
 
-                                <Logout handleLoad={(bool: boolean) => setLoading(bool)} />
+                                <Logout />
                             </ul>
                         </section>
                     </motion.div>
