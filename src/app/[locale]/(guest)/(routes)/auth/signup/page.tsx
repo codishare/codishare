@@ -1,4 +1,4 @@
-import AuthForm from "@/components/layouts/auth/form"; 
+import AuthForm from "@/components/layouts/auth/form";  
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 
 export default async function Page({

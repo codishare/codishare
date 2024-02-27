@@ -1,9 +1,13 @@
+'use client'
+
 import Button from "@/components/ui/buttons/button";
 import Github from "@/components/ui/buttons/github";
 import Google from "@/components/ui/buttons/google"; 
 import Input from "@/components/ui/input";
 import Label from "@/components/ui/label"; 
+import { cn } from "@/lib/cn";
 import { Link } from "@/navigation";
+import { Fragment } from "react";
 
 export default function AuthForm({
     extend
@@ -28,11 +32,38 @@ export default function AuthForm({
                 <Input name="password" placeholder="Password" type="password" />
             </Label>
 
+            {/* @ Forgot password on sign in */}
+            {
+                !extend && <Link
+                    href="#"
+                    className="text-gray-500 hover:text-indigo-500 text-xs mt-4 text-right transition-all"
+                >
+                    Forgot Password?
+                </Link>
+            }
+
+            {/* @ Confirm password on sign up */}
+            {
+                extend && <Label
+                    label="Confirm Password"
+                    htmlFor="confirm-password"
+                    required
+                >
+                    <Input name="confirm-password" placeholder="Confirm Password" type="password" />
+                </Label>
+            }
+
             <Link
-                href="#"
-                className="text-gray-500 hover:text-indigo-500 text-xs mt-4 text-right transition-all"
+                href={ extend ? "/auth/signin" : "/auth/signup"}
+                className={ cn('text-gray-500 hover:text-indigo-500 text-xs text-right transition-all', extend && 'mt-4') }
             >
-                Forgot Password?
+                {
+                    extend ? <Fragment>
+                        Already have an account? <span className="text-indigo-500">Sign In</span>
+                    </Fragment> : <Fragment>
+                        Don't have an account? <span className="text-indigo-500">Sign Up</span>
+                    </Fragment>
+                }
             </Link>
 
             <Button> 
@@ -52,6 +83,6 @@ export default function AuthForm({
 
         <Github />
 
-        <Google />
+        <Google /> 
     </section>
 }
