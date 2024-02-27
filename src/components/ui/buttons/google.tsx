@@ -9,6 +9,6 @@ export default function Google() {
     >
         <img className="w-4 h-4" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo" />
 
-        Sign in with Google
+        Google
     </button>
 }
