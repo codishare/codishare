@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import handleLocaleRouting, { locales } from "./lib/middlewares/localeMiddleware";  
+import handleLocaleRouting, { locales } from "./lib/middlewares/localeMiddleware";    
 
 export default async function middleware(req: NextRequest) {
-    return NextResponse.next();
-
     return handleLocaleRouting(req)
 }
 
