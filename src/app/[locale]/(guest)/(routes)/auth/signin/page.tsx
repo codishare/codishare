@@ -1,4 +1,5 @@
 import Github from "@/components/ui/buttons/github";
+import Google from "@/components/ui/buttons/google";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 
 export default async function Page({
@@ -12,7 +13,7 @@ export default async function Page({
 
     const t = await getTranslations('Auth.SignIn')
 
-    return <article className="w-[400px] flex flex-col gap-2">
+    return <article className="w-[400px] flex flex-col gap-3">
         <h1 className="mt-5 font-extrabold text-gray-700 dark:text-white text-4xl">
             {t("header.white")}{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r to-violet-400 from-indigo-500">
@@ -25,5 +26,7 @@ export default async function Page({
         </p>
         
         <Github />
+
+        <Google />
     </article>
 }
