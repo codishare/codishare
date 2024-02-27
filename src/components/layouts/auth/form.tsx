@@ -1,3 +1,5 @@
+'use client'
+
 import Button from "@/components/ui/buttons/button";
 import Github from "@/components/ui/buttons/github";
 import Google from "@/components/ui/buttons/google"; 
@@ -6,7 +8,8 @@ import Label from "@/components/ui/label";
 import { authorize } from "@/lib/actions";
 import { cn } from "@/lib/cn";
 import { Link } from "@/navigation"; 
-import { Fragment } from "react";
+import { Fragment } from "react"; 
+import { useFormStatus } from "react-dom";
 
 export default function AuthForm({
     extend = false
@@ -84,11 +87,18 @@ export default function AuthForm({
                 }
             </Link>
 
-            <Button
-                type="submit"
-            > 
-                { extend ? "Sign Up" : "Sign In" }
-            </Button>
+            <SubmitBtn />
         </form>
     </section>
+}
+
+function SubmitBtn() {
+    const { pending } = useFormStatus();
+
+    return <Button
+        type="submit"
+        ariaDisabled={pending}
+    > 
+        Submit
+    </Button>
 }
