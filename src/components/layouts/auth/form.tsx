@@ -1,5 +1,3 @@
-'use client'
-
 import Button from "@/components/ui/buttons/button";
 import Github from "@/components/ui/buttons/github";
 import Google from "@/components/ui/buttons/google"; 
@@ -7,6 +5,7 @@ import Input from "@/components/ui/input";
 import Label from "@/components/ui/label"; 
 import { cn } from "@/lib/cn";
 import { Link } from "@/navigation";
+import { signIn } from "next-auth/react";
 import { Fragment } from "react";
 
 export default function AuthForm({
@@ -60,10 +59,10 @@ export default function AuthForm({
             {
                 extend && <Label
                     label="Confirm Password"
-                    htmlFor="confirm-password"
+                    htmlFor="confirm_password"
                     required
                 >
-                    <Input name="confirm-password" placeholder="Confirm Password" type="password" />
+                    <Input name="confirm_password" placeholder="Confirm Password" type="password" />
                 </Label>
             }
 
