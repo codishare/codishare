@@ -3,7 +3,7 @@ import NextAuth from 'next-auth/next';
 import GithubProvider from 'next-auth/providers/github';
 import CredentialsProvider from "next-auth/providers/credentials";
 import { AuthFormProps } from '@/types/auth/_types';
-import { create } from '@/lib/actions/users';
+import { createUser } from '@/lib/actions';
 
 export const authOptions: NextAuthOptions = {
     secret: process.env.AUTH_SECRET as string,
@@ -24,7 +24,7 @@ export const authOptions: NextAuthOptions = {
                     extend
                 } = credentials as AuthFormProps;
 
-                await create();
+                await createUser();
 
                 return null
             }
