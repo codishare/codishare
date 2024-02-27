@@ -42,12 +42,10 @@ export default async function RootLayout({
 
     return (
         <html>
-            <body className={inter.className}>
-                <Providers>
-                    <NextIntlClientProvider locale={ locale } messages={ messages }>
-                        { children }
-                    </NextIntlClientProvider>
-                </Providers>
+            <body className={inter.className}> 
+                <NextIntlClientProvider locale={ locale } messages={ messages }>
+                    { children }
+                </NextIntlClientProvider> 
             </body>
         </html>
     );

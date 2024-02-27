@@ -1,4 +1,4 @@
-"use client";
+"use server";
 
 import TrpcProvider from "@/app/_trpc/TrpcProvider";
 import { ThemeProvider } from "next-themes";
@@ -11,15 +11,13 @@ export const Providers = async ({ children }: { children: React.ReactNode }) => 
 
     return (
         <TrpcProvider>
-            <ThemeProvider attribute="class">
+            {/* <ThemeProvider attribute="class"> */}
                 <SessionProvider
                     session={ session }
-                >
-                    <NotificationProvider>
-                        { children }
-                    </NotificationProvider>
+                > 
+                    { children } 
                 </SessionProvider>
-            </ThemeProvider>
+            {/* </ThemeProvider> */}
         </TrpcProvider>
     );
 };
