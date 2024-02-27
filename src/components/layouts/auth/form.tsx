@@ -1,15 +1,12 @@
-'use client'
-
 import Button from "@/components/ui/buttons/button";
 import Github from "@/components/ui/buttons/github";
 import Google from "@/components/ui/buttons/google"; 
 import Input from "@/components/ui/input";
 import Label from "@/components/ui/label"; 
-import { authorize } from "@/lib/actions";
+import { authorize } from "@/actions/auth";
 import { cn } from "@/lib/cn";
 import { Link } from "@/navigation"; 
-import { Fragment } from "react"; 
-import { useFormStatus } from "react-dom";
+import { Fragment } from "react";  
 
 export default function AuthForm({
     extend = false
@@ -35,7 +32,14 @@ export default function AuthForm({
 
         <form 
             className="flex flex-col gap-3"
-            action={ authorizeCredentials }
+            action={async (e) => {
+                "use server"
+
+                authorizeCredentials(e)
+                    .then(response => {
+                        console.log(response)
+                    })
+            }}
         >
             <Label
                 label="Email"
@@ -87,18 +91,11 @@ export default function AuthForm({
                 }
             </Link>
 
-            <SubmitBtn />
+            <Button
+                type="submit" 
+            > 
+                Submit
+            </Button>
         </form>
     </section>
-}
-
-function SubmitBtn() {
-    const { pending } = useFormStatus();
-
-    return <Button
-        type="submit"
-        ariaDisabled={pending}
-    > 
-        Submit
-    </Button>
 }

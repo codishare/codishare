@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import handleLocaleRouting, { locales } from "./lib/middlewares/localeMiddleware";    
 
 export default async function middleware(req: NextRequest) {
+    if(req.nextUrl.pathname.startsWith('/api')) return NextResponse.next();
+
     return handleLocaleRouting(req)
 }
 

@@ -1,24 +1,37 @@
-import NextAuth from 'next-auth';
-import Credentials from 'next-auth/providers/credentials';
-import { authConfig } from '@/auth.config';
-import GitHub from "next-auth/providers/github"
- 
+import NextAuth, { type NextAuthConfig } from 'next-auth';  
+import Github from 'next-auth/providers/github'
+import Credentials from 'next-auth/providers/credentials'
+
+const authConfig = {
+    pages: {
+        signIn: '/auth/signin'
+    },
+    providers: [
+        Github({
+            clientId: "f96b1116506ff30962eb",
+            clientSecret: "63d0d3ffdc5a5f8e4f5b08092af68d37ad527441"
+        }),
+        Credentials({
+            name: 'credentials', 
+            credentials: {
+                username: {
+                    label: "User Name",
+                },
+                password: {
+                    label: "Password",
+                    type: "password",
+                },
+            },
+            authorize: async (credentials, req) => {
+                return Promise.reject('Invalid credentials')
+            }
+        })
+    ],
+} satisfies NextAuthConfig; 
+
 export const { 
     handlers: { GET, POST },
     auth, 
     signIn, 
     signOut 
-} = NextAuth({
-    ...authConfig,
-    providers: [
-        Credentials({
-            async authorize(credentials) {
-                return null
-            }
-        }),
-        GitHub({
-            clientId: process.env.GITHUB_CLIENT_ID as string,
-            clientSecret: process.env.GITHUB_CLIENT_SECRET as string
-        })
-    ],
-});
+} = NextAuth(authConfig)

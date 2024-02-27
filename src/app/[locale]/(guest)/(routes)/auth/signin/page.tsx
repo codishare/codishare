@@ -24,6 +24,8 @@ export default async function Page({
             {t("header.description")}
         </p> 
 
-        <AuthForm />
+        <AuthForm
+            extend={ false }
+        />
     </article>
 }
