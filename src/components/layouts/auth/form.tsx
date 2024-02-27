@@ -15,6 +15,20 @@ export default function AuthForm({
     extend?: boolean
 }) {
     return <section className="flex flex-col gap-3 mt-5"> 
+        <Github />
+
+        <Google /> 
+
+        <div className="flex mt-4 items-center gap-3">
+            <hr className="flex-1" />
+
+            <span className="text-gray-600 text-sm text-center">
+                Or continue with
+            </span>
+
+            <hr className="flex-1" />
+        </div>
+
         <form className="flex flex-col gap-3">
             <Label
                 label="Email"
@@ -70,19 +84,5 @@ export default function AuthForm({
                 { extend ? "Sign Up" : "Sign In" }
             </Button>
         </form>
-
-        <div className="flex py-5 items-center gap-3">
-            <hr className="flex-1" />
-
-            <span className="text-gray-600 text-sm text-center">
-                Or continue with
-            </span>
-
-            <hr className="flex-1" />
-        </div>
-
-        <Github />
-
-        <Google /> 
     </section>
 }
