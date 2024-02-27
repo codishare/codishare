@@ -3,16 +3,18 @@ import Github from "@/components/ui/buttons/github";
 import Google from "@/components/ui/buttons/google"; 
 import Input from "@/components/ui/input";
 import Label from "@/components/ui/label"; 
+import { authorize } from "@/lib/actions";
 import { cn } from "@/lib/cn";
-import { Link } from "@/navigation";
-import { signIn } from "next-auth/react";
+import { Link } from "@/navigation"; 
 import { Fragment } from "react";
 
 export default function AuthForm({
-    extend
+    extend = false
 } : {
-    extend?: boolean
+    extend: boolean
 }) {
+    const authorizeCredentials = authorize.bind(null, extend)
+
     return <section className="flex flex-col gap-3 mt-5"> 
         <Github />
 
@@ -28,7 +30,10 @@ export default function AuthForm({
             <hr className="flex-1" />
         </div>
 
-        <form className="flex flex-col gap-3">
+        <form 
+            className="flex flex-col gap-3"
+            action={ authorizeCredentials }
+        >
             <Label
                 label="Email"
                 htmlFor="email"
@@ -79,7 +84,9 @@ export default function AuthForm({
                 }
             </Link>
 
-            <Button> 
+            <Button
+                type="submit"
+            > 
                 { extend ? "Sign Up" : "Sign In" }
             </Button>
         </form>
