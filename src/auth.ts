@@ -42,6 +42,22 @@ const authConfig = {
         generateSessionToken: () => {
             return Math.random().toString(36).slice(-8)
         }
+    },
+    callbacks: {
+        authorized({
+            auth,
+            request: { nextUrl }
+        }) {
+            const isAuthorized = !!auth?.user
+
+            console.log(isAuthorized)
+            
+            if(!isAuthorized && !nextUrl.pathname.includes('/auth')) return Response.redirect('/auth/signin')
+
+            if(isAuthorized && nextUrl.pathname.includes('/auth')) return Response.redirect('/')
+
+            return true
+        }
     }
 } satisfies NextAuthConfig; 
 
