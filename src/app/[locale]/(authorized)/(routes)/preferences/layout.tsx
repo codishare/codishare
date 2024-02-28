@@ -1,6 +1,3 @@
-// import Actions from "@/components/layouts/preferences/actions"
-// import Header from "@/components/layouts/preferences/header"
-
 import Actions from "@/components/layouts/preferences/actions";
 import Header from "@/components/layouts/preferences/header";
 
