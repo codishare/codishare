@@ -18,6 +18,8 @@ export default function Input(props: InputProps) {
         autoComplete={props.autoComplete} 
         autoFocus={props.autoFocus} 
         id={props.id} 
-        name={props.name}
+        name={props.name} 
+        onBlur={props.onBlur}
+        onFocus={props.onFocus}
     />
 }

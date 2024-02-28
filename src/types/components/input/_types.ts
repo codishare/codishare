@@ -10,5 +10,7 @@ export interface InputProps {
     autoComplete?: string;
     autoFocus?: boolean;
     id?: string;
-    name?: string;
+    name?: string; 
+    onBlur?: () => void;
+    onFocus?: () => void;
 }
