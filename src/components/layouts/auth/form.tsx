@@ -16,7 +16,7 @@ export default function AuthForm({
     extend = false
 } : {
     extend: boolean
-}) {
+}) { 
     const [state, dispatch] = useFormState(authorize, undefined); 
 
     return <section className="flex flex-col gap-3 mt-5"> 
@@ -52,6 +52,8 @@ export default function AuthForm({
             className="flex flex-col gap-3"
             action={ dispatch }
         >
+            <input type="hidden" name="registering" value={ extend.toString() } />
+
             <Label
                 label="Email"
                 htmlFor="email"

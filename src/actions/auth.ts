@@ -4,7 +4,7 @@ import { signIn } from "@/auth"
 
 export async function authorize(
     prevState: string | undefined,
-    formData: FormData,
+    formData: FormData
 ) {
     try {
         await signIn('credentials', Object.fromEntries(formData))
