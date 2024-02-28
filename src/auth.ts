@@ -2,6 +2,8 @@ import NextAuth, { type NextAuthConfig } from 'next-auth';
 import Github from 'next-auth/providers/github'
 import Credentials from 'next-auth/providers/credentials'
 import { login } from './actions/auth';
+import handleLocaleRouting, { defaultLocale, locales } from './lib/middlewares/localeMiddleware';
+import { NextRequest } from 'next/server';
 
 const authConfig = {
     pages: {
@@ -46,17 +48,17 @@ const authConfig = {
     callbacks: {
         authorized({
             auth,
-            request: { nextUrl }
+            request
         }) {
             const isAuthorized = !!auth?.user
 
-            console.log(isAuthorized)
+            if(request.nextUrl.pathname.startsWith('/api')) return true
             
-            if(!isAuthorized && !nextUrl.pathname.includes('/auth')) return Response.redirect('/auth/signin')
+            if(!isAuthorized && !request.nextUrl.pathname.includes('/auth')) return Response.redirect(new URL(`/${ defaultLocale }/auth/signin`, request.nextUrl))
 
-            if(isAuthorized && nextUrl.pathname.includes('/auth')) return Response.redirect('/')
+            if(isAuthorized && request.nextUrl.pathname.includes('/auth')) return Response.redirect(new URL(`/${ defaultLocale }`, request.nextUrl))
 
-            return true
+            return true  
         }
     }
 } satisfies NextAuthConfig; 
