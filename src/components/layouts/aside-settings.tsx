@@ -1,33 +1,22 @@
 'use client'
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
-// import { useSession } from "@/lib/hooks/useSession";
-// import { Session } from "@/types/auth/_types";
-
+import { useState } from "react";  
 import SettingsSharpIcon from '@mui/icons-material/SettingsSharp'; 
-// import Logout from "./settings/logout";
+import Logout from "./settings/logout";
 import { SupportOutlined } from "@mui/icons-material";
 // import Profile from "./settings/profile";
 // import Language from "./settings/language"; 
 import { useTranslations } from "next-intl";
-import { getSession, useSession } from "next-auth/react";
-import { auth } from "@/auth";
+import { useSession } from "next-auth/react"; 
 // import ProfilePicture from "../ui/profile-picture";
 
 export default function Settings() {
     const [focused, setFocused] = useState(false);
     const t = useTranslations('Components.UI.aside_settings');
 
-    // const {
-    //     session,
-    // }: {
-    //     session: Session | false;
-    // } = useSession();
-
     const {
-        data: session,
-        status
+        data: session
     } = useSession();
 
     return <div>
@@ -90,7 +79,7 @@ export default function Settings() {
                                     { t('support') }
                                 </li>
 
-                                {/* <Logout /> */}
+                                <Logout />
                             </ul>
                         </section>
                     </motion.div>
