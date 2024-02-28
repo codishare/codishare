@@ -20,9 +20,9 @@ export default function AuthForm({
     const [state, dispatch] = useFormState(authorize, undefined); 
 
     return <section className="flex flex-col gap-3 mt-5"> 
-        <Github />
+        <Github extend={ extend } />
 
-        <Google /> 
+        <Google extend={ extend } /> 
 
         <div className="flex mt-4 items-center gap-3">
             <hr className="flex-1" />

@@ -2,9 +2,13 @@
 
 import { signIn } from "next-auth/react"
 
-export default function Github() {
+export default function Github({
+    extend = false
+} : {
+    extend: boolean
+}) {
     return <button  
-        onClick={ async () => await signIn('github') }
+        onClick={ async () => await signIn('github', { extend }) }
         className="py-2 px-4 w-full flex justify-center items-center bg-gray-600 hover:bg-gray-700 focus:ring-gray-500 focus:ring-offset-gray-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-md"
     >
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="mr-2" viewBox="0 0 1792 1792">
