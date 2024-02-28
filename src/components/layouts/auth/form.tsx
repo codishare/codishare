@@ -9,13 +9,15 @@ import { authorize } from "@/actions/auth";
 import { cn } from "@/lib/cn";
 import { Link } from "@/navigation"; 
 import { Fragment } from "react";  
+import { useFormState } from "react-dom";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function AuthForm({
     extend = false
 } : {
     extend: boolean
 }) {
-    const authorizeCredentials = authorize.bind(null, extend)
+    const [state, dispatch] = useFormState(authorize, undefined); 
 
     return <section className="flex flex-col gap-3 mt-5"> 
         <Github />
@@ -32,9 +34,23 @@ export default function AuthForm({
             <hr className="flex-1" />
         </div>
 
+        <AnimatePresence>
+            {
+                state === 'CredentialsSignin' && <motion.p 
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    key="credentials-signin"
+                    className="border p-2 text-sm text-center my-3 rounded border-red-500 text-red-500 bg-red-500/10"
+                >
+                    Invalid credentials
+                </motion.p>
+            }
+        </AnimatePresence>
+
         <form 
             className="flex flex-col gap-3"
-            action={ authorizeCredentials }
+            action={ dispatch }
         >
             <Label
                 label="Email"
@@ -90,7 +106,7 @@ export default function AuthForm({
                 type="submit" 
             > 
                 Submit
-            </Button>
+            </Button> 
         </form>
     </section>
 }

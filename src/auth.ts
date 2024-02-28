@@ -23,7 +23,7 @@ const authConfig = {
                 },
             },
             authorize: async (credentials, req) => {
-                return Promise.reject('Invalid credentials')
+                return null
             }
         })
     ],
