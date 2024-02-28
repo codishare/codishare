@@ -1,14 +1,17 @@
-import NextAuth, { type NextAuthConfig } from 'next-auth';  
+import NextAuth from 'next-auth';  
 import Github from 'next-auth/providers/github'
 import Credentials from 'next-auth/providers/credentials'
-import { login } from './actions/auth';
-import handleLocaleRouting, { defaultLocale, locales } from './lib/middlewares/localeMiddleware';
-import { NextRequest } from 'next/server';
+import { login } from './actions/auth'; 
 
-const authConfig = {
-    pages: {
-        signIn: '/auth/signin'
-    },
+import { authConfig } from './auth.config';
+
+export const { 
+    handlers: { GET, POST },
+    auth, 
+    signIn, 
+    signOut 
+} = NextAuth({ 
+    ...authConfig,
     providers: [
         Github({
             clientId: "f96b1116506ff30962eb",
@@ -37,35 +40,5 @@ const authConfig = {
                 return attempt as any
             }
         })
-    ],
-    session: {
-        strategy: 'jwt',
-        maxAge: 30 * 24 * 60 * 2, // @ 2 Days
-        generateSessionToken: () => {
-            return Math.random().toString(36).slice(-8)
-        }
-    },
-    callbacks: {
-        authorized({
-            auth,
-            request
-        }) {
-            const isAuthorized = !!auth?.user
-
-            if(request.nextUrl.pathname.startsWith('/api')) return true
-            
-            if(!isAuthorized && !request.nextUrl.pathname.includes('/auth')) return Response.redirect(new URL(`/${ defaultLocale }/auth/signin`, request.nextUrl))
-
-            if(isAuthorized && request.nextUrl.pathname.includes('/auth')) return Response.redirect(new URL(`/${ defaultLocale }`, request.nextUrl))
-
-            return true  
-        }
-    }
-} satisfies NextAuthConfig; 
-
-export const { 
-    handlers: { GET, POST },
-    auth, 
-    signIn, 
-    signOut 
-} = NextAuth(authConfig)
+    ]
+})

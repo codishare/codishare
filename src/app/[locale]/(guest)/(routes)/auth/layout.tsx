@@ -1,10 +1,18 @@
-import { ToggleTheme } from "@/components/theme/toggle"
+'use server'
 
-export default function Layout({
+import { auth } from "@/auth"
+import { ToggleTheme } from "@/components/theme/toggle"
+import { redirect } from "@/navigation";
+
+export default async function Layout({
     children
 } : {
     children: React.ReactNode
 }) {
+    const session = await auth();
+
+    if(session) return redirect('/');
+
     return <main className="w-screen h-screen flex justify-center"> 
         {/* @ Toggle theme */}
         <section className="fixed right-0 top-0 m-5">
