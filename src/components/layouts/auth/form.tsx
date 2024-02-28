@@ -36,14 +36,13 @@ export default function AuthForm({
 
         <AnimatePresence>
             {
-                state === 'CredentialsSignin' && <motion.p 
+                state && <motion.p 
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    key="credentials-signin"
+                    exit={{ opacity: 0, y: -10 }} 
                     className="border p-2 text-sm text-center my-3 rounded border-red-500 text-red-500 bg-red-500/10"
                 >
-                    Invalid credentials
+                    { state }
                 </motion.p>
             }
         </AnimatePresence>
