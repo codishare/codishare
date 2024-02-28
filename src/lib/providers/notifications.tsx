@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion"; 
-import { Notification } from "@/types/components/notifications/_types";
+import type { Notification } from "@/types/components/notification/_types";
 
 export const NotificationContext = createContext<(notification: Notification) => void>(() => {});
 
