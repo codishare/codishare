@@ -3,13 +3,21 @@
 import { z } from 'zod';
 import prisma from '@/lib/prisma';
 import { encrypt } from '@/lib/encryption';
+import { User } from '@/types/auth/_types';
 
-export async function findByEmail(email: string) {
+export async function findByEmail(email: string) : Promise<User | null> {
     return await prisma.user.findFirst({
         where: {
             email
+        }, 
+        select: {
+            id: true,
+            name: true,
+            alias: true,
+            email: true,
+            password: true
         }
-    })
+    }) as User | null
 }
 
 export async function create({

@@ -10,3 +10,11 @@ export interface Register extends Login {
 export interface AuthFormProps extends Register {
     extend?: boolean
 }
+
+export interface User {
+    id: number;
+    name: String;
+    alias: string;
+    email: string;
+    password: string;
+}

@@ -1,6 +1,7 @@
 import NextAuth, { type NextAuthConfig } from 'next-auth';  
 import Github from 'next-auth/providers/github'
 import Credentials from 'next-auth/providers/credentials'
+import { login } from './actions/auth';
 
 const authConfig = {
     pages: {
@@ -13,20 +14,35 @@ const authConfig = {
         }),
         Credentials({
             name: 'credentials', 
-            credentials: {
-                username: {
-                    label: "User Name",
-                },
-                password: {
-                    label: "Password",
-                    type: "password",
-                },
-            },
+            credentials: {},
             authorize: async (credentials, req) => {
-                return null
+                const { email, password } = credentials as {
+                    email: string, 
+                    password: string
+                }
+
+                if(!email || !password) return Promise.reject('ArgumentsMustBeFilledOut')
+
+                const attempt = await login({
+                    email, 
+                    password
+                })
+
+                if(!attempt) return Promise.reject('InvalidCredentials')
+
+                if(typeof attempt === 'string') return Promise.reject(attempt)
+
+                return attempt as any
             }
         })
     ],
+    session: {
+        strategy: 'jwt',
+        maxAge: 30 * 24 * 60 * 2, // @ 2 Days
+        generateSessionToken: () => {
+            return Math.random().toString(36).slice(-8)
+        }
+    }
 } satisfies NextAuthConfig; 
 
 export const { 
