@@ -5,11 +5,10 @@ import { useState } from "react";
 import SettingsSharpIcon from '@mui/icons-material/SettingsSharp'; 
 import Logout from "./settings/logout";
 import { SupportOutlined } from "@mui/icons-material";
-// import Profile from "./settings/profile";
-// import Language from "./settings/language"; 
+import Profile from "./settings/profile";
+import Language from "./settings/language"; 
 import { useTranslations } from "next-intl";
-import { useSession } from "next-auth/react"; 
-// import ProfilePicture from "../ui/profile-picture";
+import { useSession } from "next-auth/react";  
 
 export default function Settings() {
     const [focused, setFocused] = useState(false);
@@ -46,9 +45,7 @@ export default function Settings() {
                         className="bg-white dark:bg-zinc-900 p-5 h-screen w-[350px] flex flex-col gap-5 divide-y shadow"
                     >
                         {/* @ Profile information */}
-                        <section className="flex gap-5 h-12 items-center">
-                            {/* <ProfilePicture icon={ session && session.icon ? session.icon : '' } /> */}
-
+                        <section className="flex gap-5 h-12 items-center"> 
                             <div className="flex flex-col gap-1">
                                 <h2 className="text-xl">
                                     { session?.user?.name }
@@ -64,8 +61,8 @@ export default function Settings() {
                         <section className="h-full">
                             <ul className="flex pt-5 flex-col h-full gap-4">
                                 {/* @ Settings */}
-                                {/* <Profile />
-                                <Language /> */}
+                                <Profile />
+                                <Language />
 
                                 {/* @ Separator */}
                                 <div className="flex-1"></div>
