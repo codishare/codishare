@@ -1,3 +1,5 @@
+'use client'
+
 import Button from "@/components/ui/buttons/button";
 import Github from "@/components/ui/buttons/github";
 import Google from "@/components/ui/buttons/google"; 
@@ -32,14 +34,7 @@ export default function AuthForm({
 
         <form 
             className="flex flex-col gap-3"
-            action={async (e) => {
-                "use server"
-
-                authorizeCredentials(e)
-                    .then(response => {
-                        console.log(response)
-                    })
-            }}
+            action={ authorizeCredentials }
         >
             <Label
                 label="Email"
